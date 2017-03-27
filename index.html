@@ -364,7 +364,7 @@
       
         
           
-            <p>作为一门现代，高级语言，Swift处理应用中大量的内存管理并且代你分配和释放内存。它使用叫自动引用计数或者叫ARC这种很灵巧的技术。在这篇教程里，你将学习到关于ARC和内存管理在Swift。<br><img src="https://koenig-media.raywenderlich.com/uploads/2016/08/ARC-Memory-Swift-feature.png" style="zoom:20%"></p>
+            <p>作为一门现代的高级语言，Swift处理应用中大量的内存管理并且代你分配和释放内存。它使用叫自动引用计数或者叫ARC这种很灵巧的技术。在这篇教程里，你将学习到关于ARC和内存管理在Swift。<br><img src="https://koenig-media.raywenderlich.com/uploads/2016/08/ARC-Memory-Swift-feature.png" style="zoom:20%"></p>
 <p>在你了解这个系统下，你可以决定一个堆对象什么时候结束。Swift中使用ARC可以非常的有效率在资源受限的环境-比如iOS。</p>
 <p>因为ARC是“自动的”，你将没必要明确参与对象的引用计数。甚至，你仅仅所需要考虑的是对象之间的关系去避免内存泄漏。这一点很容易被一个新开发者所忽视。</p>
 <p>在这篇教程中，通过学习如下知识你将提高的你的Swift和ARC技能。</p>
@@ -374,7 +374,29 @@
 <li>实际中一个循环引用的例子，怎么通过最新版的Xcode可视化工具去检测。</li>
 <li>怎么处理值和引用类型的混合使用。</li>
 </ul>
-<h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><p><a href="https://www.raywenderlich.com/134411/arc-memory-management-swift" target="_blank" rel="external">原文链接</a></p>
+<h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><p>打开Xcode并且点击File\New\Playground…. 选择iOS Platform，取名叫MemoryManagement，然后点击Next.保存在任何你愿意存放的地方然后删除样例化的代码并且保存playground。<br>下一步，添加如下代码到你的playground:</p>
+<p><br><code><br>class User {<br>  var name: String<br><br>  init(name: String) {<br>    self.name = name<br>    print(“User (name) is initialized”)<br>  }<br><br>  deinit {<br>    print(“User (name) is being deallocated”)<br>  }<br>}<br><br>let user1 = User(name: “John”)<br></code><br></p>
+
+<p>这里定义了一个叫User的类并且创建了它的一个实例.User类有一个name属性，一个init方法(仅仅在内存分配好后调用)和deinit方法(在内存释放前调用)。print语句让你知道什么在发生。</p>
+<p>你将发现playground在侧边栏显示”User John is initialized\n” ,init方法的print语句。然而，你将注意到在deinit方法中print语句从来没有调用。这个意味着对象从来没有析构，即意味着从到没有被释放。那是因为对象被初始化之后从来没有被关闭-playground本身绝不会超出范围-所以对象没有被移出内存。</p>
+<p>改变let user1初始化通过下面的do语句包裹下：</p>
+<p><br><code><br>do {<br>  let user1 = User(name: “John”)<br>}<br></code><br></p>
+
+<p>这里围绕user1对象的初始化创建一个范围。在范围的结尾，我们期望user1被释放。</p>
+<p>现在你可以看到在侧边栏print语句和构造方法和析构方法都对应上了。显示对象在范围的最后被析构了，在从内存中移除之前。</p>
+<p>Swift对象的生命周期由五部分组成:</p>
+<ol>
+<li>分配(从栈上或堆上分配内存)</li>
+<li>构造(init代码运行)</li>
+<li>使用(对象在使用)</li>
+<li>析构(deinit代码运行)</li>
+<li>释放(内存返回给栈或者堆)</li>
+</ol>
+<p>当没有直接勾住分配和释放，你可以在init和deinit方法里使用打印语句作为代理监控这些事情的发生。有的时候“释放”和“析构”当做是同一意思使用，但是实际上他们是对象的生命周期的两个不同阶段。</p>
+<p>当一个对象不再需要的时候，对象被释放，引用计数是这样的一个机制。这儿问题是”当确定一个对象在将来的什么时候不需要呢？” 引用计数通过保持一个使用数量，也叫做引用计数，在每个对象实例内部。</p>
+<p>这个数量指示多少“东西”引用对象。当一个对象的引用计数为0表示这个对象没有东西引用它，所以对象被析构和释放。</p>
+<p><img src="https://koenig-media.raywenderlich.com/uploads/2016/05/Scheme1.png" style="zoom:20%"></p>
+<p><a href="https://www.raywenderlich.com/134411/arc-memory-management-swift" target="_blank" rel="external">原文链接</a></p>
 
           
         
