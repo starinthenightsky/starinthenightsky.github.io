@@ -1,0 +1,772 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="Swift 算法俱乐部是个开源的项目，实现数据结构和算法基于swift语言.Kelvin Lau和我用一篇教程介绍一个炫酷的数据结构或者算法在这个网站上。如果你想学习到更多的算法和数据结构，跟着我们一起吧！
+在这篇教程里,你将学习到怎么实现一个链表基于swift 3 .链表最先是Matthijs Hollemans实现的,Swift 算法俱乐部的建立者.
+开始链表是一系列数据项,而每一个数据项关联">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Swift 算法俱乐部:Swift 链表数据结构">
+<meta property="og:url" content="http://yoursite.com/2017/01/18/swift-algorithm-club-swift-linked-list-data-structure/index.html">
+<meta property="og:site_name" content="夜空中的星">
+<meta property="og:description" content="Swift 算法俱乐部是个开源的项目，实现数据结构和算法基于swift语言.Kelvin Lau和我用一篇教程介绍一个炫酷的数据结构或者算法在这个网站上。如果你想学习到更多的算法和数据结构，跟着我们一起吧！
+在这篇教程里,你将学习到怎么实现一个链表基于swift 3 .链表最先是Matthijs Hollemans实现的,Swift 算法俱乐部的建立者.
+开始链表是一系列数据项,而每一个数据项关联">
+<meta property="og:image" content="https://koenig-media.raywenderlich.com/uploads/2016/09/SwiftAlgClub-LinkedList-feature.png">
+<meta property="og:image" content="https://koenig-media.raywenderlich.com/uploads/2016/09/SingleLinkedList.png">
+<meta property="og:image" content="https://koenig-media.raywenderlich.com/uploads/2016/09/DoublyLinkedList.png">
+<meta property="og:image" content="https://koenig-media.raywenderlich.com/uploads/2016/09/Head.png">
+<meta property="og:image" content="https://koenig-media.raywenderlich.com/uploads/2016/09/RemovalHead-480x73.png">
+<meta property="og:image" content="https://koenig-media.raywenderlich.com/uploads/2016/09/Removal.png">
+<meta property="og:image" content="https://koenig-media.raywenderlich.com/uploads/2016/09/RemovalTail.png">
+<meta property="og:updated_time" content="2017-01-22T10:57:09.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Swift 算法俱乐部:Swift 链表数据结构">
+<meta name="twitter:description" content="Swift 算法俱乐部是个开源的项目，实现数据结构和算法基于swift语言.Kelvin Lau和我用一篇教程介绍一个炫酷的数据结构或者算法在这个网站上。如果你想学习到更多的算法和数据结构，跟着我们一起吧！
+在这篇教程里,你将学习到怎么实现一个链表基于swift 3 .链表最先是Matthijs Hollemans实现的,Swift 算法俱乐部的建立者.
+开始链表是一系列数据项,而每一个数据项关联">
+<meta name="twitter:image" content="https://koenig-media.raywenderlich.com/uploads/2016/09/SwiftAlgClub-LinkedList-feature.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/01/18/swift-algorithm-club-swift-linked-list-data-structure/"/>
+
+
+
+
+
+  <title> Swift 算法俱乐部:Swift 链表数据结构 | 夜空中的星 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">夜空中的星</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle">iOS开发</p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/18/swift-algorithm-club-swift-linked-list-data-structure/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="star in the night sky">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="夜空中的星">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="夜空中的星" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Swift 算法俱乐部:Swift 链表数据结构
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-01-18T12:13:58+08:00">
+                2017-01-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Swift 算法俱乐部是个开源的项目，实现数据结构和算法基于swift语言.<br>Kelvin Lau和我用一篇教程介绍一个炫酷的数据结构或者算法在这个网站上。如果你想学习到更多的算法和数据结构，跟着我们一起吧！</p>
+<p>在这篇教程里,你将学习到怎么实现一个链表基于swift 3 .链表最先是Matthijs Hollemans实现的,Swift 算法俱乐部的建立者.<br><img src="https://koenig-media.raywenderlich.com/uploads/2016/09/SwiftAlgClub-LinkedList-feature.png" style="zoom:20%"></p>
+<h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><p>链表是一系列数据项,而每一个数据项关联到一个节点。<br>主要有两种类型链表:<br>单链表,是一种每个节点只有一个引用到下个节点<br><img src="https://koenig-media.raywenderlich.com/uploads/2016/09/SingleLinkedList.png" alt=""></p>
+<p>双链表,是一种每个节点有前驱节点和后继节点的链表<br><img src="https://koenig-media.raywenderlich.com/uploads/2016/09/DoublyLinkedList.png" alt=""></p>
+<p>你需要保持链表的开始和结尾，通常通过头结点和尾节点来完成的</p>
+<p><img src="https://koenig-media.raywenderlich.com/uploads/2016/09/Head.png" alt=""></p>
+<h1 id="链表实现基于Swift-3"><a href="#链表实现基于Swift-3" class="headerlink" title="链表实现基于Swift 3"></a>链表实现基于Swift 3</h1><p>在这一章,你将实现一个链表基于Swift 3<br>记住链表是有由节点组成。所以在开始前,我们来创建一个基础节点类。创建一个Swift playground并且添加如下的空类：</p>
+<p><code>public class Node {<br><br>}</code></p>
+
+<h1 id="值"><a href="#值" class="headerlink" title="值"></a>值</h1><p>一个节点需要一个值关联它,添加下面的代码在大括号之间：</p>
+<p><code>var value: String<br><br>init(value: String) {<br>  self.value = value<br>}</code></p>
+
+<p>你已经定义了一个类型为String名为value的属性。在你自己的应用里，这个应该是你想存储的任何类型。<br>你也可以定义一个初始化方法,要求初始化所有非可选的存储变量在你的类里面。</p>
+<h1 id="后继节点"><a href="#后继节点" class="headerlink" title="后继节点"></a>后继节点</h1><p>在链表中,除了需要一个值，每个节点还需要一个指针指向下一个节点.<br>要完成这个，给类添加如下属性:</p>
+<p><code>var next: Node?</code></p>
+
+<p>你已经定义了一个类型为Node名为next的属性。注意你让next是可选型的。这是因为链表中的最后一个节点没有指向另外一个节点。</p>
+<h1 id="前驱节点"><a href="#前驱节点" class="headerlink" title="前驱节点"></a>前驱节点</h1><p>你同时在实现一个双链表，所以在链表中我们也需要一个指针指向前驱节点。<br>注意：为了避免持有循环，我们定义前驱指向是弱类型。如果你有一个节点A，后面的节点是节点B在列表中，然后节点A指向节点B同时节点B指向节点A。在某种环境下，这种持有循环可能会导致节点保持活跃即使你已经删除了他们。我们不想要那样，所有我们是其中一个指向为weak来打破这种循环。想学习更多的持有循环，检出我们的<a href="https://www.raywenderlich.com/134411/arc-memory-management-swift/" target="_blank" rel="external"> ARC and Memory Management in Swift</a>教程<br>既然你已经创建了个节点,你同时也需要记录住链表的开始和结尾<br>要完成这个，添加这个新的<font color="green" size="3" face="“黑体”">LinkedList</font>类在playground文件的底部:</p>
+<p><code>public class LinkedList {<br>  fileprivate var head: Node?<br>  private var tail: Node?<br><br>  public var isEmpty: Bool {<br>    return head == nil<br>  }<br><br>  public var first: Node? {<br>    return head<br>  }<br><br>  public var last: Node? {<br>    return tail<br>  }<br>}</code></p>
+
+<p>这个类将记录住链表的开始和结尾。同时它也将提供一系列的辅助函数。</p>
+<h1 id="追加"><a href="#追加" class="headerlink" title="追加"></a>追加</h1><p>在你的链表中处理追加一个节点，你将定义一个append(value:)方法在 LinkedList类中。添加如下新方法给 LinkedList：</p>
+<p><code>public func append(value: String) {<br>  // 1<br>  let newNode = Node(value: value)<br>  // 2<br>  if let tailNode = tail {<br>    newNode.previous = tailNode<br>    tailNode.next = newNode<br>  }<br>  // 3<br>  else {<br>    head = newNode<br>  }<br>  // 4<br>  tail = newNode<br>}</code></p>
+
+<p>让我们一段一段的回顾:</p>
+<ul>
+<li>创建一个包含值的节点。记住,这个节点类的目的是链表中的每个元素能指向前驱和后继节点。</li>
+<li>如果尾节点不为空，那就意味着链表中已经有一些东西。如果是这种情况，把新元素指向链表的尾节点作为它的前驱节点。类似的，将尾节点的后继节点指向新元素。</li>
+<li>最后，不管什么情况,把新元素设置成链表的尾节点.</li>
+</ul>
+<h1 id="打印你的链表"><a href="#打印你的链表" class="headerlink" title="打印你的链表"></a>打印你的链表</h1><p>让我们试下你的新的链表。在类LinkedList的实现外面，编写如下的内容到你的playground:：</p>
+<p><code>let dogBreeds = LinkedList()<br>dogBreeds.append(value: “Labrador”)<br>dogBreeds.append(value: “Bulldog”)<br>dogBreeds.append(value: “Beagle”)<br>dogBreeds.append(value: “Husky”)</code></p><br>在定义了列表之后，我们将尝试在控制台打印列表:<br><p><code>print(dogBreeds)</code></p><br>你可以通过如下的组合键(Command-Shift-Y)把控制台展示。你应该在控制台能看到如下输出：<br><p><code><br>LinkedList</code></p><br>这个不是很有用。想要显示更多的刻度的输出字符，你可以让LinkedList遵循CustomStringConvertable协议。想要完成这个，添加如下内容在你的LinkedList类实现下面:<br><p><code>// 1<br>extension LinkedList: CustomStringConvertible {<br>  // 2<br>  public var description: String {<br>    // 3<br>    var text = “[“<br>    var node = head<br>    // 4<br>    while node != nil {<br>      text += “(node!.value)”<br>      node = node!.next<br>      if node != nil { text += “, “ }<br>    }<br>    // 5<br>    return text + “]”<br>  }<br>}</code></p><br>下面是代码如何工作的：<br><em> 你对你的LinkedList类实现了一个扩展，并且你已经遵循了CustomStringConvertible协议.这个协议期望你实现一个String类型名字叫做description的计算型属性。
+</em> 你已经定义了description属性。这是一个返回一个字符串的只读的计算型属性。<br><em> 你已经定义了一个text变量。这个将保持住整个字符串。现在它包含一个中括号代表列表的开始。
+</em> 你然后追加每个元素的值到text变量里通过循环。<br>* 你添加中括号到text变量的结尾。<br><br>现在，当你通过调用输出你的LinkedList类，你将获取到列表一个好的表现像如下：<br><br><p><code>“[Labrador, Bulldog, Beagle, Husky]”</code></p>
+
+<h1 id="访问节点"><a href="#访问节点" class="headerlink" title="访问节点"></a>访问节点</h1><p>当你通过前驱和后继节点按顺序移动节点，即使一个链表工作效率很高，有时你还需要通过索引访问元素。<br>想要完成这个，你将定义nodeAt(index:)一个方法在你的LinkedList类。这个将返回某个指定索引的节点。<br>更新LinkedList的实现包含如下：</p>
+<p><code>public func nodeAt(index: Int) -&gt; Node? {<br>  // 1<br>  if index &gt;= 0 {<br>    var node = head<br>    var i = index<br>    // 2<br>    while node != nil {<br>      if i == 0 { return node }<br>      i -= 1<br>      node = node!.next<br>    }<br>  }<br>  // 3<br>  return nil<br>}</code></p><br>这个是你完成的：<br><em> 对指定的索引做非负数的检查。这个阻止无限循环如果索引是个负值。
+</em> 循环这些节点直到你到了指定索引的节点并且返回这个节点。<br>* 如果索引小于0或者大于链表元素的数量，返回nil。<br># 移除所有节点<br>移除所有节点很简单。我们只要把头结点和尾节点赋值给nil：<br><p><code>public func removeAll() {<br>  head = nil<br>  tail = nil<br>}</code></p>
+
+<h1 id="移除某个节点"><a href="#移除某个节点" class="headerlink" title="移除某个节点"></a>移除某个节点</h1><p>要移除某个节点，你需要处理三种情况:</p>
+<ul>
+<li>移除第一个节点。你需要更新头结点和前驱节点。<br><img src="https://koenig-media.raywenderlich.com/uploads/2016/09/RemovalHead-480x73.png" alt=""></li>
+<li>移除的节点在链表的中间。这个要求你更新前驱和后继节点<br><img src="https://koenig-media.raywenderlich.com/uploads/2016/09/Removal.png" alt=""></li>
+<li>移除最后一个节点。这个需要你更新后继节点和尾节点。<br><img src="https://koenig-media.raywenderlich.com/uploads/2016/09/RemovalTail.png" alt=""></li>
+</ul>
+<p>更新LinkedList的实现包含如下：</p>
+<p><code>public func remove(node: Node) -&gt; String {<br>  let prev = node.previous<br>  let next = node.next<br><br>  if let prev = prev {<br>    prev.next = next // 1<br>  } else {<br>    head = next // 2<br>  }<br>  next?.previous = prev // 3<br><br>  if next == nil {<br>    tail = prev // 4<br>  }<br><br>  // 5<br>  node.previous = nil<br>  node.next = nil<br><br>  // 6<br>  return node.value<br>}</code></p>
+
+<p>这些是你完成的:</p>
+<ul>
+<li>更新后继指向如果你不是在移除列表的第一个节点。</li>
+<li>更新头指向如果你在移除列表的第一个节点。</li>
+<li>更新前驱指向到所产出的节点的前驱指向。</li>
+<li>更新tail如果你正在移除列表的最后一个几点。</li>
+<li>给移除的节点的前驱和后继指向赋值为nil。</li>
+<li>返回移除节点的值。</li>
+</ul>
+<h1 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h1><p>到现在为止你已经实现了一个存储String值的通用的链表。你已经提供LinkedList类给添加，移除，访问节点的功能。在这段我们将使用泛型从我们的链表抽象出来需要的类型。<br>更新LinkedList的实现包含如下：</p>
+<p><code>// 1<br>public class Node<t> {<br>  // 2<br>  var value: T<br>  var next: Node<t>?<br>  weak var previous: Node<t>?<br><br>  // 3<br>  init(value: T) {<br>    self.value = value<br>  }<br>}</t></t></t></code></p>
+
+<p>这些是你完成的:</p>
+<ul>
+<li>你已经更改了Node类的定义可以接受泛型T。</li>
+<li>你的目的是允许Node类接受任何值类型，所以你限制你的值属性是类型T而不是String。</li>
+<li>你已经更新了你的初始化可以接受任何类型。</li>
+</ul>
+<h1 id="泛型：挑战"><a href="#泛型：挑战" class="headerlink" title="泛型：挑战"></a>泛型：挑战</h1><p>尝试用泛型实现LinkedList<br>解决方法在下面提供，但是首先自己尝试下！</p>
+<p><code>// 1. Change the declaration of the Node class to take a generic type T<br>public class LinkedList<t> {<br>  // 2. Change the head and tail variables to be constrained to type T<br>  fileprivate var head: Node<t>?<br>  private var tail: Node<t>?<br><br>  public var isEmpty: Bool {<br>    return head == nil<br>  }<br><br>  // 3. Change the return type to be a node constrained to type T<br>  public var first: Node<t>? {<br>    return head<br>  }<br><br>  // 4. Change the return type to be a node constrained to type T<br>  public var last: Node<t>? {<br>    return tail<br>  }<br><br>  // 5. Update the append function to take in a value of type T<br>  public func append(value: T) {<br>    let newNode = Node(value: value)<br>    if let tailNode = tail {<br>      newNode.previous = tailNode<br>      tailNode.next = newNode<br>    } else {<br>      head = newNode<br>    }<br>    tail = newNode<br>  }<br><br>  // 6. Update the nodeAt function to return a node constrained to type T<br>  public func nodeAt(index: Int) -&gt; Node<t>? {<br>    if index &gt;= 0 {<br>      var node = head<br>      var i = index<br>      while node != nil {<br>        if i == 0 { return node }<br>        i -= 1<br>        node = node!.next<br>      }<br>    }<br>    return nil<br>  }<br><br>  public func removeAll() {<br>    head = nil<br>    tail = nil<br>  }<br><br>  // 7. Update the parameter of the remove function to take a node of type T. Update the return value to type T.<br>  public func remove(node: Node<t>) -&gt; T {<br>    let prev = node.previous<br>    let next = node.next<br><br>    if let prev = prev {<br>      prev.next = next<br>    } else {<br>      head = next<br>    }<br>    next?.previous = prev<br><br>    if next == nil {<br>      tail = prev<br>    }<br><br>    node.previous = nil<br>    node.next = nil<br><br>    return node.value<br>  }<br>}</t></t></t></t></t></t></t></code></p>
+
+<p>你的代码现在可以编译了，所以我们测试下！在你的playground文件的底部，添加如下的代码去验证你的泛型线性列表工作正常:</p>
+<p><code>let dogBreeds = LinkedList<string>()<br>dogBreeds.append(value: “Labrador”)<br>dogBreeds.append(value: “Bulldog”)<br>dogBreeds.append(value: “Beagle”)<br>dogBreeds.append(value: “Husky”)<br><br>let numbers = LinkedList<int>()<br>numbers.append(value: 5)<br>numbers.append(value: 10)<br>numbers.append(value: 15)</int></string></code></p>
+
+<h1 id="何去何从"><a href="#何去何从" class="headerlink" title="何去何从"></a>何去何从</h1><p>我希望你喜欢这篇关于链表的教程。<br>这儿是一个<a href="https://koenig-media.raywenderlich.com/uploads/2016/09/SwiftLinkedList.playground.zip" target="_blank" rel="external"> Swift playground</a>针对上面的代码。你也可以发现可替换的实现和进一步的讨论在Swift 算法部分的<a href="https://github.com/raywenderlich/swift-algorithm-club/tree/master/Linked%20List" target="_blank" rel="external">链表</a>部分。<br>这只是许多算法俱乐部中聚焦Swift算法俱乐部的一部分，如果你对这些更感兴趣，检出 <a href="https://github.com/raywenderlich/swift-algorithm-club" target="_blank" rel="external"> repo</a></p>
+<p>Swift 算法俱乐部总是在寻找更多的贡献者。如果你对数据结构，算法，甚至一个面试问题想分享，不要犹豫去贡献！想学习更多的关于贡献流程，检出 我们的<a href="https://www.raywenderlich.com/135533/join-swift-algorithm-club" target="_blank" rel="external"> 参加Swift算法俱乐部</a>文章。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>我知道是不会有人点的，但万一有人想不开呢？</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/Wechat.jpeg" alt="star in the night sky WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/aliPay.jpeg" alt="star in the night sky Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/01/19/swift-algorithm-club-swift-stack-data-structure/" rel="prev" title="Swift 算法俱乐部:Swift 栈数据结构">
+                Swift 算法俱乐部:Swift 栈数据结构 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="star in the night sky" />
+          <p class="site-author-name" itemprop="name">star in the night sky</p>
+          <p class="site-description motion-element" itemprop="description">iOS objective-c swift algorithm Data Structure</p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#开始"><span class="nav-number">1.</span> <span class="nav-text">开始</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#链表实现基于Swift-3"><span class="nav-number">2.</span> <span class="nav-text">链表实现基于Swift 3</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#值"><span class="nav-number">3.</span> <span class="nav-text">值</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#后继节点"><span class="nav-number">4.</span> <span class="nav-text">后继节点</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#前驱节点"><span class="nav-number">5.</span> <span class="nav-text">前驱节点</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#追加"><span class="nav-number">6.</span> <span class="nav-text">追加</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#打印你的链表"><span class="nav-number">7.</span> <span class="nav-text">打印你的链表</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#访问节点"><span class="nav-number">8.</span> <span class="nav-text">访问节点</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#移除某个节点"><span class="nav-number">9.</span> <span class="nav-text">移除某个节点</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#泛型"><span class="nav-number">10.</span> <span class="nav-text">泛型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#泛型：挑战"><span class="nav-number">11.</span> <span class="nav-text">泛型：挑战</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#何去何从"><span class="nav-number">12.</span> <span class="nav-text">何去何从</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">star in the night sky</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+本站总访问量 <span id="busuanzi_value_site_pv"></span> &nbsp&nbsp&nbsp
+您是第<span id="busuanzi_value_site_uv"></span>个来到的小伙伴
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid="></script>
+      <!-- UY END -->
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

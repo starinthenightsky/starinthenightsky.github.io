@@ -1,0 +1,872 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="本文由Kelvin Lau发表于raywenderlich，原文链接Swift 算法俱乐部是个开源的项目，实现数据结构和算法基于swift语言.每个月，Kelvin Lau和我用一篇教程介绍一个炫酷的数据结构或者算法在这个网站上。如果你想学习到更多的算法和数据结构，跟着我们一起吧！在这篇教程里,你将学习到二叉树和二叉查找树。二叉树首先是Matthijs Hollemans实现的,二叉查找树是Nic">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Swift 算法俱乐部:Swift 二叉查找树数据结构">
+<meta property="og:url" content="http://yoursite.com/2017/01/22/swift-algorithm-club-swift-binary-search-tree-data-structure/index.html">
+<meta property="og:site_name" content="夜空中的星">
+<meta property="og:description" content="本文由Kelvin Lau发表于raywenderlich，原文链接Swift 算法俱乐部是个开源的项目，实现数据结构和算法基于swift语言.每个月，Kelvin Lau和我用一篇教程介绍一个炫酷的数据结构或者算法在这个网站上。如果你想学习到更多的算法和数据结构，跟着我们一起吧！在这篇教程里,你将学习到二叉树和二叉查找树。二叉树首先是Matthijs Hollemans实现的,二叉查找树是Nic">
+<meta property="og:image" content="https://koenig-media.raywenderlich.com/uploads/2016/08/SwiftAlgClub-BinarySearch-feature.png">
+<meta property="og:image" content="https://koenig-media.raywenderlich.com/uploads/2016/07/BinaryTree.png">
+<meta property="og:image" content="https://koenig-media.raywenderlich.com/uploads/2016/08/BinaryTree-2.png">
+<meta property="og:image" content="https://koenig-media.raywenderlich.com/uploads/2016/08/BinaryTree-2-1.png">
+<meta property="og:image" content="https://koenig-media.raywenderlich.com/uploads/2016/08/BinaryTree-2-2.png">
+<meta property="og:image" content="https://koenig-media.raywenderlich.com/uploads/2016/08/BinaryTree-2-3.png">
+<meta property="og:image" content="https://koenig-media.raywenderlich.com/uploads/2016/08/Screen-Shot-2016-08-01-at-1.27.40-AM.png">
+<meta property="og:image" content="https://koenig-media.raywenderlich.com/uploads/2016/07/Operations.png">
+<meta property="og:image" content="https://koenig-media.raywenderlich.com/uploads/2016/07/Tree1.png">
+<meta property="og:image" content="https://koenig-media.raywenderlich.com/uploads/2016/08/added-308x320.png">
+<meta property="og:image" content="https://koenig-media.raywenderlich.com/uploads/2016/08/Screen-Shot-2016-08-10-at-8.55.46-PM.png">
+<meta property="og:image" content="https://koenig-media.raywenderlich.com/uploads/2016/08/Traversing.png">
+<meta property="og:updated_time" content="2017-01-24T10:07:17.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Swift 算法俱乐部:Swift 二叉查找树数据结构">
+<meta name="twitter:description" content="本文由Kelvin Lau发表于raywenderlich，原文链接Swift 算法俱乐部是个开源的项目，实现数据结构和算法基于swift语言.每个月，Kelvin Lau和我用一篇教程介绍一个炫酷的数据结构或者算法在这个网站上。如果你想学习到更多的算法和数据结构，跟着我们一起吧！在这篇教程里,你将学习到二叉树和二叉查找树。二叉树首先是Matthijs Hollemans实现的,二叉查找树是Nic">
+<meta name="twitter:image" content="https://koenig-media.raywenderlich.com/uploads/2016/08/SwiftAlgClub-BinarySearch-feature.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/01/22/swift-algorithm-club-swift-binary-search-tree-data-structure/"/>
+
+
+
+
+
+  <title> Swift 算法俱乐部:Swift 二叉查找树数据结构 | 夜空中的星 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">夜空中的星</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle">iOS开发</p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/22/swift-algorithm-club-swift-binary-search-tree-data-structure/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="star in the night sky">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="夜空中的星">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="夜空中的星" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Swift 算法俱乐部:Swift 二叉查找树数据结构
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-01-22T19:48:37+08:00">
+                2017-01-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Swift/" itemprop="url" rel="index">
+                    <span itemprop="name">Swift</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本文由Kelvin Lau发表于raywenderlich，<a href="https://www.raywenderlich.com/139821/swift-algorithm-club-swift-binary-search-tree-data-structure" target="_blank" rel="external">原文链接</a><br>Swift 算法俱乐部是个开源的项目，实现数据结构和算法基于swift语言.<br>每个月，Kelvin Lau和我用一篇教程介绍一个炫酷的数据结构或者算法在这个网站上。如果你想学习到更多的算法和数据结构，跟着我们一起吧！<br>在这篇教程里,你将学习到二叉树和二叉查找树。<br>二叉树首先是<a href="https://www.raywenderlich.com/u/hollance" target="_blank" rel="external">Matthijs Hollemans</a>实现的,二叉查找树是<a href="https://github.com/nameghino" target="_blank" rel="external">Nico Ameghino</a>实现的。<br><img src="https://koenig-media.raywenderlich.com/uploads/2016/08/SwiftAlgClub-BinarySearch-feature.png" style="zoom:20%"></p>
+<h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><p>在计算机科学中二叉树是数据结构中最流行的一种。许多像<a href="https://github.com/raywenderlich/swift-algorithm-club/tree/master/Red-Black%20Tree" target="_blank" rel="external">红黑树</a>和<a href="https://github.com/raywenderlich/swift-algorithm-club/tree/master/AVL%20Tree" target="_blank" rel="external">二叉平衡树</a>高级树都是又二叉树演进过来的。<br>二叉树他们本身是由通用树演进过来的。如果你不了解树，检出上个月教程<br><a href="https://www.raywenderlich.com/138190/swift-algorithm-club-swift-tree-data-structure" target="_blank" rel="external">Swift 树数据结构</a><br>让我们来看它是怎么工作的。</p>
+<h1 id="二叉树数据结构"><a href="#二叉树数据结构" class="headerlink" title="二叉树数据结构"></a>二叉树数据结构</h1><p>二叉树一个节点有0，1，或者2个孩子节点的树。最重要的一点是2是最大所以叫二叉树。<br>这就是所看到的：<br><img src="https://koenig-media.raywenderlich.com/uploads/2016/07/BinaryTree.png" style="zoom:100%"></p>
+<h1 id="术语"><a href="#术语" class="headerlink" title="术语"></a>术语</h1><p>在沉浸代码之前，首先去理解一些重要的术语是非常重要的。<br>在所有通用树术语基础上，二叉树添加了左孩子和右孩子的概念。</p>
+<h2 id="左孩子"><a href="#左孩子" class="headerlink" title="左孩子"></a>左孩子</h2><p>左孩子来自左边的下面：<br><img src="https://koenig-media.raywenderlich.com/uploads/2016/08/BinaryTree-2.png" style="zoom:100%"></p>
+<h2 id="右孩子"><a href="#右孩子" class="headerlink" title="右孩子"></a>右孩子</h2><p>出人意料的，右边是右孩子<br><img src="https://koenig-media.raywenderlich.com/uploads/2016/08/BinaryTree-2-1.png" style="zoom:100%"></p>
+<h2 id="叶子节点"><a href="#叶子节点" class="headerlink" title="叶子节点"></a>叶子节点</h2><p>如果节点没有任何孩子，它叫做叶子节点：<br><img src="https://koenig-media.raywenderlich.com/uploads/2016/08/BinaryTree-2-2.png" style="zoom:100%"></p>
+<h2 id="根节点"><a href="#根节点" class="headerlink" title="根节点"></a>根节点</h2><p>根节点是树的最顶端(程序员认为他们倒置的树)<br><img src="https://koenig-media.raywenderlich.com/uploads/2016/08/BinaryTree-2-3.png" style="zoom:100%"></p>
+<h1 id="Swift中二叉树的实现"><a href="#Swift中二叉树的实现" class="headerlink" title="Swift中二叉树的实现"></a>Swift中二叉树的实现</h1><p>和其它树一样，二叉树是由节点组成。一种方式代表节点用类(不要把这个写入playground文件，这只是一个例子):</p>
+<p><code>class Node<t> {<br>  var value: T<br>  var leftChild: Node?<br>  var rightChild: Node?<br><br>  init(value: T) {<br>    self.value = value<br>  }<br>}</t></code></p>
+
+<p>在一颗二叉树里，每个节点持有一些数据(value),并且有一个左孩子和右孩子(leftChild和rightChild)。在这个实现中，左孩子和右孩子是可选的，意味着他们可能为空。<br>这是传统的方式创建树。不管怎样，今天值得高兴对激动的探索者，因为你将尝试一些新的内容！;]</p>
+<h1 id="值语义"><a href="#值语义" class="headerlink" title="值语义"></a>值语义</h1><p>Swift中在合适的地方使用值类型(像结构体和枚举)代替引用类型(像类)是一种核心理念。用一个值类型创建一个二叉树是一个完美的情况，所以在这个教程中，你将使用枚举类型来实现二叉树。<br>注意，如果你想学习到更多关于引用和值类型，检出我们<a href="https://www.raywenderlich.com/112027/reference-value-types-in-swift-part-1" target="_blank" rel="external">Swift中引用和值类型</a>系列教程。<br>创建一个新的Swift playground(这篇教程使用Xcode 8 beta 5)并且添加如下枚举定义:</p>
+<p><code>enum BinaryTree<t> {<br><br>}</t></code></p>
+
+<p>你已经定义了一个叫BinaryTree的枚举类型。定义成泛型枚举允许你推断出他自己的类型信息通过调用。</p>
+<h1 id="状态"><a href="#状态" class="headerlink" title="状态"></a>状态</h1><p>枚举类型非常死板，它们只能是一种或者另外一种状态。幸运的是这个对二叉树来说非常优雅。二叉树是节点的有限集合，节点要么为空，要么由引用左孩子和右孩子的值节点组成。<br>相应的更新你的枚举：</p>
+<p><code>enum BinaryTree<t> {<br>  case empty<br>  case node(BinaryTree, T, BinaryTree)<br>}</t></code></p>
+
+<p>如果你是从另一个编程语言过来的，node case看起来有点陌生。Swift枚举允许关联值，是一种精致的术语，你可以通过case关联一个存储属性。<br>在node(BinaryTree, T, BinaryTree)中，括号中的参数类型和左孩子，值，右孩子各自对应。<br>那是一种相当紧凑的方式模型化二叉树。然而，你马上产生一个编译错误。</p>
+<p><code>Recursive enum ‘BinaryTree<t>‘ is not marked ‘indirect’</t></code></p>
+
+<p>Xcode尝试帮你修复这个问题。接受它，你的枚举将显示成这样：</p>
+<p><code>indirect enum BinaryTree<t> {<br>  case empty<br>  case node(BinaryTree, T, BinaryTree)<br>}</t></code></p>
+
+<h1 id="递归枚举"><a href="#递归枚举" class="headerlink" title="递归枚举"></a>递归枚举</h1><p>在Swift中，枚举是值类型。当Swift尝试给值类型分配内存，它需要确切知道多少内存需要分配。<br>你定义的枚举是个递归枚举。枚举有个关联值关联到自己本身。递归值类型有一个不能决定的大小。<br><img src="https://koenig-media.raywenderlich.com/uploads/2016/08/Screen-Shot-2016-08-01-at-1.27.40-AM.png" style="zoom:60%"><br>所以现在在这儿你有个问题。Swift期望确切知道枚举有多大，但是你所创建的递归枚举没有暴露这个信息。<br>这就是indirect关键字引入的原因。indirect致力于两个值类型的间接关系。这里介绍值类型的引用语义的层次关系。<br>枚举类型现在持有关联值的引用，而不是他们的值。引用有一个固定的大小，所以你不再有前面的问题。<br>现在你的代码可以编译了，你可以做到更简练点。更新你的二叉树到如下：</p>
+<p><code>enum BinaryTree<t> {<br>  case empty<br>  indirect case node(BinaryTree, T, BinaryTree)<br>}</t></code></p>
+
+<p>因为只有node的case语句需要递归，你仅需要对这个case使用indirect。</p>
+<h1 id="例子：一系列算术操作"><a href="#例子：一系列算术操作" class="headerlink" title="例子：一系列算术操作"></a>例子：一系列算术操作</h1><p>用二叉树去检出一系列模式运算非常有趣。拿这个模型举例子(5 <em> (a - 10)) + (-4 </em> (3 / b)):<br><img src="https://koenig-media.raywenderlich.com/uploads/2016/07/Operations.png" style="zoom:100%"><br>在你playground文件最后编写如下代码：</p>
+<p><code>// leaf nodes<br>let node5 = BinaryTree.node(.empty, “5”, .empty)<br>let nodeA = BinaryTree.node(.empty, “a”, .empty)<br>let node10 = BinaryTree.node(.empty, “10”, .empty)<br>let node4 = BinaryTree.node(.empty, “4”, .empty)<br>let node3 = BinaryTree.node(.empty, “3”, .empty)<br>let nodeB = BinaryTree.node(.empty, “b”, .empty)<br><br>// intermediate nodes on the left<br>let Aminus10 = BinaryTree.node(nodeA, “-“, node10)<br>let timesLeft = BinaryTree.node(node5, “<em>“, Aminus10)<br><br>// intermediate nodes on the right<br>let minus4 = BinaryTree.node(.empty, “-“, node4)<br>let divide3andB = BinaryTree.node(node3, “/“, nodeB)<br>let timesRight = BinaryTree.node(minus4, “</em>“, divide3andB)<br><br>// root node<br>let tree = BinaryTree.node(timesLeft, “+”, timesRight)</code></p>
+
+<p>你需要创建递归的创建这棵树，从叶子节点开始并且一直走到上面。</p>
+<h1 id="CustomStringConvertible协议"><a href="#CustomStringConvertible协议" class="headerlink" title="CustomStringConvertible协议"></a>CustomStringConvertible协议</h1><p>现在，你想看到树如何工作是非常困难的。Swift有一个内置的叫做CustomStringConvertible协议，这个协议允许你定义如何在控制台上输出。添加如下代码在BinaryTree 枚举实现下：</p>
+<p><code>extension BinaryTree: CustomStringConvertible {<br>  var description: String {<br>    switch self {<br>    case let .node(left, value, right):<br>      return “value: (value), left = [“ + left.description + “], right = [“ + right.description + “]”<br>    case .empty:<br>      return “”<br>    }<br>  }<br>}</code></p>
+
+<p>编写如下代码在文件的结尾输出树：</p>
+<p><code>print(tree)</code></p>
+
+<p>你应该能看到如下内容：</p>
+<p><code>value: +, left = [value: <em>, left = [value: 5, left = [], right = []], right = [value: -, left = [value: a, left = [], right = []], right = [value: 10, left = [], right = []]]], right = [value: </em>, left = [value: -, left = [], right = [value: 4, left = [], right = []]], right = [value: /, left = [value: 3, left = [], right = []], right = [value: b, left = [], right = []]]]</code></p>
+
+<p>发挥一点想象，你能看到树结构。它帮助你缩进排版：</p>
+<p><code>value: +,<br>    left = [value: <em>,<br>        left = [value: 5, left = [], right = []],<br>        right = [value: -,<br>            left = [value: a, left = [], right = []],<br>            right = [value: 10, left = [], right = []]]],<br>    right = [value: </em>,<br>        left = [value: -,<br>            left = [],<br>            right = [value: 4, left = [], right = []]],<br>        right = [value: /,<br>            left = [value: 3, left = [], right = []],<br>            right = [value: b, left = [], right = []]]]</code></p>
+
+<h1 id="获取数量"><a href="#获取数量" class="headerlink" title="获取数量"></a>获取数量</h1><p>另外一个有用的特征是能够获取到树中节点的数量。添加如下的代码在你的二叉树枚举里面：</p>
+<p><code>var count: Int {<br>  switch self {<br>  case let .node(left, _, right):<br>    return left.count + 1 + right.count<br>  case .empty:<br>    return 0<br>  }<br>}</code></p>
+
+<p>通过在你playground文件的添加这些代码来测试:</p>
+<p><code>tree.count</code></p>
+
+<p>你应该能在侧边栏看到数字12，因为在树中有12个节点。<br>目前为止你做了件伟大的事情。既然你已经对二叉树有一个很好的基础，是时候去熟悉至今为止最流行的树了-二叉查找树！</p>
+<h1 id="二叉查找树"><a href="#二叉查找树" class="headerlink" title="二叉查找树"></a>二叉查找树</h1><p>二叉查找树是一种特别类型的二叉树(一种每个节点最多有两个孩子的树)，<br>表现在插入和删除在树中都是有序的。</p>
+<h2 id="总是有序属性"><a href="#总是有序属性" class="headerlink" title="总是有序属性"></a>总是有序属性</h2><p>这里是一颗有效二叉查找树的例子：<br><img src="https://koenig-media.raywenderlich.com/uploads/2016/07/Tree1.png" style="zoom:100%"><br>注意到每个左孩子比父亲节点要小，并且每个右孩子比父亲节点要大。这就是二叉查找树的关键特点。<br>比如，2比7小所以在左边；5比2大在右边。</p>
+<h2 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h2><p>当进行一个插入，从根节点开始作为当前节点：</p>
+<ul>
+<li>如果当前节点是空的，你将新节点插在这。</li>
+<li>如果新值要小，往下向左分支走。</li>
+<li>如果新值要大，往下向右分支走。</li>
+</ul>
+<p>你一直往下遍历直到你找到一个你能插入新值的空的地方。<br>举个例子，想象下你树里插入值9：</p>
+<ul>
+<li>从树的根节点开始(节点的值为7)，并且和新值9做比较。</li>
+<li>9&gt;7,所以你去右分支</li>
+<li>9和10比较。因为9&lt;10,去左分支。</li>
+<li>这个左分支是空的，因此你将在这个位置插入9。</li>
+</ul>
+<p>新树现在成这样子：<br><img src="https://koenig-media.raywenderlich.com/uploads/2016/08/added-308x320.png" style="zoom:50%"><br>新元素能被插入树中总是只有一个可能的位置。找到这个地方通常非常快。它的时间复杂度仅仅是o(h),h是树的高度。</p>
+<p>如果你不熟悉树的高度，检出先前的关于<a href="https://www.raywenderlich.com/138190/swift-algorithm-club-swift-tree-data-structure" target="_blank" rel="external">Swift树</a>的文章。</p>
+<h2 id="挑战-实现插入"><a href="#挑战-实现插入" class="headerlink" title="挑战:实现插入"></a>挑战:实现插入</h2><p>既然你对怎么插入有概念，现在是实现它的时候了。添加如下方法到你二叉树枚举：</p>
+<p><code>// 1.<br>mutating func naiveInsert(newValue: T) {<br>  // 2.<br>  guard case .node(var left, let value, var right) = self else {<br>    // 3.<br>    self = .node(.empty, newValue, .empty)<br>    return<br>  }<br><br>  // 4. TODO: Implement rest of algorithm!<br><br>}</code></p>
+
+<p>让我们一段段的重温：</p>
+<ul>
+<li>值类型默认是不可变的。如果你创建一个方法试图在值类型里面改变一些东西的话，你将需要在你的方法前面明确的前面加上mutating关键字。</li>
+<li>你正在使用guard关键字去揭露当前节点的左孩子，当前值，右孩子。如果节点是空，guard将会失败并且进入else代码块。</li>
+<li>在这个代码块里。你将在这里插入新值。</li>
+<li>这就是你来的地方-等一会儿。</li>
+</ul>
+<p>过一会儿，你将尝试基于下面讨论的算法实现第4部分。这是一个很好的练习，不仅对你理解二叉树，还有锻炼你的递归技能。<br>但是在你做之前，你需要对二叉树签名做一些改变。在第4部分，你将需要对旧值和新值比较，但是你不能在当前的二叉树上实现。为了修复这个问题，更新二叉树枚举到如下：</p>
+<p><code>enum BinaryTree<t: comparable=""> {<br>  // stuff inside unchanged<br>}</t:></code></p>
+
+<p>Comparable协议强制保证你所创建的二叉树的类型能通过比较操作来比较，比如&lt;操作。<br>现在，到前面并且基于上面的算法尝试实现第4部分。这里又是你的引用:</p>
+<ul>
+<li>如果当前节点是空的，你将新节点插在这,完成。</li>
+<li>如果新值要小，往下向左分支走。你需要做这个。</li>
+<li>如果新值要大，往下向右分支走。你需要做这个。</li>
+</ul>
+<p>如果你被卡住了，你可以合适下面的解决。</p>
+<p><code>// 4. TODO: Implement naive algorithm!<br>if newValue &lt; value {<br>  left.naiveInsert(newValue: newValue)<br>} else {<br>  right.naiveInsert(newValue: newValue)<br>}</code></p>
+
+<h1 id="写入时候拷贝"><a href="#写入时候拷贝" class="headerlink" title="写入时候拷贝"></a>写入时候拷贝</h1><p>虽然这是一个伟大的实现，但是它不工作。在你的playground结尾编写如下代码:</p>
+<p><code><br>var binaryTree: BinaryTree<int> = .empty<br>binaryTree.naiveInsert(newValue: 5) // binaryTree now has a node value with 5<br>binaryTree.naiveInsert(newValue: 7) // binaryTree is unchanged<br>binaryTree.naiveInsert(newValue: 9) // binaryTree is unchanged</int></code></p>
+
+<p><img src="https://koenig-media.raywenderlich.com/uploads/2016/08/Screen-Shot-2016-08-10-at-8.55.46-PM.png" style="zoom:100%"><br>写入时拷贝在这儿有问题。每次你尝试更改树的内容，孩子的新拷贝被创建。新的拷贝和 旧的的拷贝没链到一起，所以你原始的二叉树绝对不会更新成新值。<br>这里呼唤一种不同的方式完成这个。在你二叉树枚举写下如下内容:</p>
+<p><code><br>private func newTreeWithInsertedValue(newValue: T) -&gt; BinaryTree {<br>  switch self {<br>  // 1<br>  case .empty:<br>    return .node(.empty, newValue, .empty)<br>  // 2<br>  case let .node(left, value, right):<br>    if newValue &lt; value {<br>      return .node(left.newTreeWithInsertedValue(newValue: newValue), value, right)<br>    } else {<br>      return .node(left, value, right.newTreeWithInsertedValue(newValue: newValue))<br>    }<br>  }<br>}</code></p>
+
+<p>这是一个返回带入插入元素的新树的一个方法。代码也相当简单：</p>
+<ul>
+<li>如果树是空的，你想在这里插入新值。</li>
+<li>如果树不为空，你需要决定是否插在左孩子或者右孩子里。</li>
+</ul>
+<p>在你的二叉树枚举编写如下代码:</p>
+<p><code><br>mutating func insert(newValue: T) {<br>  self = newTreeWithInsertedValue(newValue: newValue)<br>}</code></p>
+
+<p>在你的playground底部替换成如下代码来测试:</p>
+<p><code><br>binaryTree.insert(newValue: 5)<br>binaryTree.insert(newValue: 7)<br>binaryTree.insert(newValue: 9)</code></p>
+
+<p>你应该按如下的树结构结束:</p>
+<p><code><br><br>value: 5,<br>    left = [],<br>    right = [value: 7,<br>        left = [],<br>        right = [value: 9,<br>            left = [],<br>            right = []]]</code></p>
+
+<p>恭喜你- 现在你让插入工作正常。</p>
+<h2 id="插入时间复杂度"><a href="#插入时间复杂度" class="headerlink" title="插入时间复杂度"></a>插入时间复杂度</h2><p>如讨论的部分，每次你做插入操作你需要创建树的一份新拷贝。创建一份新拷贝要求你经历先前树的所有节点。这个插入方法的时间复杂度是O(n).<br>注意:传统方法用类来实现二叉搜索树平均时间复杂度是O(log n),会更快一些。用类(引用语法)将不会产生写入时拷贝，所以你将插入而不需要对数做一个完全拷贝。</p>
+<h1 id="遍历算法"><a href="#遍历算法" class="headerlink" title="遍历算法"></a>遍历算法</h1><p>遍历算法对树来说是很基础的操作。一个遍历算法经历树的所有节点。主要有三种遍历二叉树方式：</p>
+<h2 id="中序遍历"><a href="#中序遍历" class="headerlink" title="中序遍历"></a>中序遍历</h2><p>中序遍历二叉树是升序遍历所有节点。这儿是中序遍历行为的样子:<br><img src="https://koenig-media.raywenderlich.com/uploads/2016/08/Traversing.png" style="zoom:100%"><br>从顶部开始，走到你所能到达的最左边。如果你不能再往左走，你将访问当前节点并且尝试遍历右边节点。这个过程继续到你遍历了所有节点。<br>在你的二叉树枚举里编写如下代码:</p>
+<p><code><br>func traverseInOrder(process: @noescape (T) -&gt; ()) {<br>  switch self {<br>  // 1<br>  case .empty:<br>    return<br>  // 2<br>  case let .node(left, value, right):<br>    left.traverseInOrder(process: process)<br>    process(value)<br>    right.traverseInOrder(process: process)<br>  }<br>}</code></p>
+
+<p>这个代码也相当简单:</p>
+<ul>
+<li>如果当前节点是空，那将不能进一步往下走。你只是简单的返回这里。</li>
+<li>如果当前节点不是空，你可以进一步往下走。终须遍历的定义是往左边走，访问节点，然后是右边。</li>
+</ul>
+<p>想看到这个行为，你将创建二叉树显示上面。删除你playground文件底部的所有测试代码并且替换成如下:</p>
+<p><code><br>var tree: BinaryTree<int> = .empty<br>tree.insert(newValue: 7)<br>tree.insert(newValue: 10)<br>tree.insert(newValue: 2)<br>tree.insert(newValue: 1)<br>tree.insert(newValue: 5)<br>tree.insert(newValue: 9)<br><br>tree.traverseInOrder { print($0) }</int></code></p>
+
+<p>你已经使用插入方法去创建一颗二叉树。中序遍历将升序扁你的节点，在每个节点中传递值给尾随闭包。<br>在尾随闭包里，你将打印通过遍历方法传递的这个值。\$0是个简短语法，表示传递给闭包的引用参数。<br>你应该在控制台上看到如下输出:</p>
+<p><code><br>1<br>2<br>5<br>7<br>9<br>10</code></p>
+
+<h2 id="前序遍历"><a href="#前序遍历" class="headerlink" title="前序遍历"></a>前序遍历</h2><p>前序遍历二叉搜索树是遍历节点的同时访问当前节点。<br>关键的地方是在遍历孩子之前调用process。在你的二叉树枚举里编写如下代码：</p>
+<p><code>func traversePreOrder( process: @noescape (T) -&gt; ()) {<br>  switch self {<br>  case .empty:<br>    return<br>  case let .node(left, value, right):<br>    process(value)<br>    left.traversePreOrder(process: process)<br>    right.traversePreOrder(process: process)<br>  }<br>}</code></p>
+
+<h2 id="后续遍历"><a href="#后续遍历" class="headerlink" title="后续遍历"></a>后续遍历</h2><p>后续遍历是只有遍历了它的左孩子和右孩子之后才能访问节点。在你的二叉树枚举里编写如下代码：</p>
+<p><code>func traversePostOrder( process: @noescape (T) -&gt; ()) {<br>  switch self {<br>  case .empty:<br>    return<br>  case let .node(left, value, right):<br>    left.traversePostOrder(process: process)<br>    right.traversePostOrder(process: process)<br>    process(value)<br>  }<br>}</code></p>
+
+<p>这3个遍历算法在许多复杂的编程问题中作为一个基本的服务。理解他们将在许多情形下显示有用，包括在你的下一次编程面试中！</p>
+<h2 id="小挑战"><a href="#小挑战" class="headerlink" title="小挑战"></a>小挑战</h2><p>遍历算法的时间复杂度是多少？<br>时间复杂度是O(n),n是树中节点的数量。<br>这个是很明显的，因为遍历树的概念就是遍历所有节点！</p>
+<h1 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h1><p>如名字所显示，二叉查找树因为很好的促进查找而知名。一个正确的二叉查找树将是所有的左孩子小于父节点，并且所有的右孩子等于或者大于他的父节点。<br>为了运用这个保证，你将能决定那条路线发生-左孩子，右孩子-查看你的值是否在树中存在。在你的二叉树枚举里编写如下代码：</p>
+<p><code>func search(searchValue: T) -&gt; BinaryTree? {<br>  switch self {<br>  case .empty:<br>    return nil<br>  case let .node(left, value, right):<br>    // 1<br>    if searchValue == value {<br>      return self<br>    }<br><br>    // 2<br>    if searchValue &lt; value {<br>      return left.search(searchValue: searchValue)<br>    } else {<br>      return right.search(searchValue: searchValue)<br>    }<br>  }<br>}}</code></p>
+
+<p>和遍历算法很相像，查找往二叉树的下面遍历：</p>
+<ul>
+<li>如果当前值和你查找的值匹配，你已经完成搜索。返回当前子树。</li>
+<li>如果在这个点继续，意味这你还没有找到这个值。你将需要决定往下是往左还是往右，你将决定使用二叉查找树的规则。</li>
+</ul>
+<p>和遍历算法不同的，查找算法每次递归将值遍历1边。平均下来，时间复杂度是O(logn),和O(n)比起来要快。<br>你可以通过在你的playground的结尾添加如下代码来测试:</p>
+<p><code>tree.search(searchValue: 5)</code></p>
+
+<h1 id="何去何从"><a href="#何去何从" class="headerlink" title="何去何从"></a>何去何从</h1><p>我希望你喜欢这篇关于二叉树的教程。<br>这儿是一个<a href="https://koenig-media.raywenderlich.com/uploads/2016/08/SwiftBinaryTree.playground.zip" target="_blank" rel="external"> Swift playground</a>针对上面的代码。你也可以发现可替换的实现和进一步的讨论在Swift 算法部分的<a href="https://github.com/raywenderlich/swift-algorithm-club/tree/master/Binary%20Search%20Tree" target="_blank" rel="external">二叉查找树</a>部分。<br>这只是许多算法俱乐部中聚焦Swift算法俱乐部的一部分，如果你对这些更感兴趣，检出 <a href="https://github.com/raywenderlich/swift-algorithm-club" target="_blank" rel="external"> repo</a><br>最好的兴趣是你了解到算法和数据结构，他们解决需要现实世界问题，并且经常在面试问题中被问到。对他感兴趣吧！<br>所以敬起期待Swift算法俱乐部将来的更多教程。同时，如果你有任何问题关于在Swift实现栈，请参加下面论坛的讨论！<br>Swift 算法俱乐部总是在寻找更多的贡献者。如果你对数据结构，算法，甚至一个面试问题想分享，不要犹豫去贡献！想学习更多的关于贡献流程，检出 我们的<a href="https://www.raywenderlich.com/135533/join-swift-algorithm-club" target="_blank" rel="external"> 参加Swift算法俱乐部</a>文章。</p>
+<p><a href="https://www.raywenderlich.com/139821/swift-algorithm-club-swift-binary-search-tree-data-structure" target="_blank" rel="external">原文链接</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>我知道是不会有人点的，但万一有人想不开呢？</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/Wechat.jpeg" alt="star in the night sky WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/aliPay.jpeg" alt="star in the night sky Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/01/21/swift-algorithm-club-swift-tree-data-structure/" rel="next" title="Swift 算法俱乐部:Swift 树数据结构">
+                <i class="fa fa-chevron-left"></i> Swift 算法俱乐部:Swift 树数据结构
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/01/24/swift-algorithm-club-swift-trie-data-structure/" rel="prev" title="Swift 算法俱乐部:Swift 字典树数据结构">
+                Swift 算法俱乐部:Swift 字典树数据结构 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="star in the night sky" />
+          <p class="site-author-name" itemprop="name">star in the night sky</p>
+          <p class="site-description motion-element" itemprop="description">iOS objective-c swift algorithm Data Structure</p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#开始"><span class="nav-number">1.</span> <span class="nav-text">开始</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二叉树数据结构"><span class="nav-number">2.</span> <span class="nav-text">二叉树数据结构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#术语"><span class="nav-number">3.</span> <span class="nav-text">术语</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#左孩子"><span class="nav-number">3.1.</span> <span class="nav-text">左孩子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#右孩子"><span class="nav-number">3.2.</span> <span class="nav-text">右孩子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#叶子节点"><span class="nav-number">3.3.</span> <span class="nav-text">叶子节点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#根节点"><span class="nav-number">3.4.</span> <span class="nav-text">根节点</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Swift中二叉树的实现"><span class="nav-number">4.</span> <span class="nav-text">Swift中二叉树的实现</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#值语义"><span class="nav-number">5.</span> <span class="nav-text">值语义</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#状态"><span class="nav-number">6.</span> <span class="nav-text">状态</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#递归枚举"><span class="nav-number">7.</span> <span class="nav-text">递归枚举</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#例子：一系列算术操作"><span class="nav-number">8.</span> <span class="nav-text">例子：一系列算术操作</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CustomStringConvertible协议"><span class="nav-number">9.</span> <span class="nav-text">CustomStringConvertible协议</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#获取数量"><span class="nav-number">10.</span> <span class="nav-text">获取数量</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二叉查找树"><span class="nav-number">11.</span> <span class="nav-text">二叉查找树</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#总是有序属性"><span class="nav-number">11.1.</span> <span class="nav-text">总是有序属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#插入"><span class="nav-number">11.2.</span> <span class="nav-text">插入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#挑战-实现插入"><span class="nav-number">11.3.</span> <span class="nav-text">挑战:实现插入</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#写入时候拷贝"><span class="nav-number">12.</span> <span class="nav-text">写入时候拷贝</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#插入时间复杂度"><span class="nav-number">12.1.</span> <span class="nav-text">插入时间复杂度</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#遍历算法"><span class="nav-number">13.</span> <span class="nav-text">遍历算法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#中序遍历"><span class="nav-number">13.1.</span> <span class="nav-text">中序遍历</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#前序遍历"><span class="nav-number">13.2.</span> <span class="nav-text">前序遍历</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后续遍历"><span class="nav-number">13.3.</span> <span class="nav-text">后续遍历</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小挑战"><span class="nav-number">13.4.</span> <span class="nav-text">小挑战</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#查找"><span class="nav-number">14.</span> <span class="nav-text">查找</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#何去何从"><span class="nav-number">15.</span> <span class="nav-text">何去何从</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">star in the night sky</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+本站总访问量 <span id="busuanzi_value_site_pv"></span> &nbsp&nbsp&nbsp
+您是第<span id="busuanzi_value_site_uv"></span>个来到的小伙伴
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid="></script>
+      <!-- UY END -->
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

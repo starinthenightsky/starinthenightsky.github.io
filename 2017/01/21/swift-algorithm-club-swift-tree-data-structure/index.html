@@ -1,0 +1,818 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="Swift 算法俱乐部是个开源的项目，实现流行的数据结构和算法基于swift语言.每个月，Chris Pilcher和我写一篇教程介绍一个炫酷的数据结构或者算法在这个网站上。这个系列将是一个很好的方式学习到算法和数据结构，而且通过这种方式提高你的Swift技巧。在这篇教程里,你将学习到怎么实现一个树数据结构.这是一个最常见和有用的数据结构之一，并且是一个很好的方式开始。
+树数据结构最容易的理解树的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Swift 算法俱乐部:Swift 树数据结构">
+<meta property="og:url" content="http://yoursite.com/2017/01/21/swift-algorithm-club-swift-tree-data-structure/index.html">
+<meta property="og:site_name" content="夜空中的星">
+<meta property="og:description" content="Swift 算法俱乐部是个开源的项目，实现流行的数据结构和算法基于swift语言.每个月，Chris Pilcher和我写一篇教程介绍一个炫酷的数据结构或者算法在这个网站上。这个系列将是一个很好的方式学习到算法和数据结构，而且通过这种方式提高你的Swift技巧。在这篇教程里,你将学习到怎么实现一个树数据结构.这是一个最常见和有用的数据结构之一，并且是一个很好的方式开始。
+树数据结构最容易的理解树的">
+<meta property="og:image" content="https://koenig-media.raywenderlich.com/uploads/2016/07/SwiftAlgorithm-410-transp-250x250.png">
+<meta property="og:image" content="https://koenig-media.raywenderlich.com/uploads/2016/06/Tree-2.png">
+<meta property="og:image" content="https://koenig-media.raywenderlich.com/uploads/2016/06/root-2-1.png">
+<meta property="og:image" content="https://koenig-media.raywenderlich.com/uploads/2016/06/root-4.png">
+<meta property="og:image" content="https://koenig-media.raywenderlich.com/uploads/2016/06/leaf.png">
+<meta property="og:image" content="https://koenig-media.raywenderlich.com/uploads/2016/06/Example.png">
+<meta property="og:image" content="https://koenig-media.raywenderlich.com/uploads/2016/06/Example-2.png">
+<meta property="og:updated_time" content="2017-01-23T06:21:08.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Swift 算法俱乐部:Swift 树数据结构">
+<meta name="twitter:description" content="Swift 算法俱乐部是个开源的项目，实现流行的数据结构和算法基于swift语言.每个月，Chris Pilcher和我写一篇教程介绍一个炫酷的数据结构或者算法在这个网站上。这个系列将是一个很好的方式学习到算法和数据结构，而且通过这种方式提高你的Swift技巧。在这篇教程里,你将学习到怎么实现一个树数据结构.这是一个最常见和有用的数据结构之一，并且是一个很好的方式开始。
+树数据结构最容易的理解树的">
+<meta name="twitter:image" content="https://koenig-media.raywenderlich.com/uploads/2016/07/SwiftAlgorithm-410-transp-250x250.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/01/21/swift-algorithm-club-swift-tree-data-structure/"/>
+
+
+
+
+
+  <title> Swift 算法俱乐部:Swift 树数据结构 | 夜空中的星 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">夜空中的星</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle">iOS开发</p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/21/swift-algorithm-club-swift-tree-data-structure/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="star in the night sky">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="夜空中的星">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="夜空中的星" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Swift 算法俱乐部:Swift 树数据结构
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-01-21T09:51:19+08:00">
+                2017-01-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Swift 算法俱乐部是个开源的项目，实现流行的数据结构和算法基于swift语言.<br>每个月，Chris Pilcher和我写一篇教程介绍一个炫酷的数据结构或者算法在这个网站上。<br>这个系列将是一个很好的方式学习到算法和数据结构，而且通过这种方式提高你的Swift技巧。<br>在这篇教程里,你将学习到怎么实现一个树数据结构.这是一个最常见和有用的数据结构之一，并且是一个很好的方式开始。<br><img src="https://koenig-media.raywenderlich.com/uploads/2016/07/SwiftAlgorithm-410-transp-250x250.png" style="zoom:20%"></p>
+<h1 id="树数据结构"><a href="#树数据结构" class="headerlink" title="树数据结构"></a>树数据结构</h1><p>最容易的理解树的数据结构是通过如下的图片:<br><img src="https://koenig-media.raywenderlich.com/uploads/2016/06/Tree-2.png" style="zoom:50%"><br>上面的图标显示一颗有5层的树。根节点是第0层，并且你在树的深度往下，层次增加1.<br>树能够帮你解决许多重要的问题，包括：</p>
+<ul>
+<li>代表对象之间的等级关系</li>
+<li>让查找快捷效率</li>
+<li>提供有序的数据列表</li>
+<li>强大的前缀匹配在文本领域</li>
+</ul>
+<h1 id="术语"><a href="#术语" class="headerlink" title="术语"></a>术语</h1><p>首先，让我们覆盖一些你应该了解关于树的重要的术语。</p>
+<h2 id="根"><a href="#根" class="headerlink" title="根"></a>根</h2><p>树的根节点代表一个树的第0层节点。你也可以认为它是你的树这种数据结构的进入点。<br><img src="https://koenig-media.raywenderlich.com/uploads/2016/06/root-2-1.png" style="zoom:100%"></p>
+<h2 id="节点"><a href="#节点" class="headerlink" title="节点"></a>节点</h2><p>一个节点是树的一块数据。节点所包含的数据依赖于你的树的类型。根也是一个节点。<br><img src="https://koenig-media.raywenderlich.com/uploads/2016/06/root-4.png" style="zoom:100%"></p>
+<h2 id="叶子"><a href="#叶子" class="headerlink" title="叶子"></a>叶子</h2><p>有时候关系到的是一个终端节点，一个叶子是一个没有孩子的节点。例如，如果节点对象的左孩子和右孩子是空，你所关系到的节点是叶子。<br><img src="https://koenig-media.raywenderlich.com/uploads/2016/06/leaf.png" style="zoom:100%"></p>
+<h1 id="Swift中树的实现"><a href="#Swift中树的实现" class="headerlink" title="Swift中树的实现"></a>Swift中树的实现</h1><p>在这部分，你将实现一个通用的树。这是一个奇特的方式一棵树没有任何限制（比如每个节点有多少个孩子，或者节点的顺序）。<br>记住树是由节点组成的。所以在开始前，创建一个基本节点类。创建一个新的Swiftplayground并且添加如下内容到空的类里面:</p>
+<p><code>class Node {<br><br>}</code></p>
+
+<h2 id="值"><a href="#值" class="headerlink" title="值"></a>值</h2><p>当然，一个节点如果没有一个值关联它就没多少用处。<br>为了简单起见，你将针对这种树管理字符串数据。更新你当前Node类的实现到如下：</p>
+<p><code>class Node {<br>  var value: String<br><br>  init(value: String) {<br>    self.value = value<br>  }<br>}</code></p>
+
+<p>你已经定义了一个String类型叫做value的属性。你同时也定义了个初始化方法，要求初始化你的类中所有的非可选存储型属性。</p>
+<h2 id="孩子"><a href="#孩子" class="headerlink" title="孩子"></a>孩子</h2><p>为了添加值，每个节点需要有个孩子列表。<br>更新你的类定义到如下：</p>
+<p><code>class Node {<br>  var value: String<br>  var children: [Node] = [] // add the children property<br><br>  init(value: String) {<br>    self.value = value<br>  }<br>}</code></p>
+
+<p>你仅仅定义了children作为节点的数组。每个孩子代表比当前节点更深一层的节点。</p>
+<h2 id="父亲"><a href="#父亲" class="headerlink" title="父亲"></a>父亲</h2><p>有时候每个节点有一个链接到它的父节点非常有用。孩子节点是所给节点的下面；父亲是节点的上面。一个节点有只有一个父亲，但是可以多个孩子。<br>更新你Node类的实现到如下：</p>
+<p><code>class Node {<br>  var value: String<br>  var children: [Node] = []<br>  weak var parent: Node? // add the parent property<br><br>  init(value: String) {<br>    self.value = value<br>  }<br>}</code></p>
+
+<p>注意你让parent变量是可选的。这是因为不是所有的节点都有父亲-比如树的根节点。</p>
+<h2 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h2><p>去处理树的插入，你将在你的Node类定义方法add(child:)。更新你Node类的实现到如下：</p>
+<p><code>class Node {<br>  var value: String<br>  var children: [Node] = []<br>  weak var parent: Node?<br><br>  init(value: String) {<br>    self.value = value<br>  }<br><br>  func add(child: Node) {<br>    children.append(child)<br>    child.parent = self<br>  }<br>}</code></p>
+
+<p>通过一个palyground很好理解addChild()怎么生效的。在你的类实现的外面，编写如下代码到你的palyground：</p>
+<p><code>let beverages = Node(value: “beverages”)<br><br>let hotBeverages = Node(value: “hot”)<br>let coldBeverages = Node(value: “cold”)<br><br>beverages.add(child: hotBeverages)<br>beverages.add(child: coldBeverages)</code></p>
+
+<p>等级结构很自然的显然的树的数据结构。现在你定义了3个不同的节点并且把他们组织成一个逻辑等级。这个相当于下面这个结构：<br><img src="https://koenig-media.raywenderlich.com/uploads/2016/06/Example.png" style="zoom:100%"></p>
+<h1 id="挑战：饮料城市"><a href="#挑战：饮料城市" class="headerlink" title="挑战：饮料城市"></a>挑战：饮料城市</h1><p>准备好一个快速测试你所掌握的知识？<br>尝试编写代码去扩建你的类去匹配如下图标：<br><img src="https://koenig-media.raywenderlich.com/uploads/2016/06/Example-2.png" style="zoom:100%"><br>尝试用泛型实现LinkedList<br>解决方法在下面提供，但是首先自己尝试下！</p>
+<p><code>let beverages = Node(value: “beverages”)<br><br>let hotBeverage = Node(value: “hot”)<br>let coldBeverage = Node(value: “cold”)<br><br>let tea = Node(value: “tea”)<br>let coffee = Node(value: “coffee”)<br>let cocoa = Node(value: “cocoa”)<br><br>let blackTea = Node(value: “black”)<br>let greenTea = Node(value: “green”)<br>let chaiTea = Node(value: “chai”)<br><br>let soda = Node(value: “soda”)<br>let milk = Node(value: “milk”)<br><br>let gingerAle = Node(value: “ginger ale”)<br>let bitterLemon = Node(value: “bitter lemon”)<br><br>beverages.add(child: hotBeverage)<br>beverages.add(child: coldBeverage)<br><br>hotBeverage.add(child: tea)<br>hotBeverage.add(child: coffee)<br>hotBeverage.add(child: cocoa)<br><br>coldBeverage.add(child: soda)<br>coldBeverage.add(child: milk)<br><br>tea.add(child: blackTea)<br>tea.add(child: greenTea)<br>tea.add(child: chaiTea)<br><br>soda.add(child: gingerAle)<br>soda.add(child: bitterLemon)</code></p>
+
+<h2 id="输出树"><a href="#输出树" class="headerlink" title="输出树"></a>输出树</h2><p>没有控制台日志认证一个大的树结构将会很困难。在定义了你的树结构，尝试在控制台记录你的结果通过输出树：</p>
+<p><code>print(beverages) // &lt;- try to print it!</code></p><br>你可以通过如下的组合键(Command-Shift-Y)把控制台展示。你应该在控制台能看到如下输出：<br><p><code>Node</code></p>
+
+<p>多么愚蠢！不幸的是，编译器不知道怎么最好的输出你的自定义Swift对象，除非你告诉它。<br>去帮助编译器，你将需要让Node类遵循CustomStringConvertible协议。要做这个，添加如下代码在Node类实现的下面：</p>
+<p><code>// 1<br>extension Node: CustomStringConvertible {<br>  // 2<br>  var description: String {<br>    // 3<br>    var text = “(value)”<br><br>   // 4<br>    if !children.isEmpty {<br>      text += “ {“ + children.map { $0.description }.joinWithSeparator(“, “) + “} “<br>    }<br>    return text<br>  }<br>}</code></p>
+
+<p>这段代码相当简单：</p>
+<ul>
+<li>你对你的Node类实现了一个扩展，并且你已经遵循了CustomStringConvertible协议.这个协议期望你实现一个String类型名字叫做description的计算型属性。</li>
+<li>你已经定义了description属性。这是一个返回一个字符串的只读的计算型属性。</li>
+<li>你已经定义了一个text变量。这个将保持住整个字符串。现在它包含一个中括号代表列表的开始。</li>
+<li>为了输出当前节点的值，你将需要输出孩子，孩子的孩子，等等。这样做，你将递归的追加你的孩子的描述，同时添加括弧在某种上下文的字符串上，不管孩子的结构。</li>
+</ul>
+<p>现在，当你调用输出你的Node类，你将获取到一个好的树结构表现形式向这样：</p>
+<p><code>“beverages {hot {tea {black, green, chai} , coffee, cocoa} , cold {soda {ginger ale, bitter lemon} , milk} } \n”</code></p>
+
+<p>如果你对mapping语法感到疑惑，你可以写下面代码来替换：</p>
+<p><code><br>if !children.isEmpty {<br>  text += “ {“<br>  for child in children {<br>    text += child.description + “, “<br>  }<br>  text += “} “<br>}</code></p>
+
+<p>map是一个对象集合的行为，比如数组。定义类型使之遵循SequenceType协议，map允许你每个元素执行操作。在你的情况，你在遍历孩子并且执行字符串添加操作。<br>想学到更多关于map，你可以阅读这个教程:<a href="https://www.raywenderlich.com/114456/introduction-functional-programming-swift" target="_blank" rel="external"> Introduction to Functional Programming in Swift</a></p>
+<h2 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h2><p>树的通常用途这里很好的描述等级结构数据，但是实际上依赖于你的应用，不管什么你额外需要的功能。打个比方，你可以用Node类来决定这棵树是否包含该一个特定值。<br>为了对这个通用用途树查找算法方便，添加如下扩展你你的playground文件的底部：</p>
+<p><code><br>extension Node {<br>  // 1<br>  func search(value: String) -&gt; Node? {<br>    // 2<br>    if value == self.value {<br>      return self<br>    }<br>    // 3<br>    for child in children {<br>      if let found = child.search(value: value) {<br>        return found<br>      }<br>    }<br>    // 4<br>    return nil<br>  }<br>}</code></p>
+
+<p>这段代码非常简单：</p>
+<ul>
+<li>这个方法的目的查找某个值在这棵树上。如果存在，返回关联值的节点。如果不存在，你将返回nil。</li>
+<li>当你找到值的情况下。你将返回self，当前的节点。</li>
+<li>在这个循环中，你循环数组的孩子。你将调用每个孩子的查找方法，将递归遍历所有的孩子。如果节点中的任意一个匹配，你的if let语句是真并且返回这个节点。</li>
+<li>你将返回nil表明你没有找到匹配的。</li>
+<li><p>让我们试一下我们的查找方法！在你的playground文件的底部，编写如下代码：</p>
+<p><code><br>beverages.search(value: “cocoa”) // returns the “cocoa” node<br>beverages.search(value: “chai”) // returns the “chai” node<br>beverages.search(value: “bubbly”) // returns nil</code></p>
+
+</li>
+</ul>
+<h1 id="其他不同的类型呢？"><a href="#其他不同的类型呢？" class="headerlink" title="其他不同的类型呢？"></a>其他不同的类型呢？</h1><p>目前为止很好！你已经学习了如何实现通用用途的树来存储String值。<br>你已经定义了一个好的方式在控制台输出你的树，并且在你的Node类提供了查找能力。<br>树是一个很好的方式设计字符串等级结构，但是如果你想存储整形呢？<br>你可以修改Node类来接收整形参数：</p>
+<p><code>class Node {<br>  var value: Int<br><br>  // …<br>}</code></p>
+
+<p>但是你的旧的实现接受字符串值的功能丢失了。理想状态下，你想创建一个Node类可以接受任何类型的对象，不管他是Int，Double,Float,甚至是你自定义的类。为了使你的Node类通用使用方便，你将不得不投入泛型的世界。</p>
+<h1 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h1><p>泛型的概念是你从算法和数据结构抽象出要求的类型。这个允许你保持通用和复用的概念。在树(或者其他的数据结构)中的一个对象将会表现很好，不应该它是Int或String类型，而是其他固有的；在树的环境下，任何类型都应该表现好都很适合在一棵树上。<br>是时候做一些突破性变化了！更新你的Node类实现到如下：</p>
+<p><code>// 1.<br>class Node<t> {<br>  // 2.<br>  var value: T<br>  weak var parent: Node?<br>  // 3.<br>  var children: [Node] = []<br><br>  // 4.<br>  init(value: T) {<br>    self.value = value<br>  }<br><br>  // 5.<br>  func add(child: Node) {<br>    children.append(child)<br>    child.parent = self<br>  }<br>}</t></code></p>
+
+<p>马上，你可以看到一些编译错误。但是不要害怕，你将清除那些错误当你完成你的Node实现对所有类型的普及。这儿是你所做的：</p>
+<ul>
+<li>你已经更改Node类的实现去接收一个泛型类型T。&lt;&gt;语法里的T提示编译器你正在使用泛型。</li>
+<li>你的目标是允许Node类接受任何类型的值，所以你限制你的value属性是个T类型而不是个整形或者字符串。</li>
+<li>在其它点同样的原因，你将定义你的类中孩子也是类型T。</li>
+<li>你将更新你的初始化方法接受任何类型。</li>
+<li>你将更新你的addChild方法去接收任何Node对象匹配当前的Node类型</li>
+</ul>
+<p>目前为止很好。下一步，查找扩展包含search方法并且更新成使用泛型：</p>
+<p><code>// 1.<br>extension Node where T: Equatable {<br>  // 2.<br>  func search(value: T) -&gt; Node? {<br>    if value == self.value {<br>      return self<br>    }<br>    for child in children {<br>      if let found = child.search(value: value) {<br>        return found<br>      }<br>    }<br>    return nil<br>  }<br>}</code></p>
+
+<p>你在这里做了两处修改：</p>
+<ul>
+<li>在你能使用这个search方法之前，你已经将这个扩展填入一个限制使任何类型都可以做相等判断。</li>
+<li>你已经根性value参数使之成为一个泛型。</li>
+</ul>
+<p>你的代码现在应该可以编译了，所以让我们来测试吧！在你的playground问价底部，添加如下代码去验证你的泛型树工作正常：</p>
+<p><code>let number = Node(value: 5)</code></p>
+
+<p>恭喜，你已经创建一个通用用途的树适合于所有对象类型！</p>
+<h1 id="其它树"><a href="#其它树" class="headerlink" title="其它树"></a>其它树</h1><ul>
+<li>有时候你不需要一个父亲属性。</li>
+<li>或许你仅仅需要给每个节点最多两个孩子-比如一种叫作<a href="https://github.com/raywenderlich/swift-algorithm-club/tree/master/Binary%20Tree" target="_blank" rel="external">二叉树</a>的树。</li>
+<li>一个更通用叫做<a href="https://github.com/raywenderlich/swift-algorithm-club/tree/master/Binary%20Search%20Tree" target="_blank" rel="external">二叉查找树</a> (或者BST)的类型树，一个更严格版本的二叉树，这种节点按一种特殊方式有序去加速搜索。</li>
+</ul>
+<p>想学习到更多关于这种类型的树，检出如下Swift算法俱乐部的文章：</p>
+<ul>
+<li><a href="https://github.com/raywenderlich/swift-algorithm-club/tree/master/AVL%20Tree" target="_blank" rel="external">平衡二叉查找树</a></li>
+<li><a href="https://github.com/raywenderlich/swift-algorithm-club/tree/master/B-Tree" target="_blank" rel="external">多路搜索树</a></li>
+<li><a href="https://github.com/raywenderlich/swift-algorithm-club/tree/master/Binary%20Search%20Tree" target="_blank" rel="external">二叉搜索树</a></li>
+<li><a href="https://github.com/raywenderlich/swift-algorithm-club/tree/master/Binary%20Tree" target="_blank" rel="external">二叉树</a></li>
+<li><a href="https://github.com/raywenderlich/swift-algorithm-club/tree/master/Minimum%20Spanning%20Tree%20(Unweighted" target="_blank" rel="external">最小生成树</a>)</li>
+<li><a href="https://github.com/raywenderlich/swift-algorithm-club/tree/master/Radix%20Tree" target="_blank" rel="external">基数树</a></li>
+<li><a href="https://github.com/raywenderlich/swift-algorithm-club/tree/master/Red-Black%20Tree" target="_blank" rel="external">红黑树</a></li>
+<li><a href="https://github.com/raywenderlich/swift-algorithm-club/tree/master/Segment%20Tree" target="_blank" rel="external">线段树</a></li>
+<li><a href="https://github.com/raywenderlich/swift-algorithm-club/tree/master/Threaded%20Binary%20Tree" target="_blank" rel="external">线索二叉树</a></li>
+<li><a href="https://github.com/raywenderlich/swift-algorithm-club/tree/master/Trie" target="_blank" rel="external">单词查找树</a></li>
+<li><a href="https://github.com/raywenderlich/swift-algorithm-club/tree/master/Union-Find" target="_blank" rel="external">并查集</a></li>
+</ul>
+<h1 id="何去何从"><a href="#何去何从" class="headerlink" title="何去何从"></a>何去何从</h1><p>我希望你喜欢这篇关于树的数据结构的教程。</p>
+<p>最好的兴趣是你了解到算法和数据结构，他们解决需要现实世界问题，并且经常在面试问题中被问到。对他感兴趣吧！<br>所以敬起期待Swift算法俱乐部将来的更多教程。同时，如果你有任何问题关于在Swift实现栈，请参加下面论坛的讨论！<br>Swift 算法俱乐部总是在寻找更多的贡献者。如果你对数据结构，算法，甚至一个面试问题想分享，不要犹豫去贡献！想学习更多的关于贡献流程，检出 我们的<a href="https://www.raywenderlich.com/135533/join-swift-algorithm-club" target="_blank" rel="external"> 参加Swift算法俱乐部</a>文章。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>我知道是不会有人点的，但万一有人想不开呢？</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/Wechat.jpeg" alt="star in the night sky WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/aliPay.jpeg" alt="star in the night sky Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/01/20/swift-algorithm-club-swift-queue-data-structure/" rel="next" title="Swift 算法俱乐部:Swift 队列数据结构">
+                <i class="fa fa-chevron-left"></i> Swift 算法俱乐部:Swift 队列数据结构
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/01/22/swift-algorithm-club-swift-binary-search-tree-data-structure/" rel="prev" title="Swift 算法俱乐部:Swift 二叉查找树数据结构">
+                Swift 算法俱乐部:Swift 二叉查找树数据结构 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="star in the night sky" />
+          <p class="site-author-name" itemprop="name">star in the night sky</p>
+          <p class="site-description motion-element" itemprop="description">iOS objective-c swift algorithm Data Structure</p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#树数据结构"><span class="nav-number">1.</span> <span class="nav-text">树数据结构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#术语"><span class="nav-number">2.</span> <span class="nav-text">术语</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#根"><span class="nav-number">2.1.</span> <span class="nav-text">根</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#节点"><span class="nav-number">2.2.</span> <span class="nav-text">节点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#叶子"><span class="nav-number">2.3.</span> <span class="nav-text">叶子</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Swift中树的实现"><span class="nav-number">3.</span> <span class="nav-text">Swift中树的实现</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#值"><span class="nav-number">3.1.</span> <span class="nav-text">值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#孩子"><span class="nav-number">3.2.</span> <span class="nav-text">孩子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#父亲"><span class="nav-number">3.3.</span> <span class="nav-text">父亲</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#插入"><span class="nav-number">3.4.</span> <span class="nav-text">插入</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#挑战：饮料城市"><span class="nav-number">4.</span> <span class="nav-text">挑战：饮料城市</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#输出树"><span class="nav-number">4.1.</span> <span class="nav-text">输出树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查找"><span class="nav-number">4.2.</span> <span class="nav-text">查找</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#其他不同的类型呢？"><span class="nav-number">5.</span> <span class="nav-text">其他不同的类型呢？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#泛型"><span class="nav-number">6.</span> <span class="nav-text">泛型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#其它树"><span class="nav-number">7.</span> <span class="nav-text">其它树</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#何去何从"><span class="nav-number">8.</span> <span class="nav-text">何去何从</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">star in the night sky</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+本站总访问量 <span id="busuanzi_value_site_pv"></span> &nbsp&nbsp&nbsp
+您是第<span id="busuanzi_value_site_uv"></span>个来到的小伙伴
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid="></script>
+      <!-- UY END -->
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

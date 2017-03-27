@@ -1,0 +1,1885 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="iOS objective-c swift algorithm Data Structure">
+<meta property="og:type" content="website">
+<meta property="og:title" content="夜空中的星">
+<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:site_name" content="夜空中的星">
+<meta property="og:description" content="iOS objective-c swift algorithm Data Structure">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="夜空中的星">
+<meta name="twitter:description" content="iOS objective-c swift algorithm Data Structure">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/"/>
+
+
+
+
+
+  <title> 夜空中的星 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left 
+   page-home 
+ ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">夜空中的星</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle">iOS开发</p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/27/arc-memory-management-swift/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="star in the night sky">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="夜空中的星">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="夜空中的星" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/27/arc-memory-management-swift/" itemprop="url">
+                  Swift 中的ARC和内存管理
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-27T19:48:37+08:00">
+                2017-03-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Swift/" itemprop="url" rel="index">
+                    <span itemprop="name">Swift</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>作为一门现代，高级语言，Swift处理应用中大量的内存管理并且代你分配和释放内存。它使用叫自动引用计数或者叫ARC这种很灵巧的技术。在这篇教程里，你将学习到关于ARC和内存管理在Swift。<br><img src="https://koenig-media.raywenderlich.com/uploads/2016/08/ARC-Memory-Swift-feature.png" style="zoom:20%"></p>
+<p>在你了解这个系统下，你可以决定一个堆对象什么时候结束。Swift中使用ARC可以非常的有效率在资源受限的环境-比如iOS。</p>
+<p>因为ARC是“自动的”，你将没必要明确参与对象的引用计数。甚至，你仅仅所需要考虑的是对象之间的关系去避免内存泄漏。这一点很容易被一个新开发者所忽视。</p>
+<p>在这篇教程中，通过学习如下知识你将提高的你的Swift和ARC技能。</p>
+<ul>
+<li>ARC是怎么工作的。</li>
+<li>什么是循环引用并且怎么打破他们。</li>
+<li>实际中一个循环引用的例子，怎么通过最新版的Xcode可视化工具去检测。</li>
+<li>怎么处理值和引用类型的混合使用。</li>
+</ul>
+<h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><p><a href="https://www.raywenderlich.com/134411/arc-memory-management-swift" target="_blank" rel="external">原文链接</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/24/swift-algorithm-club-swift-trie-data-structure/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="star in the night sky">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="夜空中的星">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="夜空中的星" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/01/24/swift-algorithm-club-swift-trie-data-structure/" itemprop="url">
+                  Swift 算法俱乐部:Swift 字典树数据结构
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-01-24T16:46:23+08:00">
+                2017-01-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/翻译/" itemprop="url" rel="index">
+                    <span itemprop="name">翻译</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/22/swift-algorithm-club-swift-binary-search-tree-data-structure/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="star in the night sky">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="夜空中的星">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="夜空中的星" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/01/22/swift-algorithm-club-swift-binary-search-tree-data-structure/" itemprop="url">
+                  Swift 算法俱乐部:Swift 二叉查找树数据结构
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-01-22T19:48:37+08:00">
+                2017-01-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Swift/" itemprop="url" rel="index">
+                    <span itemprop="name">Swift</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>本文由Kelvin Lau发表于raywenderlich，<a href="https://www.raywenderlich.com/139821/swift-algorithm-club-swift-binary-search-tree-data-structure" target="_blank" rel="external">原文链接</a><br>Swift 算法俱乐部是个开源的项目，实现数据结构和算法基于swift语言.<br>每个月，Kelvin Lau和我用一篇教程介绍一个炫酷的数据结构或者算法在这个网站上。如果你想学习到更多的算法和数据结构，跟着我们一起吧！<br>在这篇教程里,你将学习到二叉树和二叉查找树。<br>二叉树首先是<a href="https://www.raywenderlich.com/u/hollance" target="_blank" rel="external">Matthijs Hollemans</a>实现的,二叉查找树是<a href="https://github.com/nameghino" target="_blank" rel="external">Nico Ameghino</a>实现的。<br><img src="https://koenig-media.raywenderlich.com/uploads/2016/08/SwiftAlgClub-BinarySearch-feature.png" style="zoom:20%"></p>
+<h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><p>在计算机科学中二叉树是数据结构中最流行的一种。许多像<a href="https://github.com/raywenderlich/swift-algorithm-club/tree/master/Red-Black%20Tree" target="_blank" rel="external">红黑树</a>和<a href="https://github.com/raywenderlich/swift-algorithm-club/tree/master/AVL%20Tree" target="_blank" rel="external">二叉平衡树</a>高级树都是又二叉树演进过来的。<br>二叉树他们本身是由通用树演进过来的。如果你不了解树，检出上个月教程<br><a href="https://www.raywenderlich.com/138190/swift-algorithm-club-swift-tree-data-structure" target="_blank" rel="external">Swift 树数据结构</a><br>让我们来看它是怎么工作的。</p>
+<h1 id="二叉树数据结构"><a href="#二叉树数据结构" class="headerlink" title="二叉树数据结构"></a>二叉树数据结构</h1><p>二叉树一个节点有0，1，或者2个孩子节点的树。最重要的一点是2是最大所以叫二叉树。<br>这就是所看到的：<br><img src="https://koenig-media.raywenderlich.com/uploads/2016/07/BinaryTree.png" style="zoom:100%"></p>
+<h1 id="术语"><a href="#术语" class="headerlink" title="术语"></a>术语</h1><p>在沉浸代码之前，首先去理解一些重要的术语是非常重要的。<br>在所有通用树术语基础上，二叉树添加了左孩子和右孩子的概念。</p>
+<h2 id="左孩子"><a href="#左孩子" class="headerlink" title="左孩子"></a>左孩子</h2><p>左孩子来自左边的下面：<br><img src="https://koenig-media.raywenderlich.com/uploads/2016/08/BinaryTree-2.png" style="zoom:100%"></p>
+<h2 id="右孩子"><a href="#右孩子" class="headerlink" title="右孩子"></a>右孩子</h2><p>出人意料的，右边是右孩子<br><img src="https://koenig-media.raywenderlich.com/uploads/2016/08/BinaryTree-2-1.png" style="zoom:100%"></p>
+<h2 id="叶子节点"><a href="#叶子节点" class="headerlink" title="叶子节点"></a>叶子节点</h2><p>如果节点没有任何孩子，它叫做叶子节点：<br><img src="https://koenig-media.raywenderlich.com/uploads/2016/08/BinaryTree-2-2.png" style="zoom:100%"></p>
+<h2 id="根节点"><a href="#根节点" class="headerlink" title="根节点"></a>根节点</h2><p>根节点是树的最顶端(程序员认为他们倒置的树)<br><img src="https://koenig-media.raywenderlich.com/uploads/2016/08/BinaryTree-2-3.png" style="zoom:100%"></p>
+<h1 id="Swift中二叉树的实现"><a href="#Swift中二叉树的实现" class="headerlink" title="Swift中二叉树的实现"></a>Swift中二叉树的实现</h1><p>和其它树一样，二叉树是由节点组成。一种方式代表节点用类(不要把这个写入playground文件，这只是一个例子):</p>
+<p><code>class Node<t> {<br>  var value: T<br>  var leftChild: Node?<br>  var rightChild: Node?<br><br>  init(value: T) {<br>    self.value = value<br>  }<br>}</t></code></p>
+
+<p>在一颗二叉树里，每个节点持有一些数据(value),并且有一个左孩子和右孩子(leftChild和rightChild)。在这个实现中，左孩子和右孩子是可选的，意味着他们可能为空。<br>这是传统的方式创建树。不管怎样，今天值得高兴对激动的探索者，因为你将尝试一些新的内容！;]</p>
+<h1 id="值语义"><a href="#值语义" class="headerlink" title="值语义"></a>值语义</h1><p>Swift中在合适的地方使用值类型(像结构体和枚举)代替引用类型(像类)是一种核心理念。用一个值类型创建一个二叉树是一个完美的情况，所以在这个教程中，你将使用枚举类型来实现二叉树。<br>注意，如果你想学习到更多关于引用和值类型，检出我们<a href="https://www.raywenderlich.com/112027/reference-value-types-in-swift-part-1" target="_blank" rel="external">Swift中引用和值类型</a>系列教程。<br>创建一个新的Swift playground(这篇教程使用Xcode 8 beta 5)并且添加如下枚举定义:</p>
+<p><code>enum BinaryTree<t> {<br><br>}</t></code></p>
+
+<p>你已经定义了一个叫BinaryTree的枚举类型。定义成泛型枚举允许你推断出他自己的类型信息通过调用。</p>
+<h1 id="状态"><a href="#状态" class="headerlink" title="状态"></a>状态</h1><p>枚举类型非常死板，它们只能是一种或者另外一种状态。幸运的是这个对二叉树来说非常优雅。二叉树是节点的有限集合，节点要么为空，要么由引用左孩子和右孩子的值节点组成。<br>相应的更新你的枚举：</p>
+<p><code>enum BinaryTree<t> {<br>  case empty<br>  case node(BinaryTree, T, BinaryTree)<br>}</t></code></p>
+
+<p>如果你是从另一个编程语言过来的，node case看起来有点陌生。Swift枚举允许关联值，是一种精致的术语，你可以通过case关联一个存储属性。<br>在node(BinaryTree, T, BinaryTree)中，括号中的参数类型和左孩子，值，右孩子各自对应。<br>那是一种相当紧凑的方式模型化二叉树。然而，你马上产生一个编译错误。</p>
+<p><code>Recursive enum ‘BinaryTree<t>‘ is not marked ‘indirect’</t></code></p>
+
+<p>Xcode尝试帮你修复这个问题。接受它，你的枚举将显示成这样：</p>
+<p><code>indirect enum BinaryTree<t> {<br>  case empty<br>  case node(BinaryTree, T, BinaryTree)<br>}</t></code></p>
+
+<h1 id="递归枚举"><a href="#递归枚举" class="headerlink" title="递归枚举"></a>递归枚举</h1><p>在Swift中，枚举是值类型。当Swift尝试给值类型分配内存，它需要确切知道多少内存需要分配。<br>你定义的枚举是个递归枚举。枚举有个关联值关联到自己本身。递归值类型有一个不能决定的大小。<br><img src="https://koenig-media.raywenderlich.com/uploads/2016/08/Screen-Shot-2016-08-01-at-1.27.40-AM.png" style="zoom:60%"><br>所以现在在这儿你有个问题。Swift期望确切知道枚举有多大，但是你所创建的递归枚举没有暴露这个信息。<br>这就是indirect关键字引入的原因。indirect致力于两个值类型的间接关系。这里介绍值类型的引用语义的层次关系。<br>枚举类型现在持有关联值的引用，而不是他们的值。引用有一个固定的大小，所以你不再有前面的问题。<br>现在你的代码可以编译了，你可以做到更简练点。更新你的二叉树到如下：</p>
+<p><code>enum BinaryTree<t> {<br>  case empty<br>  indirect case node(BinaryTree, T, BinaryTree)<br>}</t></code></p>
+
+<p>因为只有node的case语句需要递归，你仅需要对这个case使用indirect。</p>
+<h1 id="例子：一系列算术操作"><a href="#例子：一系列算术操作" class="headerlink" title="例子：一系列算术操作"></a>例子：一系列算术操作</h1><p>用二叉树去检出一系列模式运算非常有趣。拿这个模型举例子(5 <em> (a - 10)) + (-4 </em> (3 / b)):<br><img src="https://koenig-media.raywenderlich.com/uploads/2016/07/Operations.png" style="zoom:100%"><br>在你playground文件最后编写如下代码：</p>
+<p><code>// leaf nodes<br>let node5 = BinaryTree.node(.empty, “5”, .empty)<br>let nodeA = BinaryTree.node(.empty, “a”, .empty)<br>let node10 = BinaryTree.node(.empty, “10”, .empty)<br>let node4 = BinaryTree.node(.empty, “4”, .empty)<br>let node3 = BinaryTree.node(.empty, “3”, .empty)<br>let nodeB = BinaryTree.node(.empty, “b”, .empty)<br><br>// intermediate nodes on the left<br>let Aminus10 = BinaryTree.node(nodeA, “-“, node10)<br>let timesLeft = BinaryTree.node(node5, “<em>“, Aminus10)<br><br>// intermediate nodes on the right<br>let minus4 = BinaryTree.node(.empty, “-“, node4)<br>let divide3andB = BinaryTree.node(node3, “/“, nodeB)<br>let timesRight = BinaryTree.node(minus4, “</em>“, divide3andB)<br><br>// root node<br>let tree = BinaryTree.node(timesLeft, “+”, timesRight)</code></p>
+
+<p>你需要创建递归的创建这棵树，从叶子节点开始并且一直走到上面。</p>
+<h1 id="CustomStringConvertible协议"><a href="#CustomStringConvertible协议" class="headerlink" title="CustomStringConvertible协议"></a>CustomStringConvertible协议</h1><p>现在，你想看到树如何工作是非常困难的。Swift有一个内置的叫做CustomStringConvertible协议，这个协议允许你定义如何在控制台上输出。添加如下代码在BinaryTree 枚举实现下：</p>
+<p><code>extension BinaryTree: CustomStringConvertible {<br>  var description: String {<br>    switch self {<br>    case let .node(left, value, right):<br>      return “value: (value), left = [“ + left.description + “], right = [“ + right.description + “]”<br>    case .empty:<br>      return “”<br>    }<br>  }<br>}</code></p>
+
+<p>编写如下代码在文件的结尾输出树：</p>
+<p><code>print(tree)</code></p>
+
+<p>你应该能看到如下内容：</p>
+<p><code>value: +, left = [value: <em>, left = [value: 5, left = [], right = []], right = [value: -, left = [value: a, left = [], right = []], right = [value: 10, left = [], right = []]]], right = [value: </em>, left = [value: -, left = [], right = [value: 4, left = [], right = []]], right = [value: /, left = [value: 3, left = [], right = []], right = [value: b, left = [], right = []]]]</code></p>
+
+<p>发挥一点想象，你能看到树结构。它帮助你缩进排版：</p>
+<p><code>value: +,<br>    left = [value: <em>,<br>        left = [value: 5, left = [], right = []],<br>        right = [value: -,<br>            left = [value: a, left = [], right = []],<br>            right = [value: 10, left = [], right = []]]],<br>    right = [value: </em>,<br>        left = [value: -,<br>            left = [],<br>            right = [value: 4, left = [], right = []]],<br>        right = [value: /,<br>            left = [value: 3, left = [], right = []],<br>            right = [value: b, left = [], right = []]]]</code></p>
+
+<h1 id="获取数量"><a href="#获取数量" class="headerlink" title="获取数量"></a>获取数量</h1><p>另外一个有用的特征是能够获取到树中节点的数量。添加如下的代码在你的二叉树枚举里面：</p>
+<p><code>var count: Int {<br>  switch self {<br>  case let .node(left, _, right):<br>    return left.count + 1 + right.count<br>  case .empty:<br>    return 0<br>  }<br>}</code></p>
+
+<p>通过在你playground文件的添加这些代码来测试:</p>
+<p><code>tree.count</code></p>
+
+<p>你应该能在侧边栏看到数字12，因为在树中有12个节点。<br>目前为止你做了件伟大的事情。既然你已经对二叉树有一个很好的基础，是时候去熟悉至今为止最流行的树了-二叉查找树！</p>
+<h1 id="二叉查找树"><a href="#二叉查找树" class="headerlink" title="二叉查找树"></a>二叉查找树</h1><p>二叉查找树是一种特别类型的二叉树(一种每个节点最多有两个孩子的树)，<br>表现在插入和删除在树中都是有序的。</p>
+<h2 id="总是有序属性"><a href="#总是有序属性" class="headerlink" title="总是有序属性"></a>总是有序属性</h2><p>这里是一颗有效二叉查找树的例子：<br><img src="https://koenig-media.raywenderlich.com/uploads/2016/07/Tree1.png" style="zoom:100%"><br>注意到每个左孩子比父亲节点要小，并且每个右孩子比父亲节点要大。这就是二叉查找树的关键特点。<br>比如，2比7小所以在左边；5比2大在右边。</p>
+<h2 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h2><p>当进行一个插入，从根节点开始作为当前节点：</p>
+<ul>
+<li>如果当前节点是空的，你将新节点插在这。</li>
+<li>如果新值要小，往下向左分支走。</li>
+<li>如果新值要大，往下向右分支走。</li>
+</ul>
+<p>你一直往下遍历直到你找到一个你能插入新值的空的地方。<br>举个例子，想象下你树里插入值9：</p>
+<ul>
+<li>从树的根节点开始(节点的值为7)，并且和新值9做比较。</li>
+<li>9&gt;7,所以你去右分支</li>
+<li>9和10比较。因为9&lt;10,去左分支。</li>
+<li>这个左分支是空的，因此你将在这个位置插入9。</li>
+</ul>
+<p>新树现在成这样子：<br><img src="https://koenig-media.raywenderlich.com/uploads/2016/08/added-308x320.png" style="zoom:50%"><br>新元素能被插入树中总是只有一个可能的位置。找到这个地方通常非常快。它的时间复杂度仅仅是o(h),h是树的高度。</p>
+<p>如果你不熟悉树的高度，检出先前的关于<a href="https://www.raywenderlich.com/138190/swift-algorithm-club-swift-tree-data-structure" target="_blank" rel="external">Swift树</a>的文章。</p>
+<h2 id="挑战-实现插入"><a href="#挑战-实现插入" class="headerlink" title="挑战:实现插入"></a>挑战:实现插入</h2><p>既然你对怎么插入有概念，现在是实现它的时候了。添加如下方法到你二叉树枚举：</p>
+<p><code>// 1.<br>mutating func naiveInsert(newValue: T) {<br>  // 2.<br>  guard case .node(var left, let value, var right) = self else {<br>    // 3.<br>    self = .node(.empty, newValue, .empty)<br>    return<br>  }<br><br>  // 4. TODO: Implement rest of algorithm!<br><br>}</code></p>
+
+<p>让我们一段段的重温：</p>
+<ul>
+<li>值类型默认是不可变的。如果你创建一个方法试图在值类型里面改变一些东西的话，你将需要在你的方法前面明确的前面加上mutating关键字。</li>
+<li>你正在使用guard关键字去揭露当前节点的左孩子，当前值，右孩子。如果节点是空，guard将会失败并且进入else代码块。</li>
+<li>在这个代码块里。你将在这里插入新值。</li>
+<li>这就是你来的地方-等一会儿。</li>
+</ul>
+<p>过一会儿，你将尝试基于下面讨论的算法实现第4部分。这是一个很好的练习，不仅对你理解二叉树，还有锻炼你的递归技能。<br>但是在你做之前，你需要对二叉树签名做一些改变。在第4部分，你将需要对旧值和新值比较，但是你不能在当前的二叉树上实现。为了修复这个问题，更新二叉树枚举到如下：</p>
+<p><code>enum BinaryTree<t: comparable=""> {<br>  // stuff inside unchanged<br>}</t:></code></p>
+
+<p>Comparable协议强制保证你所创建的二叉树的类型能通过比较操作来比较，比如&lt;操作。<br>现在，到前面并且基于上面的算法尝试实现第4部分。这里又是你的引用:</p>
+<ul>
+<li>如果当前节点是空的，你将新节点插在这,完成。</li>
+<li>如果新值要小，往下向左分支走。你需要做这个。</li>
+<li>如果新值要大，往下向右分支走。你需要做这个。</li>
+</ul>
+<p>如果你被卡住了，你可以合适下面的解决。</p>
+<p><code>// 4. TODO: Implement naive algorithm!<br>if newValue &lt; value {<br>  left.naiveInsert(newValue: newValue)<br>} else {<br>  right.naiveInsert(newValue: newValue)<br>}</code></p>
+
+<h1 id="写入时候拷贝"><a href="#写入时候拷贝" class="headerlink" title="写入时候拷贝"></a>写入时候拷贝</h1><p>虽然这是一个伟大的实现，但是它不工作。在你的playground结尾编写如下代码:</p>
+<p><code><br>var binaryTree: BinaryTree<int> = .empty<br>binaryTree.naiveInsert(newValue: 5) // binaryTree now has a node value with 5<br>binaryTree.naiveInsert(newValue: 7) // binaryTree is unchanged<br>binaryTree.naiveInsert(newValue: 9) // binaryTree is unchanged</int></code></p>
+
+<p><img src="https://koenig-media.raywenderlich.com/uploads/2016/08/Screen-Shot-2016-08-10-at-8.55.46-PM.png" style="zoom:100%"><br>写入时拷贝在这儿有问题。每次你尝试更改树的内容，孩子的新拷贝被创建。新的拷贝和 旧的的拷贝没链到一起，所以你原始的二叉树绝对不会更新成新值。<br>这里呼唤一种不同的方式完成这个。在你二叉树枚举写下如下内容:</p>
+<p><code><br>private func newTreeWithInsertedValue(newValue: T) -&gt; BinaryTree {<br>  switch self {<br>  // 1<br>  case .empty:<br>    return .node(.empty, newValue, .empty)<br>  // 2<br>  case let .node(left, value, right):<br>    if newValue &lt; value {<br>      return .node(left.newTreeWithInsertedValue(newValue: newValue), value, right)<br>    } else {<br>      return .node(left, value, right.newTreeWithInsertedValue(newValue: newValue))<br>    }<br>  }<br>}</code></p>
+
+<p>这是一个返回带入插入元素的新树的一个方法。代码也相当简单：</p>
+<ul>
+<li>如果树是空的，你想在这里插入新值。</li>
+<li>如果树不为空，你需要决定是否插在左孩子或者右孩子里。</li>
+</ul>
+<p>在你的二叉树枚举编写如下代码:</p>
+<p><code><br>mutating func insert(newValue: T) {<br>  self = newTreeWithInsertedValue(newValue: newValue)<br>}</code></p>
+
+<p>在你的playground底部替换成如下代码来测试:</p>
+<p><code><br>binaryTree.insert(newValue: 5)<br>binaryTree.insert(newValue: 7)<br>binaryTree.insert(newValue: 9)</code></p>
+
+<p>你应该按如下的树结构结束:</p>
+<p><code><br><br>value: 5,<br>    left = [],<br>    right = [value: 7,<br>        left = [],<br>        right = [value: 9,<br>            left = [],<br>            right = []]]</code></p>
+
+<p>恭喜你- 现在你让插入工作正常。</p>
+<h2 id="插入时间复杂度"><a href="#插入时间复杂度" class="headerlink" title="插入时间复杂度"></a>插入时间复杂度</h2><p>如讨论的部分，每次你做插入操作你需要创建树的一份新拷贝。创建一份新拷贝要求你经历先前树的所有节点。这个插入方法的时间复杂度是O(n).<br>注意:传统方法用类来实现二叉搜索树平均时间复杂度是O(log n),会更快一些。用类(引用语法)将不会产生写入时拷贝，所以你将插入而不需要对数做一个完全拷贝。</p>
+<h1 id="遍历算法"><a href="#遍历算法" class="headerlink" title="遍历算法"></a>遍历算法</h1><p>遍历算法对树来说是很基础的操作。一个遍历算法经历树的所有节点。主要有三种遍历二叉树方式：</p>
+<h2 id="中序遍历"><a href="#中序遍历" class="headerlink" title="中序遍历"></a>中序遍历</h2><p>中序遍历二叉树是升序遍历所有节点。这儿是中序遍历行为的样子:<br><img src="https://koenig-media.raywenderlich.com/uploads/2016/08/Traversing.png" style="zoom:100%"><br>从顶部开始，走到你所能到达的最左边。如果你不能再往左走，你将访问当前节点并且尝试遍历右边节点。这个过程继续到你遍历了所有节点。<br>在你的二叉树枚举里编写如下代码:</p>
+<p><code><br>func traverseInOrder(process: @noescape (T) -&gt; ()) {<br>  switch self {<br>  // 1<br>  case .empty:<br>    return<br>  // 2<br>  case let .node(left, value, right):<br>    left.traverseInOrder(process: process)<br>    process(value)<br>    right.traverseInOrder(process: process)<br>  }<br>}</code></p>
+
+<p>这个代码也相当简单:</p>
+<ul>
+<li>如果当前节点是空，那将不能进一步往下走。你只是简单的返回这里。</li>
+<li>如果当前节点不是空，你可以进一步往下走。终须遍历的定义是往左边走，访问节点，然后是右边。</li>
+</ul>
+<p>想看到这个行为，你将创建二叉树显示上面。删除你playground文件底部的所有测试代码并且替换成如下:</p>
+<p><code><br>var tree: BinaryTree<int> = .empty<br>tree.insert(newValue: 7)<br>tree.insert(newValue: 10)<br>tree.insert(newValue: 2)<br>tree.insert(newValue: 1)<br>tree.insert(newValue: 5)<br>tree.insert(newValue: 9)<br><br>tree.traverseInOrder { print($0) }</int></code></p>
+
+<p>你已经使用插入方法去创建一颗二叉树。中序遍历将升序扁你的节点，在每个节点中传递值给尾随闭包。<br>在尾随闭包里，你将打印通过遍历方法传递的这个值。\$0是个简短语法，表示传递给闭包的引用参数。<br>你应该在控制台上看到如下输出:</p>
+<p><code><br>1<br>2<br>5<br>7<br>9<br>10</code></p>
+
+<h2 id="前序遍历"><a href="#前序遍历" class="headerlink" title="前序遍历"></a>前序遍历</h2><p>前序遍历二叉搜索树是遍历节点的同时访问当前节点。<br>关键的地方是在遍历孩子之前调用process。在你的二叉树枚举里编写如下代码：</p>
+<p><code>func traversePreOrder( process: @noescape (T) -&gt; ()) {<br>  switch self {<br>  case .empty:<br>    return<br>  case let .node(left, value, right):<br>    process(value)<br>    left.traversePreOrder(process: process)<br>    right.traversePreOrder(process: process)<br>  }<br>}</code></p>
+
+<h2 id="后续遍历"><a href="#后续遍历" class="headerlink" title="后续遍历"></a>后续遍历</h2><p>后续遍历是只有遍历了它的左孩子和右孩子之后才能访问节点。在你的二叉树枚举里编写如下代码：</p>
+<p><code>func traversePostOrder( process: @noescape (T) -&gt; ()) {<br>  switch self {<br>  case .empty:<br>    return<br>  case let .node(left, value, right):<br>    left.traversePostOrder(process: process)<br>    right.traversePostOrder(process: process)<br>    process(value)<br>  }<br>}</code></p>
+
+<p>这3个遍历算法在许多复杂的编程问题中作为一个基本的服务。理解他们将在许多情形下显示有用，包括在你的下一次编程面试中！</p>
+<h2 id="小挑战"><a href="#小挑战" class="headerlink" title="小挑战"></a>小挑战</h2><p>遍历算法的时间复杂度是多少？<br>时间复杂度是O(n),n是树中节点的数量。<br>这个是很明显的，因为遍历树的概念就是遍历所有节点！</p>
+<h1 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h1><p>如名字所显示，二叉查找树因为很好的促进查找而知名。一个正确的二叉查找树将是所有的左孩子小于父节点，并且所有的右孩子等于或者大于他的父节点。<br>为了运用这个保证，你将能决定那条路线发生-左孩子，右孩子-查看你的值是否在树中存在。在你的二叉树枚举里编写如下代码：</p>
+<p><code>func search(searchValue: T) -&gt; BinaryTree? {<br>  switch self {<br>  case .empty:<br>    return nil<br>  case let .node(left, value, right):<br>    // 1<br>    if searchValue == value {<br>      return self<br>    }<br><br>    // 2<br>    if searchValue &lt; value {<br>      return left.search(searchValue: searchValue)<br>    } else {<br>      return right.search(searchValue: searchValue)<br>    }<br>  }<br>}}</code></p>
+
+<p>和遍历算法很相像，查找往二叉树的下面遍历：</p>
+<ul>
+<li>如果当前值和你查找的值匹配，你已经完成搜索。返回当前子树。</li>
+<li>如果在这个点继续，意味这你还没有找到这个值。你将需要决定往下是往左还是往右，你将决定使用二叉查找树的规则。</li>
+</ul>
+<p>和遍历算法不同的，查找算法每次递归将值遍历1边。平均下来，时间复杂度是O(logn),和O(n)比起来要快。<br>你可以通过在你的playground的结尾添加如下代码来测试:</p>
+<p><code>tree.search(searchValue: 5)</code></p>
+
+<h1 id="何去何从"><a href="#何去何从" class="headerlink" title="何去何从"></a>何去何从</h1><p>我希望你喜欢这篇关于二叉树的教程。<br>这儿是一个<a href="https://koenig-media.raywenderlich.com/uploads/2016/08/SwiftBinaryTree.playground.zip" target="_blank" rel="external"> Swift playground</a>针对上面的代码。你也可以发现可替换的实现和进一步的讨论在Swift 算法部分的<a href="https://github.com/raywenderlich/swift-algorithm-club/tree/master/Binary%20Search%20Tree" target="_blank" rel="external">二叉查找树</a>部分。<br>这只是许多算法俱乐部中聚焦Swift算法俱乐部的一部分，如果你对这些更感兴趣，检出 <a href="https://github.com/raywenderlich/swift-algorithm-club" target="_blank" rel="external"> repo</a><br>最好的兴趣是你了解到算法和数据结构，他们解决需要现实世界问题，并且经常在面试问题中被问到。对他感兴趣吧！<br>所以敬起期待Swift算法俱乐部将来的更多教程。同时，如果你有任何问题关于在Swift实现栈，请参加下面论坛的讨论！<br>Swift 算法俱乐部总是在寻找更多的贡献者。如果你对数据结构，算法，甚至一个面试问题想分享，不要犹豫去贡献！想学习更多的关于贡献流程，检出 我们的<a href="https://www.raywenderlich.com/135533/join-swift-algorithm-club" target="_blank" rel="external"> 参加Swift算法俱乐部</a>文章。</p>
+<p><a href="https://www.raywenderlich.com/139821/swift-algorithm-club-swift-binary-search-tree-data-structure" target="_blank" rel="external">原文链接</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/21/swift-algorithm-club-swift-tree-data-structure/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="star in the night sky">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="夜空中的星">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="夜空中的星" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/01/21/swift-algorithm-club-swift-tree-data-structure/" itemprop="url">
+                  Swift 算法俱乐部:Swift 树数据结构
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-01-21T09:51:19+08:00">
+                2017-01-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Swift 算法俱乐部是个开源的项目，实现流行的数据结构和算法基于swift语言.<br>每个月，Chris Pilcher和我写一篇教程介绍一个炫酷的数据结构或者算法在这个网站上。<br>这个系列将是一个很好的方式学习到算法和数据结构，而且通过这种方式提高你的Swift技巧。<br>在这篇教程里,你将学习到怎么实现一个树数据结构.这是一个最常见和有用的数据结构之一，并且是一个很好的方式开始。<br><img src="https://koenig-media.raywenderlich.com/uploads/2016/07/SwiftAlgorithm-410-transp-250x250.png" style="zoom:20%"></p>
+<h1 id="树数据结构"><a href="#树数据结构" class="headerlink" title="树数据结构"></a>树数据结构</h1><p>最容易的理解树的数据结构是通过如下的图片:<br><img src="https://koenig-media.raywenderlich.com/uploads/2016/06/Tree-2.png" style="zoom:50%"><br>上面的图标显示一颗有5层的树。根节点是第0层，并且你在树的深度往下，层次增加1.<br>树能够帮你解决许多重要的问题，包括：</p>
+<ul>
+<li>代表对象之间的等级关系</li>
+<li>让查找快捷效率</li>
+<li>提供有序的数据列表</li>
+<li>强大的前缀匹配在文本领域</li>
+</ul>
+<h1 id="术语"><a href="#术语" class="headerlink" title="术语"></a>术语</h1><p>首先，让我们覆盖一些你应该了解关于树的重要的术语。</p>
+<h2 id="根"><a href="#根" class="headerlink" title="根"></a>根</h2><p>树的根节点代表一个树的第0层节点。你也可以认为它是你的树这种数据结构的进入点。<br><img src="https://koenig-media.raywenderlich.com/uploads/2016/06/root-2-1.png" style="zoom:100%"></p>
+<h2 id="节点"><a href="#节点" class="headerlink" title="节点"></a>节点</h2><p>一个节点是树的一块数据。节点所包含的数据依赖于你的树的类型。根也是一个节点。<br><img src="https://koenig-media.raywenderlich.com/uploads/2016/06/root-4.png" style="zoom:100%"></p>
+<h2 id="叶子"><a href="#叶子" class="headerlink" title="叶子"></a>叶子</h2><p>有时候关系到的是一个终端节点，一个叶子是一个没有孩子的节点。例如，如果节点对象的左孩子和右孩子是空，你所关系到的节点是叶子。<br><img src="https://koenig-media.raywenderlich.com/uploads/2016/06/leaf.png" style="zoom:100%"></p>
+<h1 id="Swift中树的实现"><a href="#Swift中树的实现" class="headerlink" title="Swift中树的实现"></a>Swift中树的实现</h1><p>在这部分，你将实现一个通用的树。这是一个奇特的方式一棵树没有任何限制（比如每个节点有多少个孩子，或者节点的顺序）。<br>记住树是由节点组成的。所以在开始前，创建一个基本节点类。创建一个新的Swiftplayground并且添加如下内容到空的类里面:</p>
+<p><code>class Node {<br><br>}</code></p>
+
+<h2 id="值"><a href="#值" class="headerlink" title="值"></a>值</h2><p>当然，一个节点如果没有一个值关联它就没多少用处。<br>为了简单起见，你将针对这种树管理字符串数据。更新你当前Node类的实现到如下：</p>
+<p><code>class Node {<br>  var value: String<br><br>  init(value: String) {<br>    self.value = value<br>  }<br>}</code></p>
+
+<p>你已经定义了一个String类型叫做value的属性。你同时也定义了个初始化方法，要求初始化你的类中所有的非可选存储型属性。</p>
+<h2 id="孩子"><a href="#孩子" class="headerlink" title="孩子"></a>孩子</h2><p>为了添加值，每个节点需要有个孩子列表。<br>更新你的类定义到如下：</p>
+<p><code>class Node {<br>  var value: String<br>  var children: [Node] = [] // add the children property<br><br>  init(value: String) {<br>    self.value = value<br>  }<br>}</code></p>
+
+<p>你仅仅定义了children作为节点的数组。每个孩子代表比当前节点更深一层的节点。</p>
+<h2 id="父亲"><a href="#父亲" class="headerlink" title="父亲"></a>父亲</h2><p>有时候每个节点有一个链接到它的父节点非常有用。孩子节点是所给节点的下面；父亲是节点的上面。一个节点有只有一个父亲，但是可以多个孩子。<br>更新你Node类的实现到如下：</p>
+<p><code>class Node {<br>  var value: String<br>  var children: [Node] = []<br>  weak var parent: Node? // add the parent property<br><br>  init(value: String) {<br>    self.value = value<br>  }<br>}</code></p>
+
+<p>注意你让parent变量是可选的。这是因为不是所有的节点都有父亲-比如树的根节点。</p>
+<h2 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h2><p>去处理树的插入，你将在你的Node类定义方法add(child:)。更新你Node类的实现到如下：</p>
+<p><code>class Node {<br>  var value: String<br>  var children: [Node] = []<br>  weak var parent: Node?<br><br>  init(value: String) {<br>    self.value = value<br>  }<br><br>  func add(child: Node) {<br>    children.append(child)<br>    child.parent = self<br>  }<br>}</code></p>
+
+<p>通过一个palyground很好理解addChild()怎么生效的。在你的类实现的外面，编写如下代码到你的palyground：</p>
+<p><code>let beverages = Node(value: “beverages”)<br><br>let hotBeverages = Node(value: “hot”)<br>let coldBeverages = Node(value: “cold”)<br><br>beverages.add(child: hotBeverages)<br>beverages.add(child: coldBeverages)</code></p>
+
+<p>等级结构很自然的显然的树的数据结构。现在你定义了3个不同的节点并且把他们组织成一个逻辑等级。这个相当于下面这个结构：<br><img src="https://koenig-media.raywenderlich.com/uploads/2016/06/Example.png" style="zoom:100%"></p>
+<h1 id="挑战：饮料城市"><a href="#挑战：饮料城市" class="headerlink" title="挑战：饮料城市"></a>挑战：饮料城市</h1><p>准备好一个快速测试你所掌握的知识？<br>尝试编写代码去扩建你的类去匹配如下图标：<br><img src="https://koenig-media.raywenderlich.com/uploads/2016/06/Example-2.png" style="zoom:100%"><br>尝试用泛型实现LinkedList<br>解决方法在下面提供，但是首先自己尝试下！</p>
+<p><code>let beverages = Node(value: “beverages”)<br><br>let hotBeverage = Node(value: “hot”)<br>let coldBeverage = Node(value: “cold”)<br><br>let tea = Node(value: “tea”)<br>let coffee = Node(value: “coffee”)<br>let cocoa = Node(value: “cocoa”)<br><br>let blackTea = Node(value: “black”)<br>let greenTea = Node(value: “green”)<br>let chaiTea = Node(value: “chai”)<br><br>let soda = Node(value: “soda”)<br>let milk = Node(value: “milk”)<br><br>let gingerAle = Node(value: “ginger ale”)<br>let bitterLemon = Node(value: “bitter lemon”)<br><br>beverages.add(child: hotBeverage)<br>beverages.add(child: coldBeverage)<br><br>hotBeverage.add(child: tea)<br>hotBeverage.add(child: coffee)<br>hotBeverage.add(child: cocoa)<br><br>coldBeverage.add(child: soda)<br>coldBeverage.add(child: milk)<br><br>tea.add(child: blackTea)<br>tea.add(child: greenTea)<br>tea.add(child: chaiTea)<br><br>soda.add(child: gingerAle)<br>soda.add(child: bitterLemon)</code></p>
+
+<h2 id="输出树"><a href="#输出树" class="headerlink" title="输出树"></a>输出树</h2><p>没有控制台日志认证一个大的树结构将会很困难。在定义了你的树结构，尝试在控制台记录你的结果通过输出树：</p>
+<p><code>print(beverages) // &lt;- try to print it!</code></p><br>你可以通过如下的组合键(Command-Shift-Y)把控制台展示。你应该在控制台能看到如下输出：<br><p><code>Node</code></p>
+
+<p>多么愚蠢！不幸的是，编译器不知道怎么最好的输出你的自定义Swift对象，除非你告诉它。<br>去帮助编译器，你将需要让Node类遵循CustomStringConvertible协议。要做这个，添加如下代码在Node类实现的下面：</p>
+<p><code>// 1<br>extension Node: CustomStringConvertible {<br>  // 2<br>  var description: String {<br>    // 3<br>    var text = “(value)”<br><br>   // 4<br>    if !children.isEmpty {<br>      text += “ {“ + children.map { $0.description }.joinWithSeparator(“, “) + “} “<br>    }<br>    return text<br>  }<br>}</code></p>
+
+<p>这段代码相当简单：</p>
+<ul>
+<li>你对你的Node类实现了一个扩展，并且你已经遵循了CustomStringConvertible协议.这个协议期望你实现一个String类型名字叫做description的计算型属性。</li>
+<li>你已经定义了description属性。这是一个返回一个字符串的只读的计算型属性。</li>
+<li>你已经定义了一个text变量。这个将保持住整个字符串。现在它包含一个中括号代表列表的开始。</li>
+<li>为了输出当前节点的值，你将需要输出孩子，孩子的孩子，等等。这样做，你将递归的追加你的孩子的描述，同时添加括弧在某种上下文的字符串上，不管孩子的结构。</li>
+</ul>
+<p>现在，当你调用输出你的Node类，你将获取到一个好的树结构表现形式向这样：</p>
+<p><code>“beverages {hot {tea {black, green, chai} , coffee, cocoa} , cold {soda {ginger ale, bitter lemon} , milk} } \n”</code></p>
+
+<p>如果你对mapping语法感到疑惑，你可以写下面代码来替换：</p>
+<p><code><br>if !children.isEmpty {<br>  text += “ {“<br>  for child in children {<br>    text += child.description + “, “<br>  }<br>  text += “} “<br>}</code></p>
+
+<p>map是一个对象集合的行为，比如数组。定义类型使之遵循SequenceType协议，map允许你每个元素执行操作。在你的情况，你在遍历孩子并且执行字符串添加操作。<br>想学到更多关于map，你可以阅读这个教程:<a href="https://www.raywenderlich.com/114456/introduction-functional-programming-swift" target="_blank" rel="external"> Introduction to Functional Programming in Swift</a></p>
+<h2 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h2><p>树的通常用途这里很好的描述等级结构数据，但是实际上依赖于你的应用，不管什么你额外需要的功能。打个比方，你可以用Node类来决定这棵树是否包含该一个特定值。<br>为了对这个通用用途树查找算法方便，添加如下扩展你你的playground文件的底部：</p>
+<p><code><br>extension Node {<br>  // 1<br>  func search(value: String) -&gt; Node? {<br>    // 2<br>    if value == self.value {<br>      return self<br>    }<br>    // 3<br>    for child in children {<br>      if let found = child.search(value: value) {<br>        return found<br>      }<br>    }<br>    // 4<br>    return nil<br>  }<br>}</code></p>
+
+<p>这段代码非常简单：</p>
+<ul>
+<li>这个方法的目的查找某个值在这棵树上。如果存在，返回关联值的节点。如果不存在，你将返回nil。</li>
+<li>当你找到值的情况下。你将返回self，当前的节点。</li>
+<li>在这个循环中，你循环数组的孩子。你将调用每个孩子的查找方法，将递归遍历所有的孩子。如果节点中的任意一个匹配，你的if let语句是真并且返回这个节点。</li>
+<li>你将返回nil表明你没有找到匹配的。</li>
+<li><p>让我们试一下我们的查找方法！在你的playground文件的底部，编写如下代码：</p>
+<p><code><br>beverages.search(value: “cocoa”) // returns the “cocoa” node<br>beverages.search(value: “chai”) // returns the “chai” node<br>beverages.search(value: “bubbly”) // returns nil</code></p>
+
+</li>
+</ul>
+<h1 id="其他不同的类型呢？"><a href="#其他不同的类型呢？" class="headerlink" title="其他不同的类型呢？"></a>其他不同的类型呢？</h1><p>目前为止很好！你已经学习了如何实现通用用途的树来存储String值。<br>你已经定义了一个好的方式在控制台输出你的树，并且在你的Node类提供了查找能力。<br>树是一个很好的方式设计字符串等级结构，但是如果你想存储整形呢？<br>你可以修改Node类来接收整形参数：</p>
+<p><code>class Node {<br>  var value: Int<br><br>  // …<br>}</code></p>
+
+<p>但是你的旧的实现接受字符串值的功能丢失了。理想状态下，你想创建一个Node类可以接受任何类型的对象，不管他是Int，Double,Float,甚至是你自定义的类。为了使你的Node类通用使用方便，你将不得不投入泛型的世界。</p>
+<h1 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h1><p>泛型的概念是你从算法和数据结构抽象出要求的类型。这个允许你保持通用和复用的概念。在树(或者其他的数据结构)中的一个对象将会表现很好，不应该它是Int或String类型，而是其他固有的；在树的环境下，任何类型都应该表现好都很适合在一棵树上。<br>是时候做一些突破性变化了！更新你的Node类实现到如下：</p>
+<p><code>// 1.<br>class Node<t> {<br>  // 2.<br>  var value: T<br>  weak var parent: Node?<br>  // 3.<br>  var children: [Node] = []<br><br>  // 4.<br>  init(value: T) {<br>    self.value = value<br>  }<br><br>  // 5.<br>  func add(child: Node) {<br>    children.append(child)<br>    child.parent = self<br>  }<br>}</t></code></p>
+
+<p>马上，你可以看到一些编译错误。但是不要害怕，你将清除那些错误当你完成你的Node实现对所有类型的普及。这儿是你所做的：</p>
+<ul>
+<li>你已经更改Node类的实现去接收一个泛型类型T。&lt;&gt;语法里的T提示编译器你正在使用泛型。</li>
+<li>你的目标是允许Node类接受任何类型的值，所以你限制你的value属性是个T类型而不是个整形或者字符串。</li>
+<li>在其它点同样的原因，你将定义你的类中孩子也是类型T。</li>
+<li>你将更新你的初始化方法接受任何类型。</li>
+<li>你将更新你的addChild方法去接收任何Node对象匹配当前的Node类型</li>
+</ul>
+<p>目前为止很好。下一步，查找扩展包含search方法并且更新成使用泛型：</p>
+<p><code>// 1.<br>extension Node where T: Equatable {<br>  // 2.<br>  func search(value: T) -&gt; Node? {<br>    if value == self.value {<br>      return self<br>    }<br>    for child in children {<br>      if let found = child.search(value: value) {<br>        return found<br>      }<br>    }<br>    return nil<br>  }<br>}</code></p>
+
+<p>你在这里做了两处修改：</p>
+<ul>
+<li>在你能使用这个search方法之前，你已经将这个扩展填入一个限制使任何类型都可以做相等判断。</li>
+<li>你已经根性value参数使之成为一个泛型。</li>
+</ul>
+<p>你的代码现在应该可以编译了，所以让我们来测试吧！在你的playground问价底部，添加如下代码去验证你的泛型树工作正常：</p>
+<p><code>let number = Node(value: 5)</code></p>
+
+<p>恭喜，你已经创建一个通用用途的树适合于所有对象类型！</p>
+<h1 id="其它树"><a href="#其它树" class="headerlink" title="其它树"></a>其它树</h1><ul>
+<li>有时候你不需要一个父亲属性。</li>
+<li>或许你仅仅需要给每个节点最多两个孩子-比如一种叫作<a href="https://github.com/raywenderlich/swift-algorithm-club/tree/master/Binary%20Tree" target="_blank" rel="external">二叉树</a>的树。</li>
+<li>一个更通用叫做<a href="https://github.com/raywenderlich/swift-algorithm-club/tree/master/Binary%20Search%20Tree" target="_blank" rel="external">二叉查找树</a> (或者BST)的类型树，一个更严格版本的二叉树，这种节点按一种特殊方式有序去加速搜索。</li>
+</ul>
+<p>想学习到更多关于这种类型的树，检出如下Swift算法俱乐部的文章：</p>
+<ul>
+<li><a href="https://github.com/raywenderlich/swift-algorithm-club/tree/master/AVL%20Tree" target="_blank" rel="external">平衡二叉查找树</a></li>
+<li><a href="https://github.com/raywenderlich/swift-algorithm-club/tree/master/B-Tree" target="_blank" rel="external">多路搜索树</a></li>
+<li><a href="https://github.com/raywenderlich/swift-algorithm-club/tree/master/Binary%20Search%20Tree" target="_blank" rel="external">二叉搜索树</a></li>
+<li><a href="https://github.com/raywenderlich/swift-algorithm-club/tree/master/Binary%20Tree" target="_blank" rel="external">二叉树</a></li>
+<li><a href="https://github.com/raywenderlich/swift-algorithm-club/tree/master/Minimum%20Spanning%20Tree%20(Unweighted" target="_blank" rel="external">最小生成树</a>)</li>
+<li><a href="https://github.com/raywenderlich/swift-algorithm-club/tree/master/Radix%20Tree" target="_blank" rel="external">基数树</a></li>
+<li><a href="https://github.com/raywenderlich/swift-algorithm-club/tree/master/Red-Black%20Tree" target="_blank" rel="external">红黑树</a></li>
+<li><a href="https://github.com/raywenderlich/swift-algorithm-club/tree/master/Segment%20Tree" target="_blank" rel="external">线段树</a></li>
+<li><a href="https://github.com/raywenderlich/swift-algorithm-club/tree/master/Threaded%20Binary%20Tree" target="_blank" rel="external">线索二叉树</a></li>
+<li><a href="https://github.com/raywenderlich/swift-algorithm-club/tree/master/Trie" target="_blank" rel="external">单词查找树</a></li>
+<li><a href="https://github.com/raywenderlich/swift-algorithm-club/tree/master/Union-Find" target="_blank" rel="external">并查集</a></li>
+</ul>
+<h1 id="何去何从"><a href="#何去何从" class="headerlink" title="何去何从"></a>何去何从</h1><p>我希望你喜欢这篇关于树的数据结构的教程。</p>
+<p>最好的兴趣是你了解到算法和数据结构，他们解决需要现实世界问题，并且经常在面试问题中被问到。对他感兴趣吧！<br>所以敬起期待Swift算法俱乐部将来的更多教程。同时，如果你有任何问题关于在Swift实现栈，请参加下面论坛的讨论！<br>Swift 算法俱乐部总是在寻找更多的贡献者。如果你对数据结构，算法，甚至一个面试问题想分享，不要犹豫去贡献！想学习更多的关于贡献流程，检出 我们的<a href="https://www.raywenderlich.com/135533/join-swift-algorithm-club" target="_blank" rel="external"> 参加Swift算法俱乐部</a>文章。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/20/swift-algorithm-club-swift-queue-data-structure/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="star in the night sky">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="夜空中的星">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="夜空中的星" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/01/20/swift-algorithm-club-swift-queue-data-structure/" itemprop="url">
+                  Swift 算法俱乐部:Swift 队列数据结构
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-01-20T00:03:30+08:00">
+                2017-01-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Swift 算法俱乐部是个开源的项目，实现数据结构和算法基于swift语言.<br>Kelvin Lau和我用一篇教程介绍一个炫酷的数据结构或者算法在这个网站上。如果你想学习到更多的算法和数据结构，跟着我们一起吧！</p>
+<p>在这篇教程里,你将学习到怎么实现一个队列数据结构在Swift 3.队列是许多流行的数据结构中的一种，并且非常简单去实现在Swift。<br>这个算法首先是Matthijs Hollemans实现的,Swift 算法俱乐部的创建者.<br><img src="https://koenig-media.raywenderlich.com/uploads/2016/11/SwiftAlgClub_Queue-feature.png" style="zoom:20%"></p>
+<h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><p>队列是只能在尾部插入一个新元素并且在首部移除的线性表。这个也保证第一个进队的元素同时也是第一个出对的元素。先来，先服务！<br>为什么你需要这个？在许多算法中，你想在某个点添加元素。通常，你添加和移除这些对象的顺序很相关.到一个临时列表并且在后面的某个时刻拿出来。<br>队列是一种FIFO或者是先进先出。你最先插入的元素同时也是最先出来的。相当公平！(有一个非常类似的数据结构，栈，是LIFO或者是后进先出。)</p>
+<h1 id="一个例子"><a href="#一个例子" class="headerlink" title="一个例子"></a>一个例子</h1><p>最容易理解队列的方式是看它如何使用。<br>想象下你有一个队列。这儿是你想进队的一个数字：</p>
+<p><code>queue.enqueue(10)</code></p>
+
+<p>队列将会是[10].然后你可以添加下一个数字到队列：</p>
+<p><code>queue.enqueue(3)</code></p>
+
+<p>队列将会是[10，3].你可以添加更多数字：</p>
+<p><code>queue.enqueue(57)</code></p>
+
+<p>队列将会是[ 10, 3, 57 ]. 你可以让队列前面的第一个元素出队:</p>
+<p><code>queue.dequeue()</code></p>
+
+<p>这个将会返回10因为这是你第一个插入的元素。队列将会是[ 3, 57 ].每个元素向前移动一个位置。</p>
+<p><code>queue.dequeue()</code></p>
+
+<p>这个将返回3.下个出队将返回57，等等。如果这个队是空的，出队将返回nil。</p>
+<h1 id="队列实现"><a href="#队列实现" class="headerlink" title="队列实现"></a>队列实现</h1><p>在这部分，你将实现一个简单通用目的存储整形值的队列。<br>开始下载<a href="https://koenig-media.raywenderlich.com/uploads/2016/11/SwiftQueue.Starter.playground.zip" target="_blank" rel="external"> 队列开始工程</a>。playground将包含一个空的队列：</p>
+<p><code>public struct Queue {<br><br>}</code></p>
+
+<p>playground文件也包含链表的代码(你可以看到这些通过View\Project Navigators\Show Project Navigator并且打开Sources\LinkedList.)<br>如果你想学习链表如何工作，检出<a href="https://www.raywenderlich.com/144083/swift-algorithm-club-swift-linked-list-data-structure" target="_blank" rel="external">Swift链表</a>教程，一步步学习.</p>
+<h1 id="进队"><a href="#进队" class="headerlink" title="进队"></a>进队</h1><p>一个队列需要一个进队函数。你将使用包含在你的开始工程里的链表来实现。添加如下内容在大括号之间：</p>
+<p><code>// 1<br>fileprivate var list = LinkedList<int>()<br><br>// 2<br>public mutating func enqueue(_ element: Int) {<br>  list.append(element)<br>}</int></code></p>
+
+<p>这里是你所完成的:</p>
+<ul>
+<li>你将添加私有的LinkedList变量去存储你队列中的元素。</li>
+<li>你将添加一个函数让元素进队。这个方法将改变链表的内容，所以你明确指定在方法的前面加上mutating关键字。</li>
+</ul>
+<h1 id="出队"><a href="#出队" class="headerlink" title="出队"></a>出队</h1><p>一个队列同时也需要出队函数。</p>
+<p><code><br>// 1<br>public mutating func dequeue() -&gt; Int? {<br>  // 2<br>  guard !list.isEmpty, let element = list.first else { return nil }<br><br>  list.remove(element)<br><br>  return element.value<br>}</code></p>
+
+<p>这里是你所完成的:</p>
+<ul>
+<li>你已经添加了一个出队方法返回队列的第一个元素。返回类型是nullable去处理队列是空的情况。这个方法将改变链表的内容，所以你明确指定在方法的前面加上mutating关键字。</li>
+<li>你在使用guard语句去处理队列是空的情况。如果队列是空的话，guard将会失败然后会进入else代码块。</li>
+</ul>
+<h1 id="取元素"><a href="#取元素" class="headerlink" title="取元素"></a>取元素</h1><p>一个队列同时也需要一个peek函数返回队列的最开始元素而不用移除它。<br>尝试更新队列的实现使之包含peek函数。<br>解决方法在下面提供，但是首先自己尝试下！</p>
+<p><code><br>public func peek() -&gt; Int? {<br>  return list.first?.value<br>}</code></p>
+
+<h1 id="打印你的队列"><a href="#打印你的队列" class="headerlink" title="打印你的队列"></a>打印你的队列</h1><p>让我们试下你的新的队列。在类Queue的实现外面，编写如下的内容到你的playground:：</p>
+<p><code>var queue = Queue()<br>queue.enqueue(10)<br>queue.enqueue(3)<br>queue.enqueue(57)</code></p><br>在定义了队列之后，我们将尝试在控制台打印队列:<br><p><code>print(queue)</code></p><br>你可以通过如下的组合键(Command-Shift-Y)把控制台展示。你应该在控制台能看到如下输出：<br><p><code><br>Queue</code></p><br>这个不是很有用。想要显示更多的刻度的输出字符，你可以让Queue遵循CustomStringConvertable协议。想要完成这个，添加如下内容在你的Queue类实现下面:<br><p><code>// 1<br>extension Queue: CustomStringConvertible {<br>  // 2<br>  public var description: String {<br>    // 3<br>    return list.description<br>  }<br>}</code></p><br>下面是代码如何工作的：<br><em> 你对你的Queue类实现了一个扩展，并且你已经遵循了CustomStringConvertible协议.这个协议期望你实现一个String类型名字叫做description的计算型属性。
+</em> 你已经定义了description属性。这是一个返回一个字符串的只读的计算型属性。<br>* 你将返回链表内容的描述。<br><br>现在，当你通过调用打印你的Queue类，你将获取到列表一个好的表现像如下：<br><br><p><code>“[10, 3, 57]”</code></p>
+
+<h1 id="泛型Swift队列实现"><a href="#泛型Swift队列实现" class="headerlink" title="泛型Swift队列实现"></a>泛型Swift队列实现</h1><p>在这点，你已经实现了一个通用队列来存储整形值，并且提供了取元素，进队，出队等功能在你的Queue类。<br>更新你的Queue类实现如下：</p>
+<p><code>// 1<br>public struct Queue<t> {<br><br>  // 2<br>  fileprivate var list = LinkedList<t>()<br><br>  public var isEmpty: Bool {<br>    return list.isEmpty<br>  }<br><br>  // 3<br>  public mutating func enqueue(_ element: T) {<br>    list.append(element)<br>  }<br><br>  // 4<br>  public mutating func dequeue() -&gt; T? {<br>    guard !list.isEmpty, let element = list.first else { return nil }<br><br>    list.remove(element)<br><br>    return element.value<br>  }<br><br>  // 5<br>  public func peek() -&gt; T? {<br>    return list.first?.value<br>  }<br>}</t></t></code></p>
+
+<p>这些是你完成的:</p>
+<ul>
+<li>你已经更改了Queue类的定义可以接受泛型T。</li>
+<li>你的目的是允许Queue类接受任何值类型，所以你限制你的链表里的值属性是类型T而不是整形。</li>
+<li>你已经更新进队可以接受任何类型。</li>
+<li>你已经更新出队可以接受任何类型。</li>
+<li>你已经更新取元素可以接受任何类型。</li>
+</ul>
+<p>你可以修改测试代码如下：</p>
+<p><code>var queue = Queue<int>()<br>queue.enqueue(10)<br>queue.enqueue(3)<br>queue.enqueue(57)</int></code></p>
+
+<p>并且你可以甚至尝试在你的队列不同的类型：</p>
+<p><code>var queue2 = Queue<string>()<br>queue2.enqueue(“mad”)<br>queue2.enqueue(“lad”)<br>if let first = queue2.dequeue() {<br>  print(first)<br>}<br>print(queue2)</string></code></p>
+
+<h1 id="何去何从"><a href="#何去何从" class="headerlink" title="何去何从"></a>何去何从</h1><p>我希望你喜欢这篇关于队列的教程。<br>这儿是一个<a href="https://koenig-media.raywenderlich.com/uploads/2016/11/SwiftQueue.Finished.playground.zip" target="_blank" rel="external"> SwiftQueue.Finished.playground</a>针对上面的代码。你也可以发现可替换的实现和进一步的讨论在Swift 算法部分的<a href="https://github.com/raywenderlich/swift-algorithm-club/tree/master/Queue" target="_blank" rel="external">队列</a>部分。<br>这只是许多算法俱乐部中聚焦Swift算法俱乐部的一部分，如果你对这些更感兴趣，检出 <a href="https://github.com/raywenderlich/swift-algorithm-club" target="_blank" rel="external"> repo</a></p>
+<p>Swift 算法俱乐部总是在寻找更多的贡献者。如果你对数据结构，算法，甚至一个面试问题想分享，不要犹豫去贡献！想学习更多的关于贡献流程，检出 我们的<a href="https://www.raywenderlich.com/135533/join-swift-algorithm-club" target="_blank" rel="external"> 参加Swift算法俱乐部</a>文章。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/19/swift-algorithm-club-swift-stack-data-structure/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="star in the night sky">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="夜空中的星">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="夜空中的星" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/01/19/swift-algorithm-club-swift-stack-data-structure/" itemprop="url">
+                  Swift 算法俱乐部:Swift 栈数据结构
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-01-19T16:50:07+08:00">
+                2017-01-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Swift 算法俱乐部是个开源的项目，实现数据结构和算法基于swift语言.<br>Kelvin Lau和我用一篇教程介绍一个炫酷的数据结构或者算法在这个网站上。如果你想学习到更多的算法和数据结构，跟着我们一起吧！</p>
+<p>在这篇教程里,你将学习到怎么实现一个栈数据结构.栈是基本去帮助解决很多问题。<br>这个算法首先是Matthijs Hollemans实现的,现在并且重构成教程格式.<br><img src="https://koenig-media.raywenderlich.com/uploads/2016/12/SwiftAlgClub_Stack-feature.png" style="zoom:20%"></p>
+<h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><p>栈像数组，但是有限制的功能。你只能push去添加一个新元素到栈顶，pop去移除栈顶元素，并且peek栈顶元素没有弹出。<br>为什么你想要做这个？在许多算法中，你想在某个点添加对象到一个临时列表并且在后面的某个时刻拿出来。通常，你添加和移除这些对象的顺序很相关.<br>栈是提供LIFO或者后进先出。你最后push进去是最先出来下一次pop。(非常类似数据结构，队列是FIFO，或者是先进先出。)<br><img src="https://koenig-media.raywenderlich.com/uploads/2015/11/AllBooksStack.png" style="zoom:100%"></p>
+<h1 id="栈操作"><a href="#栈操作" class="headerlink" title="栈操作"></a>栈操作</h1><p>栈有一些相关限制小范围的功能。用下面的书籍栈举例子，这些是一个栈将要去做的：</p>
+<h1 id="入栈"><a href="#入栈" class="headerlink" title="入栈"></a>入栈</h1><p>当你想添加一个元素到栈上，你把它push到栈上。你或许可以想象添加一本书在书籍栈顶。<br><img src="https://koenig-media.raywenderlich.com/uploads/2016/12/stackPush-1.gif" style="zoom:100%"></p>
+<h1 id="取栈顶元素"><a href="#取栈顶元素" class="headerlink" title="取栈顶元素"></a>取栈顶元素</h1><p>根据设计，一个栈不允许你检查它的内容的，栈顶元素是个例外。一个peek方法允许你检查栈顶元素。<br><img src="https://koenig-media.raywenderlich.com/uploads/2016/12/Screen-Shot-2016-12-02-at-9.47.31-PM.png" style="zoom:50%"></p>
+<h1 id="出栈"><a href="#出栈" class="headerlink" title="出栈"></a>出栈</h1><p>当你想在栈上移除一个元素，你弹出一个元素在栈上。你可以认为移除书籍栈上最顶上那本书。<br><img src="https://koenig-media.raywenderlich.com/uploads/2016/12/stackPop.gif" style="zoom:100%"></p>
+<h1 id="Swift栈实现"><a href="#Swift栈实现" class="headerlink" title="Swift栈实现"></a>Swift栈实现</h1><p>打开一个playground去实现你的Swift栈！<br>出发，编写如下内容在你的playground：</p>
+<p><code>struct Stack {<br>  fileprivate var array: [String] = []<br>}</code></p>
+
+<p>在这里，你已经定义了一个栈通过数组属性，你将通过数组来实现push，pop，peek方法。</p>
+<h1 id="入栈-1"><a href="#入栈-1" class="headerlink" title="入栈"></a>入栈</h1><p>将一个对象入栈相当简单。添加如下方法在栈里面：</p>
+<p><code>// 1<br>mutating func push(_ element: String) {<br>  // 2<br>  array.append(element)<br>}</code></p>
+
+<ul>
+<li>push方法持有单个参数，一个添加到栈顶的元素。</li>
+<li>注意入栈是把新元素放在数组的末尾，不是开始。在数组的开始插入成本是非常高，是一个O(n)的操作，因为它要求数组中所有的元素在内存中都要改变。添加在末尾是一个O(1)的操作；他总是相同量的时间，不管数组的大小。</li>
+</ul>
+<h1 id="出栈-1"><a href="#出栈-1" class="headerlink" title="出栈"></a>出栈</h1><p>出栈同样简单。添加如下方法在栈的里面，就在push方法的下面：</p>
+<p><code>// 1<br>mutating func pop() -&gt; String? {<br>  // 2<br>  return array.popLast()<br>}</code></p>
+
+<ul>
+<li>pop方法返回一个可选的String。返回类型是可选的是处理当栈的首位是空的时候情况。如果你对一个空栈进行出栈操作，你将获取到nil。</li>
+<li>Swift数组有一个好用的方法移除最后一个元素，popLast可以完成。</li>
+</ul>
+<h1 id="取栈顶元素-1"><a href="#取栈顶元素-1" class="headerlink" title="取栈顶元素"></a>取栈顶元素</h1><p>查看栈就是就是检查栈顶元素。这个也应该相对简单，Swift数组有一个last属性返回最后一个元素而不用改变这个数组。你可以自己尝试下！</p>
+<p><code>func peek() -&gt; String? {<br>  return array.last<br>}</code></p>
+
+<p>peek方法和pop方法非常类似。仅有的差别是peek方法里避免更改数组的内容，因此在这种情况下mutating关键字不是必须的。</p>
+<h1 id="尝试下"><a href="#尝试下" class="headerlink" title="尝试下"></a>尝试下</h1><p>在这点，你的Swift栈是为了测试。在你的playground文件底部编写如下代码：</p>
+<p><code>// 1<br>var rwBookStack = Stack()<br><br>// 2<br>rwBookStack.push(“3D Games by Tutorials”)<br>// 3<br>rwBookStack.peek()<br><br>// 4<br>rwBookStack.pop()<br>// 5<br>rwBookStack.pop()</code></p>
+
+<p>在playground文件的右边面板，每行你将看到这些结果：</p>
+<ul>
+<li>你已经定义了一个rwBookStack属性并且在栈中初始化了。这个需要一个变量而不是常量因为你需要更改栈的内容。</li>
+<li>你已经让一个字符串入栈。</li>
+<li>取栈顶元素将得到”3D Games by Tutorials”,你入栈的最后一个元素。</li>
+<li>出栈将得到”3D Games by Tutorials”,你入栈的最后一个元素。</li>
+<li>这将获取到nil当你把所有的元素出栈。</li>
+</ul>
+<h1 id="CustomStringConvertible"><a href="#CustomStringConvertible" class="headerlink" title="CustomStringConvertible"></a>CustomStringConvertible</h1><p>现在，你想看到栈如何工作是非常困难的。非常幸运的是，Swift有一个内置的叫做CustomStringConvertible协议，这个协议允许你定义如何在控制台上输出。编写如下代码在Stack类实现下(不是里面)：</p>
+<p><code>// 1<br>extension Stack: CustomStringConvertible {<br>  // 2<br>  var description: String {<br>    // 3<br>    let topDivider = “—Stack—\n”<br>    let bottomDivider = “\n———–\n”<br><br>    // 4<br>    let stackElements = array.reversed().joined(separator: “\n”)<br>    // 5<br>    return topDivider + stackElements + bottomDivider<br>  }<br>}</code></p>
+
+<p>这个相对简单：</p>
+<ul>
+<li>想让CustomStringConvertible起作用，你创建了一个扩展去遵循CustomStringConvertible协议。</li>
+<li>实现遵循CustomStringConvertible协议所要求的description属性。</li>
+<li>为了设计美观，你将使用fab的ASCII中的:]。\n是一个新行</li>
+<li>为了显示栈中的元素，你将把数组的元素叠起来。在你把元素追加到数组的后面，你需要首先逆转数组。做了这个之后，joined(separator:) 方法简单的把数组中的每一个元素用一个分隔符连起来。比如，数组[“3D Games by Tutorials”, “tvOS Apprentice”]在连接之后变成”3D Games by Tutorials\ntvOS Apprentice”。</li>
+<li>最后，你把栈中元素夹在两个分隔符之间并且返回结果作为栈的描述。</li>
+</ul>
+<p>移除早起的测试代码并且在playground文件的底部编写如下代码:</p>
+<p><code>var rwBookStack = Stack()<br>rwBookStack.push(“3D Games by Tutorials”)<br>rwBookStack.push(“tvOS Apprentice”)<br>rwBookStack.push(“iOS Apprentice”)<br>rwBookStack.push(“Swift Apprentice”)<br>print(rwBookStack)</code></p>
+
+<p>在你的playgrounds的底部，你的控制台将显示栈的正确描述：</p>
+<p><code>—Stack—<br>Swift Apprentice<br>iOS Apprentice<br>tvOS Apprentice<br>3D Games by Tutorials<br>———–</code></p>
+
+<h1 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h1><p>当前，你的栈只能存储字符串。如果你想创建栈去存储整形，你将不得不实现一个新的栈以适合于整形。幸运的是。幸运的是，Swift有关于这个的支持。开始之前，更新栈的定义成下面：</p>
+<p><code>struct Stack<element> {<br>  // …<br>}</element></code></p>
+
+<p>在尖括号定义机构提成泛型，允许栈传递任何类型在Swift。下一步，找到并且更新所有的例子中你写的“String”替换成“Element”。你的栈看起来像这样：</p>
+<p><code>struct Stack<element> {<br>  fileprivate var array: [Element] = []<br><br>  mutating func push(_ element: Element) {<br>    array.append(element)<br>  }<br><br>  mutating func pop() -&gt; Element? {<br>    return array.popLast()<br>  }<br><br>  func peek() -&gt; Element? {<br>    return array.last<br>  }<br>}</element></code></p>
+
+<p>最后，你将更新description属性。只要一个地方更改。更新下面的行去匹配如下：</p>
+<p><code>// previous<br>let stackElements = array.reversed().joined(separator: “\n”)<br><br>// now<br>let stackElements = array.map { “($0)” }.reversed().joined(separator: “\n”)</code></p>
+
+<p>这个目的是在数组中的元素连接在一起之前，把数组中的元素转成String。由于你的栈现在是泛型，你不能确定你所连接的值是字符串。<br>最后，找到你初始化你的栈的那一行并且特地把栈的类型是String：</p>
+<p><code>var rwBookStack = Stack<string>()</string></code></p>
+
+<p>现在你的栈可以针对任何类型，不管它是String，Int，甚至是你创建的自定义类型，比如Person对象！</p>
+<h1 id="收尾工作"><a href="#收尾工作" class="headerlink" title="收尾工作"></a>收尾工作</h1><p>两个其他属性跟随着栈。通常，你想知道栈是否为空，或者当前栈里有多少个元素。在栈里添加如下计算属性：</p>
+<p><code>var isEmpty: Bool {<br>  return array.isEmpty<br>}<br><br>var count: Int {<br>  return array.count<br>}</code></p>
+
+<h1 id="何去何从"><a href="#何去何从" class="headerlink" title="何去何从"></a>何去何从</h1><p>我希望你喜欢这篇关于栈的教程。<br>这儿是一个<a href="https://koenig-media.raywenderlich.com/uploads/2016/12/Stack.playground-1.zip" target="_blank" rel="external"> Swift playground</a>针对上面的代码。你也可以发现可替换的实现和进一步的讨论在Swift 算法部分的<a href="https://github.com/raywenderlich/swift-algorithm-club/tree/master/Stack" target="_blank" rel="external">栈</a>部分。<br>这只是许多算法俱乐部中聚焦Swift算法俱乐部的一部分，如果你对这些更感兴趣，检出 <a href="https://github.com/raywenderlich/swift-algorithm-club" target="_blank" rel="external"> repo</a><br>最好的兴趣是你了解到算法和数据结构，他们解决需要现实世界问题，并且经常在面试问题中被问到。对他感兴趣吧！<br>所以敬起期待Swift算法俱乐部将来的更多教程。同时，如果你有任何问题关于在Swift实现栈，请参加下面论坛的讨论！<br>Swift 算法俱乐部总是在寻找更多的贡献者。如果你对数据结构，算法，甚至一个面试问题想分享，不要犹豫去贡献！想学习更多的关于贡献流程，检出 我们的<a href="https://www.raywenderlich.com/135533/join-swift-algorithm-club" target="_blank" rel="external"> 参加Swift算法俱乐部</a>文章。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/18/swift-algorithm-club-swift-linked-list-data-structure/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="star in the night sky">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="夜空中的星">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="夜空中的星" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/01/18/swift-algorithm-club-swift-linked-list-data-structure/" itemprop="url">
+                  Swift 算法俱乐部:Swift 链表数据结构
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-01-18T12:13:58+08:00">
+                2017-01-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Swift 算法俱乐部是个开源的项目，实现数据结构和算法基于swift语言.<br>Kelvin Lau和我用一篇教程介绍一个炫酷的数据结构或者算法在这个网站上。如果你想学习到更多的算法和数据结构，跟着我们一起吧！</p>
+<p>在这篇教程里,你将学习到怎么实现一个链表基于swift 3 .链表最先是Matthijs Hollemans实现的,Swift 算法俱乐部的建立者.<br><img src="https://koenig-media.raywenderlich.com/uploads/2016/09/SwiftAlgClub-LinkedList-feature.png" style="zoom:20%"></p>
+<h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><p>链表是一系列数据项,而每一个数据项关联到一个节点。<br>主要有两种类型链表:<br>单链表,是一种每个节点只有一个引用到下个节点<br><img src="https://koenig-media.raywenderlich.com/uploads/2016/09/SingleLinkedList.png" alt=""></p>
+<p>双链表,是一种每个节点有前驱节点和后继节点的链表<br><img src="https://koenig-media.raywenderlich.com/uploads/2016/09/DoublyLinkedList.png" alt=""></p>
+<p>你需要保持链表的开始和结尾，通常通过头结点和尾节点来完成的</p>
+<p><img src="https://koenig-media.raywenderlich.com/uploads/2016/09/Head.png" alt=""></p>
+<h1 id="链表实现基于Swift-3"><a href="#链表实现基于Swift-3" class="headerlink" title="链表实现基于Swift 3"></a>链表实现基于Swift 3</h1><p>在这一章,你将实现一个链表基于Swift 3<br>记住链表是有由节点组成。所以在开始前,我们来创建一个基础节点类。创建一个Swift playground并且添加如下的空类：</p>
+<p><code>public class Node {<br><br>}</code></p>
+
+<h1 id="值"><a href="#值" class="headerlink" title="值"></a>值</h1><p>一个节点需要一个值关联它,添加下面的代码在大括号之间：</p>
+<p><code>var value: String<br><br>init(value: String) {<br>  self.value = value<br>}</code></p>
+
+<p>你已经定义了一个类型为String名为value的属性。在你自己的应用里，这个应该是你想存储的任何类型。<br>你也可以定义一个初始化方法,要求初始化所有非可选的存储变量在你的类里面。</p>
+<h1 id="后继节点"><a href="#后继节点" class="headerlink" title="后继节点"></a>后继节点</h1><p>在链表中,除了需要一个值，每个节点还需要一个指针指向下一个节点.<br>要完成这个，给类添加如下属性:</p>
+<p><code>var next: Node?</code></p>
+
+<p>你已经定义了一个类型为Node名为next的属性。注意你让next是可选型的。这是因为链表中的最后一个节点没有指向另外一个节点。</p>
+<h1 id="前驱节点"><a href="#前驱节点" class="headerlink" title="前驱节点"></a>前驱节点</h1><p>你同时在实现一个双链表，所以在链表中我们也需要一个指针指向前驱节点。<br>注意：为了避免持有循环，我们定义前驱指向是弱类型。如果你有一个节点A，后面的节点是节点B在列表中，然后节点A指向节点B同时节点B指向节点A。在某种环境下，这种持有循环可能会导致节点保持活跃即使你已经删除了他们。我们不想要那样，所有我们是其中一个指向为weak来打破这种循环。想学习更多的持有循环，检出我们的<a href="https://www.raywenderlich.com/134411/arc-memory-management-swift/" target="_blank" rel="external"> ARC and Memory Management in Swift</a>教程<br>既然你已经创建了个节点,你同时也需要记录住链表的开始和结尾<br>要完成这个，添加这个新的<font color="green" size="3" face="“黑体”">LinkedList</font>类在playground文件的底部:</p>
+<p><code>public class LinkedList {<br>  fileprivate var head: Node?<br>  private var tail: Node?<br><br>  public var isEmpty: Bool {<br>    return head == nil<br>  }<br><br>  public var first: Node? {<br>    return head<br>  }<br><br>  public var last: Node? {<br>    return tail<br>  }<br>}</code></p>
+
+<p>这个类将记录住链表的开始和结尾。同时它也将提供一系列的辅助函数。</p>
+<h1 id="追加"><a href="#追加" class="headerlink" title="追加"></a>追加</h1><p>在你的链表中处理追加一个节点，你将定义一个append(value:)方法在 LinkedList类中。添加如下新方法给 LinkedList：</p>
+<p><code>public func append(value: String) {<br>  // 1<br>  let newNode = Node(value: value)<br>  // 2<br>  if let tailNode = tail {<br>    newNode.previous = tailNode<br>    tailNode.next = newNode<br>  }<br>  // 3<br>  else {<br>    head = newNode<br>  }<br>  // 4<br>  tail = newNode<br>}</code></p>
+
+<p>让我们一段一段的回顾:</p>
+<ul>
+<li>创建一个包含值的节点。记住,这个节点类的目的是链表中的每个元素能指向前驱和后继节点。</li>
+<li>如果尾节点不为空，那就意味着链表中已经有一些东西。如果是这种情况，把新元素指向链表的尾节点作为它的前驱节点。类似的，将尾节点的后继节点指向新元素。</li>
+<li>最后，不管什么情况,把新元素设置成链表的尾节点.</li>
+</ul>
+<h1 id="打印你的链表"><a href="#打印你的链表" class="headerlink" title="打印你的链表"></a>打印你的链表</h1><p>让我们试下你的新的链表。在类LinkedList的实现外面，编写如下的内容到你的playground:：</p>
+<p><code>let dogBreeds = LinkedList()<br>dogBreeds.append(value: “Labrador”)<br>dogBreeds.append(value: “Bulldog”)<br>dogBreeds.append(value: “Beagle”)<br>dogBreeds.append(value: “Husky”)</code></p><br>在定义了列表之后，我们将尝试在控制台打印列表:<br><p><code>print(dogBreeds)</code></p><br>你可以通过如下的组合键(Command-Shift-Y)把控制台展示。你应该在控制台能看到如下输出：<br><p><code><br>LinkedList</code></p><br>这个不是很有用。想要显示更多的刻度的输出字符，你可以让LinkedList遵循CustomStringConvertable协议。想要完成这个，添加如下内容在你的LinkedList类实现下面:<br><p><code>// 1<br>extension LinkedList: CustomStringConvertible {<br>  // 2<br>  public var description: String {<br>    // 3<br>    var text = “[“<br>    var node = head<br>    // 4<br>    while node != nil {<br>      text += “(node!.value)”<br>      node = node!.next<br>      if node != nil { text += “, “ }<br>    }<br>    // 5<br>    return text + “]”<br>  }<br>}</code></p><br>下面是代码如何工作的：<br><em> 你对你的LinkedList类实现了一个扩展，并且你已经遵循了CustomStringConvertible协议.这个协议期望你实现一个String类型名字叫做description的计算型属性。
+</em> 你已经定义了description属性。这是一个返回一个字符串的只读的计算型属性。<br><em> 你已经定义了一个text变量。这个将保持住整个字符串。现在它包含一个中括号代表列表的开始。
+</em> 你然后追加每个元素的值到text变量里通过循环。<br>* 你添加中括号到text变量的结尾。<br><br>现在，当你通过调用输出你的LinkedList类，你将获取到列表一个好的表现像如下：<br><br><p><code>“[Labrador, Bulldog, Beagle, Husky]”</code></p>
+
+<h1 id="访问节点"><a href="#访问节点" class="headerlink" title="访问节点"></a>访问节点</h1><p>当你通过前驱和后继节点按顺序移动节点，即使一个链表工作效率很高，有时你还需要通过索引访问元素。<br>想要完成这个，你将定义nodeAt(index:)一个方法在你的LinkedList类。这个将返回某个指定索引的节点。<br>更新LinkedList的实现包含如下：</p>
+<p><code>public func nodeAt(index: Int) -&gt; Node? {<br>  // 1<br>  if index &gt;= 0 {<br>    var node = head<br>    var i = index<br>    // 2<br>    while node != nil {<br>      if i == 0 { return node }<br>      i -= 1<br>      node = node!.next<br>    }<br>  }<br>  // 3<br>  return nil<br>}</code></p><br>这个是你完成的：<br><em> 对指定的索引做非负数的检查。这个阻止无限循环如果索引是个负值。
+</em> 循环这些节点直到你到了指定索引的节点并且返回这个节点。<br>* 如果索引小于0或者大于链表元素的数量，返回nil。<br># 移除所有节点<br>移除所有节点很简单。我们只要把头结点和尾节点赋值给nil：<br><p><code>public func removeAll() {<br>  head = nil<br>  tail = nil<br>}</code></p>
+
+<h1 id="移除某个节点"><a href="#移除某个节点" class="headerlink" title="移除某个节点"></a>移除某个节点</h1><p>要移除某个节点，你需要处理三种情况:</p>
+<ul>
+<li>移除第一个节点。你需要更新头结点和前驱节点。<br><img src="https://koenig-media.raywenderlich.com/uploads/2016/09/RemovalHead-480x73.png" alt=""></li>
+<li>移除的节点在链表的中间。这个要求你更新前驱和后继节点<br><img src="https://koenig-media.raywenderlich.com/uploads/2016/09/Removal.png" alt=""></li>
+<li>移除最后一个节点。这个需要你更新后继节点和尾节点。<br><img src="https://koenig-media.raywenderlich.com/uploads/2016/09/RemovalTail.png" alt=""></li>
+</ul>
+<p>更新LinkedList的实现包含如下：</p>
+<p><code>public func remove(node: Node) -&gt; String {<br>  let prev = node.previous<br>  let next = node.next<br><br>  if let prev = prev {<br>    prev.next = next // 1<br>  } else {<br>    head = next // 2<br>  }<br>  next?.previous = prev // 3<br><br>  if next == nil {<br>    tail = prev // 4<br>  }<br><br>  // 5<br>  node.previous = nil<br>  node.next = nil<br><br>  // 6<br>  return node.value<br>}</code></p>
+
+<p>这些是你完成的:</p>
+<ul>
+<li>更新后继指向如果你不是在移除列表的第一个节点。</li>
+<li>更新头指向如果你在移除列表的第一个节点。</li>
+<li>更新前驱指向到所产出的节点的前驱指向。</li>
+<li>更新tail如果你正在移除列表的最后一个几点。</li>
+<li>给移除的节点的前驱和后继指向赋值为nil。</li>
+<li>返回移除节点的值。</li>
+</ul>
+<h1 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h1><p>到现在为止你已经实现了一个存储String值的通用的链表。你已经提供LinkedList类给添加，移除，访问节点的功能。在这段我们将使用泛型从我们的链表抽象出来需要的类型。<br>更新LinkedList的实现包含如下：</p>
+<p><code>// 1<br>public class Node<t> {<br>  // 2<br>  var value: T<br>  var next: Node<t>?<br>  weak var previous: Node<t>?<br><br>  // 3<br>  init(value: T) {<br>    self.value = value<br>  }<br>}</t></t></t></code></p>
+
+<p>这些是你完成的:</p>
+<ul>
+<li>你已经更改了Node类的定义可以接受泛型T。</li>
+<li>你的目的是允许Node类接受任何值类型，所以你限制你的值属性是类型T而不是String。</li>
+<li>你已经更新了你的初始化可以接受任何类型。</li>
+</ul>
+<h1 id="泛型：挑战"><a href="#泛型：挑战" class="headerlink" title="泛型：挑战"></a>泛型：挑战</h1><p>尝试用泛型实现LinkedList<br>解决方法在下面提供，但是首先自己尝试下！</p>
+<p><code>// 1. Change the declaration of the Node class to take a generic type T<br>public class LinkedList<t> {<br>  // 2. Change the head and tail variables to be constrained to type T<br>  fileprivate var head: Node<t>?<br>  private var tail: Node<t>?<br><br>  public var isEmpty: Bool {<br>    return head == nil<br>  }<br><br>  // 3. Change the return type to be a node constrained to type T<br>  public var first: Node<t>? {<br>    return head<br>  }<br><br>  // 4. Change the return type to be a node constrained to type T<br>  public var last: Node<t>? {<br>    return tail<br>  }<br><br>  // 5. Update the append function to take in a value of type T<br>  public func append(value: T) {<br>    let newNode = Node(value: value)<br>    if let tailNode = tail {<br>      newNode.previous = tailNode<br>      tailNode.next = newNode<br>    } else {<br>      head = newNode<br>    }<br>    tail = newNode<br>  }<br><br>  // 6. Update the nodeAt function to return a node constrained to type T<br>  public func nodeAt(index: Int) -&gt; Node<t>? {<br>    if index &gt;= 0 {<br>      var node = head<br>      var i = index<br>      while node != nil {<br>        if i == 0 { return node }<br>        i -= 1<br>        node = node!.next<br>      }<br>    }<br>    return nil<br>  }<br><br>  public func removeAll() {<br>    head = nil<br>    tail = nil<br>  }<br><br>  // 7. Update the parameter of the remove function to take a node of type T. Update the return value to type T.<br>  public func remove(node: Node<t>) -&gt; T {<br>    let prev = node.previous<br>    let next = node.next<br><br>    if let prev = prev {<br>      prev.next = next<br>    } else {<br>      head = next<br>    }<br>    next?.previous = prev<br><br>    if next == nil {<br>      tail = prev<br>    }<br><br>    node.previous = nil<br>    node.next = nil<br><br>    return node.value<br>  }<br>}</t></t></t></t></t></t></t></code></p>
+
+<p>你的代码现在可以编译了，所以我们测试下！在你的playground文件的底部，添加如下的代码去验证你的泛型线性列表工作正常:</p>
+<p><code>let dogBreeds = LinkedList<string>()<br>dogBreeds.append(value: “Labrador”)<br>dogBreeds.append(value: “Bulldog”)<br>dogBreeds.append(value: “Beagle”)<br>dogBreeds.append(value: “Husky”)<br><br>let numbers = LinkedList<int>()<br>numbers.append(value: 5)<br>numbers.append(value: 10)<br>numbers.append(value: 15)</int></string></code></p>
+
+<h1 id="何去何从"><a href="#何去何从" class="headerlink" title="何去何从"></a>何去何从</h1><p>我希望你喜欢这篇关于链表的教程。<br>这儿是一个<a href="https://koenig-media.raywenderlich.com/uploads/2016/09/SwiftLinkedList.playground.zip" target="_blank" rel="external"> Swift playground</a>针对上面的代码。你也可以发现可替换的实现和进一步的讨论在Swift 算法部分的<a href="https://github.com/raywenderlich/swift-algorithm-club/tree/master/Linked%20List" target="_blank" rel="external">链表</a>部分。<br>这只是许多算法俱乐部中聚焦Swift算法俱乐部的一部分，如果你对这些更感兴趣，检出 <a href="https://github.com/raywenderlich/swift-algorithm-club" target="_blank" rel="external"> repo</a></p>
+<p>Swift 算法俱乐部总是在寻找更多的贡献者。如果你对数据结构，算法，甚至一个面试问题想分享，不要犹豫去贡献！想学习更多的关于贡献流程，检出 我们的<a href="https://www.raywenderlich.com/135533/join-swift-algorithm-club" target="_blank" rel="external"> 参加Swift算法俱乐部</a>文章。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+  </section>
+
+  
+
+          
+          </div>
+          
+
+
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="star in the night sky" />
+          <p class="site-author-name" itemprop="name">star in the night sky</p>
+          <p class="site-description motion-element" itemprop="description">iOS objective-c swift algorithm Data Structure</p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">star in the night sky</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+本站总访问量 <span id="busuanzi_value_site_pv"></span> &nbsp&nbsp&nbsp
+您是第<span id="busuanzi_value_site_uv"></span>个来到的小伙伴
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
