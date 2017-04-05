@@ -400,7 +400,7 @@
 <h1 id="循环引用"><a href="#循环引用" class="headerlink" title="循环引用"></a>循环引用</h1><p>在大多数情况下，ARC像有魔法样工作；作为一个开发者，你通常不需要担心内存泄漏，在没有使用的对象无限期存活。</p>
 <p>但也不总是一帆风顺!泄漏总会发生！</p>
 <p>泄漏是怎么发生的？想象这种情形,两个对象都不再需要，但是每个引用另外一个。因为每一个都有非0的引用计数，两个对象的释放绝对不会发生。</p>
-<p><img src="https://koenig-media.raywenderlich.com/uploads/2016/05/Scheme1.png" style="zoom:20%"></p>
+<p><img src="https://koenig-media.raywenderlich.com/uploads/2016/05/ReferenceCycle-650x208.png" style="zoom:20%"></p>
 <p>这叫做强引用循环。它欺骗了ARC并且阻止被清除。就像你所看到的，最后引用计数不是0，然后这样objec1和object2从来不会被清除即使他们不再需要。</p>
 <p>想看到这种情况，在User类添加的do语句块前添加如下代码:</p>
 <p><br><code><br><br>class Phone {<br>let model: String<br>var owner: User?<br>init(model: String) {<br>self.model = model<br>print(“Phone (model) is initialized”)<br>}<br>deinit {<br>print(“Phone (model) is being deallocated”)<br>}<br>}<br><br></code><br></p>
@@ -419,7 +419,7 @@
 <p><br><code><br>do {<br>let user1 = User(name: “John”)<br>let iPhone = Phone(model: “iPhone 6s Plus”)<br>user1.add(phone: iPhone)<br>}<br></code><br></p>
 
 <p>这里，你添加iPhone和user1.这个自动设置iPhone的owner属性到user1.一个强引用循环在两个对象之间阻止ARC释放他们。结果user1和iPhone两个对象都绝不会释放。</p>
-<p><img src="https://koenig-media.raywenderlich.com/uploads/2016/05/Scheme1.png" style="zoom:20%"></p>
+<p><img src="https://koenig-media.raywenderlich.com/uploads/2016/05/UserIphoneCycle.png" style="zoom:20%"></p>
 <h1 id="弱引用"><a href="#弱引用" class="headerlink" title="弱引用"></a>弱引用</h1><p>想打破强引用循环，你可以规定引用计数对象之间的关系为弱引用。除非特别说明，所有的引用都是强引用。对比之下，弱引用不增加对象的强引用数。</p>
 <p>换句话说，弱引用不参与对象的生命周期管理。另外，弱引用总是定义为可选类型的。这就意味着当引用计数变为0，引用可以自动设为nil。</p>
 <p><img src="https://koenig-media.raywenderlich.com/uploads/2016/05/Scheme1.png" style="zoom:20%"></p>
@@ -428,12 +428,12 @@
 <p>回到你的playground，通过使owner引用为如下的弱引用来打破User-Phone的循环引用:</p>
 <p><br><code><br>class Phone {<br>weak var owner: User?<br>// other code…<br>}<br></code><br></p>
 
-<p><img src="https://koenig-media.raywenderlich.com/uploads/2016/05/Scheme1.png" style="zoom:20%"></p>
+<p><img src="https://koenig-media.raywenderlich.com/uploads/2016/05/UserIphoneCycleWeaked.png" style="zoom:50%"></p>
 <p>正如你在侧边栏所看到的，现在user1和iPhone在do语句块结尾被正确的释放了。</p>
 <h1 id="无主引用"><a href="#无主引用" class="headerlink" title="无主引用"></a>无主引用</h1><p>这里还有另外一种你可以使用修改引用计数而不增加引用计数:</p>
 <p>无主引用和弱引用有什么区别呢？无主引用。弱引用总是可选的，并且当引用对象析构了会自动变为nil。那就是为什么你必须定义你的弱引用属性作为可选性的变量，为了你的代码能编译通过(因为变量需要被更改)。</p>
 <p>对比之下，无主引用从来不会是可选类型。如果你尝试访问一个无主属性引用的是一个被释放的对象，相当于对一个nil的可选类型解包，你将触发一个运行时错误.</p>
-<p><img src="https://koenig-media.raywenderlich.com/uploads/2016/05/Scheme1.png" style="zoom:20%"></p>
+<p><img src="https://koenig-media.raywenderlich.com/uploads/2016/05/Table.png" style="zoom:100%"></p>
 <p>是时候使用无主引用来实践了。在如下所示的do语句块之前添加一个新类CarrierSubscription:</p>
 <p><br><code><br>class CarrierSubscription {<br>let name: String<br>let countryCode: String<br>let number: String<br>let user: User<br>init(name: String, countryCode: String, number: String, user: User) {<br>self.name = name<br>self.countryCode = countryCode<br>self.number = number<br>self.user = user<br>print(“CarrierSubscription (name) is initialized”)<br>}<br>deinit {<br>print(“CarrierSubscription (name) is being deallocated”)<br>}<br>}<br></code><br></p>
 
@@ -456,16 +456,16 @@
 <p><br><code><br>do {<br>let user1 = User(name: “John”)<br>let iPhone = Phone(model: “iPhone 6s Plus”)<br>user1.add(phone: iPhone)<br>let subscription1 = CarrierSubscription(name: “TelBel”, countryCode: “0032”, number:<br>“31415926”, user: user1)<br>iPhone.provision(carrierSubscription: subscription1)<br>}<br></code><br></p>
 
 <p>注意到侧边栏所打印的结果，然后你将看到一个循环引用:最后，user1，iPhone和subscription1都不被释放。现在，你能发现问题所在吗？</p>
-<p><img src="https://koenig-media.raywenderlich.com/uploads/2016/05/Scheme1.png" style="zoom:20%"></p>
+<p><img src="https://koenig-media.raywenderlich.com/uploads/2016/05/UserIphoneSubCycle.png" style="zoom:50%"></p>
 <p>user1到subscription1的引用或者subscription1到user1的引用是无主引用来打破循环。问题是两个中你选择哪一种。这个是关于你所在的领域的知识。</p>
 <p>一个用户拥有运营商的描述，(相反的运营商所想的)，运营商没有拥有用户。更进一步说,CarrierSubscription不可能没有拥有User而存在。这就是为什么一开始你把它定义成一个不可变的let属性。</p>
 <p>添加CarrierSubscription的user属性为无主属性:</p>
 <p><br><code><br>class CarrierSubscription {<br>let name: String<br>let countryCode: String<br>let number: String<br>unowned let user: User<br>// Other code…<br>}<br></code><br></p>
 
-<p>这样打破循环引用并且让每个对象都被释放。<br><img src="https://koenig-media.raywenderlich.com/uploads/2016/05/Scheme1.png" style="zoom:20%"></p>
+<p>这样打破循环引用并且让每个对象都被释放。<br><img src="https://koenig-media.raywenderlich.com/uploads/2016/05/UserIphoneCycleSubSolve.png" style="zoom:50%"></p>
 <h1 id="闭包中的循环引用"><a href="#闭包中的循环引用" class="headerlink" title="闭包中的循环引用"></a>闭包中的循环引用</h1><p>对象的循环引用发生在当属性互相引用。和对象一样，闭包也是引用类型并且导致循环。闭包捕获他们所操作的对象上。</p>
 <p>例如，如果一个闭包赋值给一个类的属性，然后在同一个类中，闭包中使用实例属性，你就有一个循环引用。换句话说，对象通过存储型属性持有闭包；闭包持有对象的引用通过捕获self的值。</p>
-<p><img src="https://koenig-media.raywenderlich.com/uploads/2016/05/Scheme1.png" style="zoom:20%"></p>
+<p><img src="https://koenig-media.raywenderlich.com/uploads/2016/06/Closure-Referene-1.png" style="zoom:50%"></p>
 <p><a href="https://www.raywenderlich.com/134411/arc-memory-management-swift" target="_blank" rel="external">原文链接</a></p>
 
           
