@@ -104,7 +104,14 @@
 <meta property="og:image" content="https://koenig-media.raywenderlich.com/uploads/2016/05/UserIphoneSubCycle.png">
 <meta property="og:image" content="https://koenig-media.raywenderlich.com/uploads/2016/05/UserIphoneCycleSubSolve.png">
 <meta property="og:image" content="https://koenig-media.raywenderlich.com/uploads/2016/06/Closure-Referene-1.png">
-<meta property="og:updated_time" content="2017-04-05T04:05:38.000Z">
+<meta property="og:image" content="https://koenig-media.raywenderlich.com/uploads/2016/05/ClosureCylce.png">
+<meta property="og:image" content="https://koenig-media.raywenderlich.com/uploads/2016/07/testskillz.png">
+<meta property="og:image" content="https://koenig-media.raywenderlich.com/uploads/2016/07/ss5-282x500.png">
+<meta property="og:image" content="https://koenig-media.raywenderlich.com/uploads/2016/07/ss1-282x500.png">
+<meta property="og:image" content="https://koenig-media.raywenderlich.com/uploads/2016/07/ss2.png">
+<meta property="og:image" content="https://koenig-media.raywenderlich.com/uploads/2016/07/ss3-380x500.png">
+<meta property="og:image" content="https://koenig-media.raywenderlich.com/uploads/2016/07/4-508x500.png">
+<meta property="og:updated_time" content="2017-04-06T09:55:28.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Swift 中的ARC和内存管理">
 <meta name="twitter:description" content="作为一门现代的高级语言，Swift处理应用中大量的内存管理并且代你分配和释放内存。它使用叫自动引用计数或者叫ARC这种很灵巧的技术。在这篇教程里，你将学习到关于ARC和内存管理在Swift。
@@ -406,12 +413,12 @@
 <p>当没有直接勾住分配和释放，你可以在init和deinit方法里使用打印语句作为代理监控这些事情的发生。有的时候“释放”和“析构”当做是同一意思使用，但是实际上他们是对象的生命周期的两个不同阶段。</p>
 <p>当一个对象不再需要的时候，对象被释放，引用计数是这样的一个机制。这儿问题是”当确定一个对象在将来的什么时候不需要呢？” 引用计数通过保持一个使用数量，也叫做引用计数，在每个对象实例内部。</p>
 <p>这个数量指示多少“东西”引用对象。当一个对象的引用计数为0表示这个对象没有东西引用它，所以对象被析构和释放。</p>
-<p><img src="https://koenig-media.raywenderlich.com/uploads/2016/05/Scheme1.png" style="zoom:20%"></p>
+<p><img src="https://koenig-media.raywenderlich.com/uploads/2016/05/Scheme1.png" style="zoom:50%"></p>
 <p>当你初始化User对象,最开始它的的引用计数是1因为常量user1引用这个对象。<br>在do语句块的结尾，user1超出范围，引用计数减少，然后引用计数减为0.结果，user1析构并且释放。</p>
 <h1 id="循环引用"><a href="#循环引用" class="headerlink" title="循环引用"></a>循环引用</h1><p>在大多数情况下，ARC像有魔法样工作；作为一个开发者，你通常不需要担心内存泄漏，在没有使用的对象无限期存活。</p>
 <p>但也不总是一帆风顺!泄漏总会发生！</p>
 <p>泄漏是怎么发生的？想象这种情形,两个对象都不再需要，但是每个引用另外一个。因为每一个都有非0的引用计数，两个对象的释放绝对不会发生。</p>
-<p><img src="https://koenig-media.raywenderlich.com/uploads/2016/05/ReferenceCycle-650x208.png" style="zoom:20%"></p>
+<p><img src="https://koenig-media.raywenderlich.com/uploads/2016/05/ReferenceCycle-650x208.png" style="zoom:50%"></p>
 <p>这叫做强引用循环。它欺骗了ARC并且阻止被清除。就像你所看到的，最后引用计数不是0，然后这样objec1和object2从来不会被清除即使他们不再需要。</p>
 <p>想看到这种情况，在User类添加的do语句块前添加如下代码:</p>
 <p><br><code><br><br>class Phone {<br>let model: String<br>var owner: User?<br>init(model: String) {<br>self.model = model<br>print(“Phone (model) is initialized”)<br>}<br>deinit {<br>print(“Phone (model) is being deallocated”)<br>}<br>}<br><br></code><br></p>
@@ -430,10 +437,10 @@
 <p><br><code><br>do {<br>let user1 = User(name: “John”)<br>let iPhone = Phone(model: “iPhone 6s Plus”)<br>user1.add(phone: iPhone)<br>}<br></code><br></p>
 
 <p>这里，你添加iPhone和user1.这个自动设置iPhone的owner属性到user1.一个强引用循环在两个对象之间阻止ARC释放他们。结果user1和iPhone两个对象都绝不会释放。</p>
-<p><img src="https://koenig-media.raywenderlich.com/uploads/2016/05/UserIphoneCycle.png" style="zoom:20%"></p>
+<p><img src="https://koenig-media.raywenderlich.com/uploads/2016/05/UserIphoneCycle.png" style="zoom:50%"></p>
 <h1 id="弱引用"><a href="#弱引用" class="headerlink" title="弱引用"></a>弱引用</h1><p>想打破强引用循环，你可以规定引用计数对象之间的关系为弱引用。除非特别说明，所有的引用都是强引用。对比之下，弱引用不增加对象的强引用数。</p>
 <p>换句话说，弱引用不参与对象的生命周期管理。另外，弱引用总是定义为可选类型的。这就意味着当引用计数变为0，引用可以自动设为nil。</p>
-<p><img src="https://koenig-media.raywenderlich.com/uploads/2016/05/Scheme1.png" style="zoom:20%"></p>
+<p><img src="https://koenig-media.raywenderlich.com/uploads/2016/05/Scheme1.png" style="zoom:50%"></p>
 <p>在上面的图片中,虚线箭头代表弱引用。注意object1的引用计数是1是因为variable1引用它。object2的引用计数是2，因为variable2和object1都引用他。而object2引用object1，它是弱引用，意味着它不影响object1的强引用计数。</p>
 <p>当variable1和variable2消失,object将会剩下引用计数为0并且deinit将会调用。当一系列的析构后这个将移除object2对象的强引用。</p>
 <p>回到你的playground，通过使owner引用为如下的弱引用来打破User-Phone的循环引用:</p>
@@ -477,6 +484,103 @@
 <h1 id="闭包中的循环引用"><a href="#闭包中的循环引用" class="headerlink" title="闭包中的循环引用"></a>闭包中的循环引用</h1><p>对象的循环引用发生在当属性互相引用。和对象一样，闭包也是引用类型并且导致循环。闭包捕获他们所操作的对象上。</p>
 <p>例如，如果一个闭包赋值给一个类的属性，然后在同一个类中，闭包中使用实例属性，你就有一个循环引用。换句话说，对象通过存储型属性持有闭包；闭包持有对象的引用通过捕获self的值。</p>
 <p><img src="https://koenig-media.raywenderlich.com/uploads/2016/06/Closure-Referene-1.png" style="zoom:50%"></p>
+<p>添加如下代码到CarrierSubscription，恰好在user属性的后面:</p>
+<p><br><code><br>lazy var completePhoneNumber: () -&gt; String = {<br>  self.countryCode + “ “ + self.number<br>}<br></code><br></p>
+
+<p> 这个闭包计算并且返回一个完全的电话号码。这个属性定义为lazy，意味着它不会被赋值直到它第一次被使用。这是必须的因为self.countryCode和self.number是不可用的直到初始化运行之后。</p>
+<p> 在do语句块的最后添加如下代码:</p>
+<p><br><code><br>print(subscription1.completePhoneNumber())<br></code><br></p>
+
+<p>你会发现user1和iPhone被释放了，但是CarrierSubscription没有释因为在对象和闭包之间之间存才强引用。</p>
+<p><img src="https://koenig-media.raywenderlich.com/uploads/2016/05/ClosureCylce.png" style="zoom:50%"></p>
+<p>Swift有一个简单优雅的方式去打破闭包的强引用循环。你定义一个捕获列表在定义的闭包和捕获的对象之间的关系。</p>
+<p>举例说明下捕获列表是怎么工作的，考虑如下代码:</p>
+<p><br><code><br>var x = 5<br>var y = 5<br><br>let someClosure = { [x] in<br>  print(“(x), (y)”)<br>}<br><br>x = 6<br>y = 6<br><br>someClosure()        // Prints 5, 6<br>print(“(x), (y)”)  // Prints 6, 6<br></code><br></p>
+
+<p>变量x在捕获列表，所以x的拷贝在闭包中被定义。它看成是值捕获。在另一方面，y不在捕获列表里，它是捕获引用。这就意味着当闭包运行，y将是任何时候的它的值，而不是捕获的那个时候的值。</p>
+<p>在闭包中的对象和闭包之间，捕获列表定义为weak和unowned迟早派上用场。在这种情况下，unowned是适合的因为闭包不存在当CarrierSubscription实例变量消失了。</p>
+<p>更改CarrierSubscription中的completePhoneNumber成这样：</p>
+<p><br><code><br>lazy var completePhoneNumber: () -&gt; String = {<br>  [unowned self] in<br>  return self.countryCode + “ “ + self.number<br>}<br></code><br></p>
+
+<p>闭包中添加[unowned self] 到捕获列表。它意味着self作为unowned引用被捕获而不是强引用。</p>
+<p>这个解决了引用循环。万岁!</p>
+<p>这里介绍一个新的标识，这个其实是一个简短的语法对长的捕获语法。考虑长的表示形式:</p>
+<p><br><code><br>var closure = {<br>  [unowned newID = self] in<br>  // Use unowned newID here…<br>}<br></code><br></p>
+
+<p>这儿，newID是self的无主拷贝。在闭包范围之外，self保持着原来的值。在你上面你使用简短的形式，一个新的self变量被创建，它是现在存在的self变量的影子仅仅在这个闭包范围。</p>
+<p>在你的代码中，self和completePhoneNumber闭包之间的关系是无主的。如果你确定你闭包中所引用的对象绝对不会释放，你可以使用unowned。如果它被释放了，你将陷入麻烦。</p>
+<p>在palyground的结尾添加如下代码:</p>
+<p><br><code><br>// A class that generates WWDC Hello greetings.  See <a href="http://wwdcwall.com" target="_blank" rel="external">http://wwdcwall.com</a><br>class WWDCGreeting {<br>  let who: String<br><br>  init(who: String) {<br>    self.who = who<br>  }<br><br>  lazy var greetingMaker: () -&gt; String = {<br>    [unowned self] in<br>    return “Hello (self.who).”<br>  }<br>}<br><br>let greetingMaker: () -&gt; String<br><br>do {<br>  let mermaid = WWDCGreeting(who: “caffinated mermaid”)<br>  greetingMaker = mermaid.greetingMaker<br>}<br><br>greetingMaker() // TRAP!<br></code><br></p>
+
+<p>这个playground遇到运行时异常因为闭包预计self.who仍然是有效的，但是当mermaid超出范围它被释放了。这个例子看起来是人为的，但是在实际生活中，例如当你在后面运行中使用闭包可能会很容易发生，比如在一个异步网络调用已经完成。</p>
+<p>在WWDCGreeting改变greetingMaker变量成这样:</p>
+<p><br><code><br>lazy var greetingMaker: () -&gt; String = {<br>  [weak self] in<br>  return “Hello (self?.who).”<br>}<br></code><br></p>
+
+<p>在这儿你对原来的greetingMaker闭包有两处改变。第一个，你把unowned替换成weak。第二个，因为self变成weak，你需要访问who属性用self?.who。</p>
+<p>playground不再崩溃，但是你将在侧边栏得到稀奇结果：“Hello, nil.”。或许这样是可接受的，但是通常你想得到完全不一样的事情如果对象是释放。Swift的guard let<br>使这个变的容易。</p>
+<p>重写最后一次的闭包，像这样:</p>
+<p><br><code><br>lazy var greetingMaker: () -&gt; String = {<br>  [weak self] in<br>  guard let strongSelf = self else {<br>    return “No greeting available.”<br>  }<br>  return “Hello (strongSelf.who).”<br>}<br></code><br></p>
+
+<p>guard语句绑定一个新的strongSelf变量从weak，如果self是nil，闭包返回”No greeting available.”.另一方面，如果self不是nil，strongSelf是个强引用，所以保证直到闭包的结尾对象都是存活的。</p>
+<p>这个成语，有时候提及到一强一弱，是Swift格式指导的一部分因为它是强大的模式在闭包中处理这种事情。</p>
+<p><img src="https://koenig-media.raywenderlich.com/uploads/2016/07/testskillz.png" style="zoom:50%"></p>
+<h1 id="在Xcode8查找循环引用"><a href="#在Xcode8查找循环引用" class="headerlink" title="在Xcode8查找循环引用"></a>在Xcode8查找循环引用</h1><p>既然你理解ARC的原理，循环引用是什么并且怎么打破他们，是时候看下现实世界的例子了。</p>
+<p><a href="https://koenig-media.raywenderlich.com/uploads/2016/08/ContactsStarterProject-1.zip" target="_blank" rel="external">下载最开始的工程</a>并且在Xcode8打开。它需要Xcode8版本(或者更新)因为 Xcode 8添加了一些有你将会使用到的有趣的新特性。</p>
+<p>编译和运行工程，你将看到如下内容:</p>
+<p><img src="https://koenig-media.raywenderlich.com/uploads/2016/07/ss5-282x500.png" style="zoom:50%"></p>
+<p>这是一个简单的联系人应用。随自己之意点击一个联系人去获取更多的信息并且通过右上角的+按钮去添加联系人。</p>
+<p>看下这个代码:</p>
+<ul>
+<li>ContactsTableViewController: 显示数据库中所有的联系人对象. </li>
+<li>DetailViewController: 显示一个确定联系人对象的详情.</li>
+<li>NewContactViewController&lt;: 允许用户添加新的联系人.</li>
+<li>ContactTableViewCell: 一个特定的列表cell去显示联系人对象的详情.</li>
+<li>Contact: 数据库中的联系人的模型.</li>
+<li>Number: 电话号码的模型. </li>
+</ul>
+<p>这里，然而，一些很卡帕的错误在工程中:有一个循环引用隐藏其中。相当长的一段时间你的用户将不会注意到这些事情因为泄漏的对象很小–并且他们的大小使它很那追踪。幸运的是，Xcode8有一个内置的新工具去帮你找到泄漏即使是最小的泄漏。</p>
+<p>再一次编译和运行应用。通过向左滑动cell并且点击删除来删除三到四个联系人。他们好像完全消失，对吗？</p>
+<p><img src="https://koenig-media.raywenderlich.com/uploads/2016/07/ss1-282x500.png" style="zoom:50%"></p>
+<p>当应用仍然在运行，移到Xcode的底部并且点击Debug Memory Graph按钮:<br><img src="https://koenig-media.raywenderlich.com/uploads/2016/07/ss2.png" style="zoom:50%"></p>
+<p>在Xcode 8观察新类型的问题(警告，错误等等):运行时问题。他们看起来像有一个白色的感叹号在里面的紫色方块，像下面截图中选中所显示:</p>
+<p><img src="https://koenig-media.raywenderlich.com/uploads/2016/07/ss3-380x500.png" style="zoom:50%"></p>
+<p>在导航条，选中有问题的联系人对象。循环可以很清楚的看到: Contact和Number保持对方存活通过互相引用另外一个。</p>
+<p><img src="https://koenig-media.raywenderlich.com/uploads/2016/07/4-508x500.png" style="zoom:50%"></p>
+<p>这个类型的图表是一个指示牌帮你去检查你的代码。考虑连一人可以没有号码而存在，但是号码不应该没有联系人而存在。你怎么解决这个循环？到底是联系人对号码还是号码对联系人是弱引用还是无主引用？</p>
+<p>先尽力试下，然后看下下面如果你需要帮助!</p>
+<h1 id="加分-值类型和引用类型的循环"><a href="#加分-值类型和引用类型的循环" class="headerlink" title="加分:值类型和引用类型的循环"></a>加分:值类型和引用类型的循环</h1><p>Swift类型可以归类为引用类型，像类，和值类型，像结构和枚举。最大的不同值类型被拷贝当他们被传递，而引用类型共享同一个所引用的拷贝。</p>
+<p>这是否意味着在值类型中没有循环？是的:在值类型中所有的东西是拷贝，因为没有实际引用被创建，所以因此没有循环关系存在。你至少需要两个引用才会有循环。</p>
+<p>回到你的playground，在结尾添加如下:</p>
+<p><br><code><br>struct Node { // Error<br>  var payload = 0<br>  var next: Node? = nil<br>}<br></code><br></p>
+
+<p>嗯，编译器不高兴了。一个结构体(值类型)不能是递归或者使用实例本身。否则，结构体类型将会有无限大的大小。改变成类像这样:</p>
+<p><br><code><br>class Node {<br>  var payload = 0<br>  var next: Node? = nil<br>}<br></code><br></p>
+
+<p>对类来说自引用不是问题(值类型),所以编译器的错误消失.</p>
+<p>现在，添加这些到你的playground:</p>
+<p><br><code><br>class Person {<br>  var name: String<br>  var friends: [Person] = []<br>  init(name: String) {<br>    self.name = name<br>    print(“New person instance: (name)”)<br>  }<br><br>  deinit {<br>    print(“Person instance (name) is being deallocated”)<br>  }<br>}<br><br>do {<br>  let ernie = Person(name: “Ernie”)<br>  let bert = Person(name: “Bert”)<br><br>  ernie.friends.append(bert) // Not deallocated<br>  bert.friends.append(ernie) // Not deallocated<br>}<br></code><br></p>
+
+<p>这儿有一个混合值类型和引用类型去形成引用循环的例子。</p>
+<p>在friends数组里，ernie和bert保持互相的强引用，虽然数组本身是一个值类型。把数组变成unowned；Xcode将显示一个错误:unowned仅仅支持类型。</p>
+<p>在这里你想打破循环，你将不得不创建一个泛型对象并且使用它去添加实例到数组。如果你不知道泛型或者怎么使用它，检出这个网站关于<a href="https://www.raywenderlich.com/115960/swift-tutorial-introduction-to-generics" target="_blank" rel="external">介绍泛型</a>的教程。</p>
+<p>在Person类的定义上添加下面的内容:</p>
+<p><br><code><br>class Unowned<t: anyobject=""> {<br>  unowned var value: T<br>  init (_ value: T) {<br>    self.value = value<br>  }<br>}<br></t:></code><br></p>
+
+<p>然后，在类Person中改变friends的属性定义:</p>
+<p><br><code><br>var friends: [Unowned<person>] = []<br></person></code><br></p>
+
+<p>最后,改变do语句块成这样:</p>
+<p><br><code><br>do {<br>  let ernie = Person(name: “Ernie”)<br>  let bert = Person(name: “Bert”)<br><br>  ernie.friends.append(Unowned(bert))<br>  bert.friends.append(Unowned(ernie))<br>}<br></code><br></p>
+
+<p>ernie和bert现在很愉快的被释放了!<br>friends数组不再是Person对象的集合，替代的是为Person实例作为包装的无主引用对象集合。</p>
+<p>想访问Person对象在无主通过值属性，像这样:</p>
+<p><br><code><br>let firstFriend = bert.friends.first?.value // get ernie<br></code><br></p>
+
+<h1 id="何去何从"><a href="#何去何从" class="headerlink" title="何去何从"></a>何去何从</h1><p>从这篇教程这里有<a href="https://koenig-media.raywenderlich.com/uploads/2016/08/MemoryManagement.playground.zip" target="_blank" rel="external">完整的palyground</a> 和<a href="https://koenig-media.raywenderlich.com/uploads/2016/08/ContactsFinalProject-1.zip" target="_blank" rel="external">Xcode工程</a> 的下载。</p>
+<p>你现在有了一个很好的在Swift中的内存管理并且知道ARC是怎么工作。如果你想学习更多在Xcode 8关于新的调试工具，我建议观看<a href="https://developer.apple.com/videos/play/wwdc2016/410/" target="_blank" rel="external">这个苹果全球开发者大会部分内容</a></p>
+<p>如果你想更深层次的知道在Swift中弱引用是怎么实现的，检出Mike Ash’s的博客<a href="https://www.mikeash.com/pyblog/friday-qa-2015-12-11-swift-weak-references.html" target="_blank" rel="external">Swift弱引用</a>。它覆盖到Swift和Objective-C中弱引用怎么不同的实现，并且Swift在底层是怎么保持两个数:一个是为强引用而另外一个为弱引用。</p>
+<p>最后，如果你是一个raywenderlich订阅者，检出<a href="https://www.raywenderlich.com/140865/ios-10-screencast-memory-graph-debugger" target="_blank" rel="external">iOS 10 Screencast: Memory Graph Debugger</a>。它给你一些很好的提示得到大部分的内存可视化。</p>
+<p>你对ARC建议是怎么考虑的？让我在评论里知道！</p>
 <p><a href="https://www.raywenderlich.com/134411/arc-memory-management-swift" target="_blank" rel="external">原文链接</a></p>
 
       
@@ -649,7 +753,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#开始"><span class="nav-number">1.</span> <span class="nav-text">开始</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#循环引用"><span class="nav-number">2.</span> <span class="nav-text">循环引用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#弱引用"><span class="nav-number">3.</span> <span class="nav-text">弱引用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#无主引用"><span class="nav-number">4.</span> <span class="nav-text">无主引用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#闭包中的循环引用"><span class="nav-number">5.</span> <span class="nav-text">闭包中的循环引用</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#开始"><span class="nav-number">1.</span> <span class="nav-text">开始</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#循环引用"><span class="nav-number">2.</span> <span class="nav-text">循环引用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#弱引用"><span class="nav-number">3.</span> <span class="nav-text">弱引用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#无主引用"><span class="nav-number">4.</span> <span class="nav-text">无主引用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#闭包中的循环引用"><span class="nav-number">5.</span> <span class="nav-text">闭包中的循环引用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#在Xcode8查找循环引用"><span class="nav-number">6.</span> <span class="nav-text">在Xcode8查找循环引用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#加分-值类型和引用类型的循环"><span class="nav-number">7.</span> <span class="nav-text">加分:值类型和引用类型的循环</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#何去何从"><span class="nav-number">8.</span> <span class="nav-text">何去何从</span></a></li></ol></div>
             
 
           </div>
