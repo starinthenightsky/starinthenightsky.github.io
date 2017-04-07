@@ -261,7 +261,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/27/arc-memory-management-swift/">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/06/reference-value-types-in-swift-part-2/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="star in the night sky">
@@ -286,7 +286,450 @@
             
               
                 
-                <a class="post-title-link" href="/2017/03/27/arc-memory-management-swift/" itemprop="url">
+                <a class="post-title-link" href="/2017/04/06/reference-value-types-in-swift-part-2/" itemprop="url">
+                  Swift中引用和值类型:第二部分
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-06T18:32:06+08:00">
+                2017-04-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/06/reference-value-types-in-swift-part-1/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="star in the night sky">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="夜空中的星">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="夜空中的星" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/04/06/reference-value-types-in-swift-part-1/" itemprop="url">
+                  Swift中引用和值类型:第一部分
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-06T18:32:01+08:00">
+                2017-04-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>如果你一直2015年关注苹果开发者大会，你可能注意到一个实际重要强调在Swift中重新考虑代码体系。一个最重要的不同对从Objective-C到Swift开发者来说，更加喜好值类型超过引用类型。</p>
+<p><img src="https://koenig-media.raywenderlich.com/uploads/2015/11/ReferenceValues-feature.png" style="zoom:50%"></p>
+<p>这两个系列举例说明两个类型的不同并且指示你每种类型什么时候去用。你将在第一部分学习到每种类型的主要概念，而<a href="https://starinthenightsky.github.io/2017/04/06/reference-value-types-in-swift-part-2/" target="_blank" rel="external">第二部分</a>你将解决一个现实世界问题作为你学习更高级的概念和发现关于两种类型的一些微妙但是重要的点。</p>
+<p>不管你是来自传统Objective-C开发者背景，还是你精通Swift，你一定学习到在Swift的来龙去脉。</p>
+<h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><p>首先，创建一个playground:在Xcode，选择File\New\Playground… 并且把这个playground命名为ValueSemanticsPart1。你可以选择其中之一的平台因为这个教程和平台无关，它仅仅关注于Swift语言本身。</p>
+<p>点击Next，选择一个方便的位置来保存playground并且点击Create来打开它。</p>
+<h1 id="引用类型和值类型"><a href="#引用类型和值类型" class="headerlink" title="引用类型和值类型"></a>引用类型和值类型</h1><p>那么这两种类型最核心的不同是什么呢？一个快速而粗糙的解释就是值类型保持他们数据的唯一拷贝，而引用类型共享他们数据的单一拷贝。</p>
+<p>作为一个类，Swift代表一个引用类型。这个类似于Objective-C，所有的东西继承于NSObject当做引用类型被存储。</p>
+<p>在Swift中有很多种值类型，比如结构体，枚举和元组。你可能认识到Objective-C也使用值类型，NSInteger字面数字类型或者C语言结构体像CGPoint。</p>
+<p>为了更好的理解两者之间的不同，最好的开始你从Objective-C认识到的:引用类型。</p>
+<h2 id="引用类型"><a href="#引用类型" class="headerlink" title="引用类型"></a>引用类型</h2><p>在Objective-C并且大多数面向对象语言，你持有对象的引用。在Swift，然而，你使用的类是由引用语义实现的。</p>
+<p>在你的playground添加如下内容:</p>
+<p><br><code><br>// Reference Types:<br><br>class Dog {<br>  var wasFed = false<br>}<br></code><br></p>
+
+<p>上面的类代表一个宠物狗并且狗是否被喂养。通过添加如下内容，在你的Dog类中创建一个新实例:</p>
+<p><br><code><br>let dog = Dog()<br></code><br></p>
+
+<p>这只是简单的指向存储dog的内存位置。添加另一个对象来持有同一个dog的引用，添加如下:</p>
+<p><br><code><br>let puppy = dog<br></code><br></p>
+
+<p>因为dig是一个内存地址的引用，puppy实际上指向相同的地址。喂养你的宠物通过设置wasFed为true:</p>
+<p><br><code><br>puppy.wasFed = true<br></code><br></p>
+
+<p>puppy和dog都指向同一块内存地址。</p>
+<p><img src="https://koenig-media.raywenderlich.com/uploads/2015/08/value-reference.png" style="zoom:50%"></p>
+<p>因此你期望其中一个的任何改变会影响到另外一个。在你的playground中通过查看属性值检查是否是true：</p>
+<p><br><code><br>dog.wasFed     // true<br>puppy.wasFed   // true<br></code><br></p>
+
+
+<p>更改其中一个实例对象影响另外一个因为他们都是引用同一个对象。这个和你在Objective-C所期望的是一样的。</p>
+<h2 id="值类型"><a href="#值类型" class="headerlink" title="值类型"></a>值类型</h2><p>值类型被引用和引用类型完全不同。你将探索到这些内容通过一些简单Swift类型。</p>
+<p>添加如下的Int变量和相关的操作到你的playground:</p>
+<p><br>// Value Types:<br><br>var a = 42<br>var b = a<br>b+=1<br><br>a    // 42<br>b    // 43<br><br></p>
+
+<p>你期望a和b等于多少？清楚的知道，a等于42和b等于43.如果你把他们定义成引用类型，a和b都等于43因为他们都指向同一块内存地址。</p>
+<p>同一个持有真的对任何其它的值类型。在你的playground，实现下面的Cat结构体:</p>
+<p><br><code><br>struct Cat {<br>  var wasFed = false<br>}<br><br>var cat = Cat()<br>var kitty = cat<br>kitty.wasFed = true<br><br>cat.wasFed        // false<br>kitty.wasFed      // true<br></code><br></p>
+
+<p>这儿表明在引用和值类型之间里的一个细微但是重要的区别:设置kitty‘ 的wasFed属性对cat没有影响。kitty变量收到一个cat的值得拷贝而不是引用。</p>
+<p><img src="https://koenig-media.raywenderlich.com/uploads/2015/08/value-value-700x300.png" style="zoom:50%"></p>
+<p>看样子你的cat今天要挨饿了!</p>
+<p>虽然把一个引用赋值给变量更快，拷贝几乎是一样不费力的。拷贝操作的时间复杂度是O(n)因为他们消耗一个固定的引用计数操作基于数据的大小。</p>
+<p>从性能角度来看应该一直使用引用类型，但是这个系列的第二部分指示你在Swift构思巧妙的方法去优化这些拷贝操作。</p>
+<h2 id="可变性"><a href="#可变性" class="headerlink" title="可变性"></a>可变性</h2><p>var和let对一个引用和值类型功能是不一样的。注意到你定义dog和puppy为let作为常量，然而你可以改变wasFed属性。这个是可能的吗？</p>
+<p>对引用类型来说，let意味着引用仍然是常量。换句话说，你不能改变实例的常引用，但是你可以改变实例变量本身。</p>
+<p>对值类型来说，let意味着实例仍然是常量。实例变量的属性将不会改变，不管属性定义为let或者var。</p>
+<p>通过值类型更容易控制可变性。想在引用类型达到同样的不可变/可变行为，你需要实现不可变和可变的类变量比如NSString和NSMutableString。</p>
+<h1 id="Swift青睐哪种类型？"><a href="#Swift青睐哪种类型？" class="headerlink" title="Swift青睐哪种类型？"></a>Swift青睐哪种类型？</h1><p>很惊讶的是Swift标准库仅仅使用值类型。在Swift1.2,2.0和3.0对枚举，结构体和类进行快速查找标准库,显示对值类型的偏爱:<br>Swift 1.2:</p>
+<ul>
+<li>struct: 81</li>
+<li>enum: 8</li>
+<li>class: 3</li>
+</ul>
+<p>Swift 2.0:</p>
+<ul>
+<li>struct: 87</li>
+<li>enum: 8</li>
+<li>class: 4</li>
+</ul>
+<p>Swift 3.0:</p>
+<ul>
+<li>struct: 124</li>
+<li>enum: 19</li>
+<li>class: 3</li>
+</ul>
+<p>这里包含的类型比如String,Array和Dictionary是作为结构体来实现的。</p>
+<h1 id="怎么和什么时候使用"><a href="#怎么和什么时候使用" class="headerlink" title="怎么和什么时候使用"></a>怎么和什么时候使用</h1><p>既然你知道两种类型的不同，什么时候其中一种而不是另外一种？</p>
+<p>有一种情况对你来说是必须选择:许多Cocoa APIs需要是NSObject子类，强制你使用类。除此之外，你可以使用从苹果的<a href="https://developer.apple.com/swift/blog/?id=10" target="_blank" rel="external">Swift博客</a>的例子来决定到底是使用struct / enum值类型还是class引用类型。</p>
+<h2 id="什么时候使用值类型"><a href="#什么时候使用值类型" class="headerlink" title="什么时候使用值类型"></a>什么时候使用值类型</h2><p>通常来说，在下面的例子中使用值类型:</p>
+<p>比较实例数据通过==更行得通</p>
+<p>“但是理所当然”,你会说。“我想所有的对象是可比较的”。但是你必须考虑到数据是否是可比较的。考虑到下面的一个点的实现：</p>
+<p><br><code><br>struct Point: CustomStringConvertible {<br>  var x: Float<br>  var y: Float<br><br>  var description: String {<br>    return “{x: (x), y: (y)}”<br>  }<br>}<br></code><br></p>
+
+<p>这个是否意味两个变量有相同的一样的x和y的值就应该考虑成相等?</p>
+<p><br><code><br>let point1 = Point(x: 2, y: 3)<br>let point2 = Point(x: 2, y: 3)<br></code><br></p>
+
+<p>很清楚的来说，两个点拥有相同的内部值应该考虑成相等。他们值的内存位置没有关系;你关心的是值本身。</p>
+<p>因此，你需要遵循Equatable协议,是一个很好的实践对所有的值类型。这个协议定义了一个你必须实现的功能，为了比较两个对象的实例。这就意味着==操作符必须拥有下面的特征:</p>
+<ul>
+<li>反身性：x == x 是真</li>
+<li>对称性:如果 x == y 然后 y == x</li>
+<li>传递性:如果 x == y 并且 y == z 然后 x == z</li>
+</ul>
+<p>这里有对你的Point一个实现==的例子:</p>
+<p><br><code><br>extension Point: Equatable { }<br>func ==(lhs: Point, rhs: Point) -&gt; Bool {<br>  return lhs.x == rhs.x &amp;&amp; lhs.y == rhs.y<br>}<br></code><br></p>
+
+<h2 id="拷贝应该有他们独立的状态"><a href="#拷贝应该有他们独立的状态" class="headerlink" title="拷贝应该有他们独立的状态"></a>拷贝应该有他们独立的状态</h2>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/06/swift-algorithm-club-swift-merge-sort/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="star in the night sky">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="夜空中的星">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="夜空中的星" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/04/06/swift-algorithm-club-swift-merge-sort/" itemprop="url">
+                  Swift 算法俱乐部:Swift 合并排序
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-06T18:03:02+08:00">
+                2017-04-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/02/arc-memory-management-swift/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="star in the night sky">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="夜空中的星">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="夜空中的星" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/04/02/arc-memory-management-swift/" itemprop="url">
                   Swift 中的ARC和内存管理
                 </a>
               
@@ -303,8 +746,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-27T19:48:37+08:00">
-                2017-03-27
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-02T19:48:37+08:00">
+                2017-04-02
               </time>
             
 
@@ -1875,7 +2318,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
