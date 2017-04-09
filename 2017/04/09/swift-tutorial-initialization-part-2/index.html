@@ -84,27 +84,16 @@
 
 
 
-<meta name="description" content="欢迎来到第二部分和最后部分我们系列中Swift关于引用和值语法的！在第一部分，你探究了引用和值类型之间的不同并且互相之间的合适的情形。
-
-第二部分使用一个现实世界的例子去描述混合值和引用类型当维护期望情形。
-开始首先，创建一个playground:在Xcode，选择File\New\Playground… 并且把这个playground命名为ValueSemanticsPart2。你可以选择其中之">
+<meta name="description" content="iOS objective-c swift algorithm Data Structure">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Swift中引用和值类型:第二部分">
-<meta property="og:url" content="http://yoursite.com/2017/04/06/reference-value-types-in-swift-part-2/index.html">
+<meta property="og:title" content="Swift教程:深入初始化，第二部分">
+<meta property="og:url" content="http://yoursite.com/2017/04/09/swift-tutorial-initialization-part-2/index.html">
 <meta property="og:site_name" content="夜空中的星">
-<meta property="og:description" content="欢迎来到第二部分和最后部分我们系列中Swift关于引用和值语法的！在第一部分，你探究了引用和值类型之间的不同并且互相之间的合适的情形。
-
-第二部分使用一个现实世界的例子去描述混合值和引用类型当维护期望情形。
-开始首先，创建一个playground:在Xcode，选择File\New\Playground… 并且把这个playground命名为ValueSemanticsPart2。你可以选择其中之">
-<meta property="og:image" content="https://koenig-media.raywenderlich.com/uploads/2015/11/ReferenceValues-feature2-1-250x250.png">
-<meta property="og:updated_time" content="2017-04-09T06:09:35.000Z">
+<meta property="og:description" content="iOS objective-c swift algorithm Data Structure">
+<meta property="og:updated_time" content="2017-04-09T06:55:55.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Swift中引用和值类型:第二部分">
-<meta name="twitter:description" content="欢迎来到第二部分和最后部分我们系列中Swift关于引用和值语法的！在第一部分，你探究了引用和值类型之间的不同并且互相之间的合适的情形。
-
-第二部分使用一个现实世界的例子去描述混合值和引用类型当维护期望情形。
-开始首先，创建一个playground:在Xcode，选择File\New\Playground… 并且把这个playground命名为ValueSemanticsPart2。你可以选择其中之">
-<meta name="twitter:image" content="https://koenig-media.raywenderlich.com/uploads/2015/11/ReferenceValues-feature2-1-250x250.png">
+<meta name="twitter:title" content="Swift教程:深入初始化，第二部分">
+<meta name="twitter:description" content="iOS objective-c swift algorithm Data Structure">
 
 
 
@@ -132,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/04/06/reference-value-types-in-swift-part-2/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/04/09/swift-tutorial-initialization-part-2/"/>
 
 
 
 
 
-  <title> Swift中引用和值类型:第二部分 | 夜空中的星 </title>
+  <title> Swift教程:深入初始化，第二部分 | 夜空中的星 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -271,7 +260,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/06/reference-value-types-in-swift-part-2/">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/09/swift-tutorial-initialization-part-2/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="star in the night sky">
@@ -295,7 +284,7 @@
             
             
               
-                Swift中引用和值类型:第二部分
+                Swift教程:深入初始化，第二部分
               
             
           </h1>
@@ -310,8 +299,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-06T18:32:06+08:00">
-                2017-04-06
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-09T14:52:50+08:00">
+                2017-04-09
               </time>
             
 
@@ -347,15 +336,7 @@
       
 
       
-        <p>欢迎来到第二部分和最后部分我们系列中Swift关于引用和值语法的！在<a href="https://www.raywenderlich.com/?p=112027" target="_blank" rel="external">第一部分</a><br>，你探究了引用和值类型之间的不同并且互相之间的合适的情形。</p>
-<p><img src="https://koenig-media.raywenderlich.com/uploads/2015/11/ReferenceValues-feature2-1-250x250.png" style="zoom:50%"></p>
-<p>第二部分使用一个现实世界的例子去描述混合值和引用类型当维护期望情形。</p>
-<h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><p>首先，创建一个playground:在Xcode，选择File\New\Playground… 并且把这个playground命名为ValueSemanticsPart2。你可以选择其中之一的平台因为这个教程和平台无关，它仅仅关注于Swift语言本身。</p>
-<p>点击Next，选择一个方便的位置来保存playground并且点击Create来打开它。</p>
-<h1 id="混合值和引用类型"><a href="#混合值和引用类型" class="headerlink" title="混合值和引用类型"></a>混合值和引用类型</h1><p>你将遇到这种情况当引用类型需要包含值类类型，反之亦然。这个很容易复杂对象的期望的语义。</p>
-<p>想看到这些复杂情形，你将看到每一个情形的一个例子。</p>
-<h2 id="引用类型包含值类型属性"><a href="#引用类型包含值类型属性" class="headerlink" title="引用类型包含值类型属性"></a>引用类型包含值类型属性</h2><p>引用类型包含值类型是一件很常见的事情。</p>
-
+        
       
     </div>
 
@@ -402,8 +383,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/04/06/reference-value-types-in-swift-part-1/" rel="next" title="Swift中引用和值类型:第一部分">
-                <i class="fa fa-chevron-left"></i> Swift中引用和值类型:第一部分
+              <a href="/2017/04/09/swift-tutorial-initialization-part-1/" rel="next" title="Swift教程:深入初始化，第一部分">
+                <i class="fa fa-chevron-left"></i> Swift教程:深入初始化，第一部分
               </a>
             
           </div>
@@ -411,10 +392,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/04/09/swift-tutorial-initialization-part-1/" rel="prev" title="Swift教程:深入初始化，第一部分">
-                Swift教程:深入初始化，第一部分 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -461,17 +438,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -520,22 +488,6 @@
 
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#开始"><span class="nav-number">1.</span> <span class="nav-text">开始</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#混合值和引用类型"><span class="nav-number">2.</span> <span class="nav-text">混合值和引用类型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#引用类型包含值类型属性"><span class="nav-number">2.1.</span> <span class="nav-text">引用类型包含值类型属性</span></a></li></ol></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
     </div>
