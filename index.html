@@ -461,7 +461,7 @@
       
         
           
-            <p>如果你一直2015年关注苹果开发者大会，你可能注意到一个实际重要强调在Swift中重新考虑代码体系。一个最重要的不同对从Objective-C到Swift开发者来说，更加喜好值类型超过引用类型。</p>
+            <p>如果你一直关注2015年苹果开发者大会，你可能注意到一个实际重要强调在Swift中重新考虑代码体系。一个最重要的不同对从Objective-C到Swift开发者来说，更加喜好值类型超过引用类型。</p>
 <p><img src="https://koenig-media.raywenderlich.com/uploads/2015/11/ReferenceValues-feature.png" style="zoom:50%"></p>
 <p>这两个系列举例说明两个类型的不同并且指示你每种类型什么时候去用。你将在第一部分学习到每种类型的主要概念，而<a href="https://starinthenightsky.github.io/2017/04/06/reference-value-types-in-swift-part-2/" target="_blank" rel="external">第二部分</a>你将解决一个现实世界问题作为你学习更高级的概念和发现关于两种类型的一些微妙但是重要的点。</p>
 <p>不管你是来自传统Objective-C开发者背景，还是你精通Swift，你一定学习到在Swift的来龙去脉。</p>
@@ -547,7 +547,38 @@
 <p>这里有对你的Point一个实现==的例子:</p>
 <p><br><code><br>extension Point: Equatable { }<br>func ==(lhs: Point, rhs: Point) -&gt; Bool {<br>  return lhs.x == rhs.x &amp;&amp; lhs.y == rhs.y<br>}<br></code><br></p>
 
-<h2 id="拷贝应该有他们独立的状态"><a href="#拷贝应该有他们独立的状态" class="headerlink" title="拷贝应该有他们独立的状态"></a>拷贝应该有他们独立的状态</h2>
+<h2 id="拷贝应该有他们独立的状态"><a href="#拷贝应该有他们独立的状态" class="headerlink" title="拷贝应该有他们独立的状态"></a>拷贝应该有他们独立的状态</h2><p>拿Point例子进一步说，考虑下面的两个Shape实例，把两个原始相等的点的center作为他们的center。</p>
+<p><br><code><br>struct Shape {<br>  var center: Point<br>}<br><br>let initialPoint = Point(x: 0, y: 0)<br>let circle = Shape(center: initialPoint)<br>var square = Shape(center: initialPoint)<br></code><br></p>
+
+<p>如果你改变其中的一个形状的中心点将会发生什么？</p>
+<p><br><code><br>square.center.x = 5   // {x: 5.0, y: 0.0}<br>circle.center         // {x: 0.0, y: 0.0}<br></code><br></p>
+
+<p>每个Shape需要它自己的Point的拷贝所以需要你能维护各自的状态。你能想象混乱所有的形状共享一个中心点是同一份拷贝？</p>
+<h2 id="数据在代码里被使用在多线程情况下"><a href="#数据在代码里被使用在多线程情况下" class="headerlink" title="数据在代码里被使用在多线程情况下"></a>数据在代码里被使用在多线程情况下</h2><p>这个将有点更复杂。访问这个数据在多线程会怎样？如果是这样，多线程情况下总是数据不相等将会很重要？</p>
+<p>为了使数据访问一致性在多线程下，你将需要使用引用类型和实现<a href="https://en.wikipedia.org/wiki/Lock_(computer_science" target="_blank" rel="external">锁</a>)-不容易的工作！</p>
+<p>如果多个线程能独一无二的拥有数据，使用值类型使整个点未决的因为每个数据持有独一的拷贝而不是一个共享的引用。</p>
+<h1 id="什么时候使用引用类型"><a href="#什么时候使用引用类型" class="headerlink" title="什么时候使用引用类型"></a>什么时候使用引用类型</h1><p>虽然在很多情况值类型是非常有用，在如下情况下引用类型仍然是有用的:</p>
+<h2 id="比较实例数据通过-更行得通"><a href="#比较实例数据通过-更行得通" class="headerlink" title="比较实例数据通过==更行得通"></a>比较实例数据通过==更行得通</h2><p>===检测两个对象是完全一致，归根到底是内存地址存储的数据。</p>
+<p>放在现实世界的情况下，考虑如下情况：如果你的邻居同事交换你其中的$20的账单和另外一个$20账单，你不必在意，你只要仅仅关心对象的值本身。</p>
+<p>然而，如果有个人偷了大宪章并且在它的地方创建同一份的羊皮卷文档的拷贝，那将极大的影响因为文档固有的同一性一点都不一样。</p>
+<p>你可以使用同意想法处理什么时候决定是否使用引用类型;通常很少的情况当你真正的关心固有同一性-那就是，内存地址-数据。通常你仅仅只要关心比较数据值。</p>
+<h2 id="你想创建一个共享可变的状态"><a href="#你想创建一个共享可变的状态" class="headerlink" title="你想创建一个共享可变的状态"></a>你想创建一个共享可变的状态</h2><p>有些情况下，你想一块数据被存储成一个单一实例并且被多个消费者访问和改变。</p>
+<p>一个通常的对象被共享和可变状态被一个银行账号所共享。你可能实现如下账号的一个基本代表和用户：</p>
+<p><br><code><br>class Account {<br>  var balance = 0.0<br>}<br><br>class Person {<br>  let account: Account<br>  init(_ account: Account) {<br>    self.account = account<br>  }<br>}<br></code><br></p>
+
+<p>如果任何共有的银行账户持有者添加钱到这个账户，然后这个新的平衡会影响到链接到这个账户的所有借记卡:</p>
+<p><br><code><br>let account = Account()<br><br>let person1 = Person(account)<br>let person2 = Person(account)<br><br>person2.account.balance += 100.0<br><br>person1.account.balance    // 100<br>person2.account.balance    // 100<br></code><br></p>
+
+<p>因为Account是一个类，每个Person持有账户的引用，并且所有的事情保持同步。</p>
+<h1 id="仍然未决？"><a href="#仍然未决？" class="headerlink" title="仍然未决？"></a>仍然未决？</h1><p>如果你还是不很确定哪种机制在你的形式下，默认值类型。你总是只需要稍许努力后面能改变成一个类。</p>
+<p><img src="https://koenig-media.raywenderlich.com/uploads/2015/08/value-struct-652x500.png" style="zoom:50%"></p>
+<p>考虑，Swift几乎专门的使用值类型，难以置信的Objective-C在这种形式下是完全相反的。</p>
+<p>作为在新的Swift样式下的一个代码体系，你需要一点预先计划去考虑你的数据将怎么用。你可以解决任何情况下几乎绝大多数问题通过值类型或者引用类型-但是使用不正确可能导致大量的bug和让人迷惑的代码。</p>
+<p>在所有的情况下，当一个新的需求到来去改变你的体系是一个常识和一件乐意的事情是最好的解决方法。挑战你自己后面的Swift模式；你将产生一些更好的代码比你原来的想法！</p>
+<h1 id="何去何从？"><a href="#何去何从？" class="headerlink" title="何去何从？"></a>何去何从？</h1><p>你可以在这篇文章的<a href="https://koenig-media.raywenderlich.com/uploads/2015/11/ValueSemanticsPart1Final.playground.zip" target="_blank" rel="external">这里</a>下载完整的playground的所有代码。</p>
+<p>通过这一点，你已经涉及到值类型和引用类型之间的不同并且什么时候使用。在<a href="http://www.raywenderlich.com/112029/reference-value-types-in-swift-part-2" target="_blank" rel="external">这个系列的第二部分</a>，你将解决现实世界的问题并且学习到一些关于值类型的高级机制。</p>
+<p>如果你有任何评论和问题，自由参加下面的的论坛讨论！</p>
+
           
         
       
